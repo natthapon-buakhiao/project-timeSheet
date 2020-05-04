@@ -1,0 +1,142 @@
+
+  .add{
+    margin-left: 70%;
+}
+
+.boxCusName{
+    margin-left:1.9%;
+}
+table {
+    width: 100%;
+    font-size: 16px;
+  }
+  ::ng-deep .form-field--read .mat-form-field-underline {
+    display: none;
+}
+  
+  .mat-cell{
+    width: 5;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+  
+  }
+  .mat-column-action {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-in {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-mtType{
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-stopFlag {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-channel {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-6 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-7 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-8 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-9 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-10 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-11 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-12 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-13 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-column-14 {
+    width: 5;
+    text-align: center;
+  }
+  
+  .mat-header-cell {
+    font-size: 12px !important;
+  }
+  .btn-topbar {
+    color: white;
+    background-color: #705f5f;
+  }
+  button:focus {
+    outline: unset;
+  }
+  .expandedHeader {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  input {
+    margin-top: -0.1px;
+  }
+  .no-data {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    color: #15141469;
+  }
+  
+  .bg-red {
+    background-color: #e8c3c3;
+  }
+  
+  .scrollit {
+    overflow-y: scroll;
+  }
+  
+  .label-nowrap {
+    width : 120px;
+    height: 15px;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: medium;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2;}
+
+th{
+  background-color: #ced2d6;
+}
+  

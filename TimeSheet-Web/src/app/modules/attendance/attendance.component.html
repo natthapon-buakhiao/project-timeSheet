@@ -1,0 +1,64 @@
+<div class="page-main">
+<div class="row">
+    <div class="col-6">
+      <div> <a style="font-size: 1.75rem;">Attendance List</a></div>
+    </div>
+    <div class="col-6" style="text-align: right;">
+      <button mat-raised-button class="btn-submit" (click)="openDialogAdd()">
+        <mat-icon>library_books</mat-icon>
+        View History
+      </button>&nbsp;
+      <button mat-raised-button class="btn-submit" (click)="openDialogAdd()">
+        <mat-icon>assessment</mat-icon>
+        Add Attendance List
+      </button>&nbsp;
+      <button mat-raised-button class="btn-submit" [routerLink]="['./user-profile']">
+        <mat-icon>supervisor_account</mat-icon>
+        Profile
+      </button>&nbsp;
+    </div>
+  </div><br>
+  
+  <div style="text-align: right;">
+    <button mat-raised-button class="btn-submit" (click)="openDialogAdd()">
+        <mat-icon>work_outline</mat-icon>
+        Time out
+    </button>
+  </div><br>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>  
+
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="site">
+      <th mat-header-cell *matHeaderCellDef> Site </th>
+      <td mat-cell *matCellDef="let element"> {{element.site}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="task">
+      <th mat-header-cell *matHeaderCellDef> Task </th>
+      <td mat-cell *matCellDef="let element"> {{element.task}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time1">
+      <th mat-header-cell *matHeaderCellDef> Time-In </th>
+      <td mat-cell *matCellDef="let element"> {{element.time1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time2">
+      <th mat-header-cell *matHeaderCellDef> Time-Out </th>
+      <td mat-cell *matCellDef="let element"> {{element.time2}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

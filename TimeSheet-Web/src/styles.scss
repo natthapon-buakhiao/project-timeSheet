@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@font-face {
+  font-family: CSChatThai;
+  src: url(assets/fonts/CSChatThai.ttf) format("truetype");
+}
+
+* {
+  font-family: "CSChatThai", roboto;
+  font-size: 18px;
+}
+
+body {
+  background-color: #f4f6f9;
+}
+.page-main {
+  height: 100vh;
+  padding: 2%;
+  background-color: #f4f6f9;
+}
+.btn-submit {
+  background-color: #82dcc3;
+  color: white;
+}
+
+.btn-cancle {
+  background-color: rgb(241, 238, 238);
+  color: black;
+}
+#chart-card {
+  .mat-card-header {
+    background-color: #82dcc3 !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+  }
+  .mat-card {
+    padding: 0;
+  }
+  .mat-card-content {
+    padding: 5px;
+  }
+}
+
+.mat-sort-header-container {
+  font-size: 16px !important;
+  // place-content: center !important;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+}
+
+.headTilteDialog {
+  background-color: #82dcc3;
+  margin: -24px -24px 15px -24px;
+  // padding-left: 10px;
+}
+
+.mat-dialog-title {
+  font: 500 28px/32px !important;
+  margin: 10px 10px 10px 25px !important;
+}
+
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
+.mat-tab-label.mat-tab-disabled{
+  color: unset !important;
+}
+
