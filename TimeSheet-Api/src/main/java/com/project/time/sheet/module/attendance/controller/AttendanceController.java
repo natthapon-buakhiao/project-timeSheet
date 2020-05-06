@@ -1,31 +1,35 @@
 package com.project.time.sheet.module.attendance.controller;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.time.sheet.common.models.ResponseModel;      
+import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.Attendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
 import com.project.time.sheet.module.attendance.service.AttendanceService;
 
-
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping(path = "/attendance")
+@RequestMapping(path = "/data")
 
 public class AttendanceController {
     
     @Autowired
-    AttendanceService attendanceService;
+	AttendanceService attendanceService;
+
 
     @RequestMapping(value = "/inquiry", method = RequestMethod.GET)
 	public ResponseEntity<ResponseModel<List<Attendance>>> inquiry(){
@@ -44,4 +48,7 @@ public class AttendanceController {
 		
 		return ResponseEntity.ok(res);
 	}
+
+	
+
 }
