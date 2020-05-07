@@ -2,16 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo, tap } from 'rxjs/operators';
-import { RequestProfile } from '../shared/model/reqLogin';
 
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'content-type': 'application/json'
-  }),
-};
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +18,6 @@ export class LoginService {
     private router: Router
   ) {}
 
-  getProfile(request: RequestProfile): Observable<any> {
-    let url = 'http://localhost:8091/iam/inquiryProfile';
-    return this.http.post<any>(url, request, httpOptions).pipe(
-      tap(_ => console.log('getProfile success'))
-    );
-  }
    login(userCode: string, password: string ): Observable<any> {
     const objLogin = {
       "isIamAdmin": "Y",
@@ -43,7 +29,7 @@ export class LoginService {
         tap(tokens => this.doLoginUser(userCode, tokens.accessToken)),
         mapTo(true),
         catchError(err => {
-          alert('ชื่อ/รหัส ไม่ถูกต้อง');
+          // alert('ชื่อ/รหัส ไม่ถูกต้อง');
           return of(err);
         }));
   }

@@ -4,6 +4,8 @@ import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attend
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { RequestProfileService } from 'src/app/service/request-profile.service';
+import { ReqProfile } from 'src/app/shared/model/reqLogin';
 
 export interface PeriodicElement {
   date: string;
@@ -29,15 +31,19 @@ export class AttendanceComponent implements OnInit {
   displayedColumns: string[] = ['date', 'site', 'task', 'time1', 'time2', 'project'];
   dataSource = ELEMENT_DATA;
 
+  setToken = '';
+
   constructor(
     public dialog: MatDialog,
-    private reqAttendance: RequestAttendanceService
+    private reqAttendance: RequestAttendanceService,
+    private reqProfileService : RequestProfileService
   ) { }
 
   
 
   ngOnInit() {
     // this.getAttendance();
+    this.getUserProfile();
   }
 
   // getAttendance(){
@@ -45,6 +51,22 @@ export class AttendanceComponent implements OnInit {
   //     this.dataSource = new MatTableDataSource(res.data);
   //   })
   // }
+
+
+getUserProfile(){
+  let request = new ReqProfile();
+  this.setToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  console.log(this.setToken);
+  request.token = this.setToken;
+  console.log(request);
+
+  this.reqProfileService.getProfile(request).subscribe((res)  => {
+    console.log(res);
+
+  }, (error) => {
+    console.log(error);
+   });
+  }
 
 
 

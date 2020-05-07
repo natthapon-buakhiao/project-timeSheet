@@ -40,6 +40,7 @@
           </div>
         </div>
       </div>
+      
       <div class="row mt-3">
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Birth Of Date </mat-label>
@@ -67,11 +68,12 @@
           </div>
         </div>
       </div>
+
       <div class="row mt-3">
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Address </mat-label>
         </div>
-        <div class="col-2">
+        <div class="col-4">
           <textarea class="form-control" formControlName="address"
             [ngClass]="{'is-invalid': submitted && f.address.errors}"></textarea>
           <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
@@ -85,8 +87,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row mt-3">
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Position </mat-label>
         </div>
@@ -100,23 +100,6 @@
           <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
             <div *ngIf="f.position.errors.whitespace" class="text-danger help-block">
               {{'Position' | mandatoryfield}}
-            </div>
-          </div>
-        </div>
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Project </mat-label>
-        </div>
-        <div class="col-4">
-          <input class="form-control" formControlName="project"
-            [ngClass]="{'is-invalid': submitted && f.project.errors}">
-          <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
-            <div *ngIf="f.project.errors.required" class="text-danger help-block">
-              {{'Project' | mandatoryfield}}
-            </div>
-          </div>
-          <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
-            <div *ngIf="f.project.errors.whitespace" class="text-danger help-block">
-              {{'Project' | mandatoryfield}}
             </div>
           </div>
         </div>

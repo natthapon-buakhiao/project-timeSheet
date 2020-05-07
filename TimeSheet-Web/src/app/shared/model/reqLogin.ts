@@ -1,4 +1,5 @@
-export class RequestProfile {
+
+export class ReqProfile {
     token: string;
   }
   
