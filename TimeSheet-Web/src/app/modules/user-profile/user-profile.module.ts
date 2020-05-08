@@ -18,7 +18,8 @@ import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    
   ],
   entryComponents:[EditUserProfileDialogComponent],
 })

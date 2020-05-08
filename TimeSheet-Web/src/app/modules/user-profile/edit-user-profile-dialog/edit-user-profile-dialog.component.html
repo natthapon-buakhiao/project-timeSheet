@@ -6,7 +6,7 @@
         <div mat-dialog-content>
           <div class="row mt-3">
             <div class="col-2 mt-2" style="text-align: right;">
-              <mat-label> Name </mat-label>
+              <mat-label> First Name </mat-label>
             </div>
             <div class="col-4">
               <input class="form-control" formControlName="name"
@@ -107,26 +107,6 @@
               </div>
             </div>
             <div class="col-2 mt-2" style="text-align: right;">
-              <mat-label> Project </mat-label>
-            </div>
-            <div class="col-4">
-              <input class="form-control" formControlName="project"
-                [ngClass]="{'is-invalid': submitted && f.project.errors}">
-              <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
-                <div *ngIf="f.project.errors.required" class="text-danger help-block">
-                  {{'Project' | mandatoryfield}}
-                </div>
-              </div>
-              <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
-                <div *ngIf="f.project.errors.whitespace" class="text-danger help-block">
-                  {{'Project' | mandatoryfield}}
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="row mt-3">
-            <div class="col-2 mt-2" style="text-align: right;">
               <mat-label> Site </mat-label>
             </div>
             <div class="col-4">
@@ -143,6 +123,10 @@
                 </div>
               </div>
             </div>
+          </div>
+    
+          <div class="row mt-3">
+
           </div>
         </div>
     
