@@ -8,11 +8,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogAssignComponent implements OnInit {
 
+  submitted = false;
+
   constructor(public dialogRef: MatDialogRef<DialogAssignComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, ) { }
 
   ngOnInit() {
   }
+
+  get f() { return null; }
+
+  
   closeDialog(status) {
     this.dialogRef.close(status);
   }

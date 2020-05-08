@@ -1,3 +1,4 @@
+import { AddAttendanceDialogComponent } from './../attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,21 +9,23 @@ import {MatIconModule} from '@angular/material/icon';
 import { DialogAddAttendanceComponent } from './dialog-add-attendance/dialog-add-attendance.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
+import { AttendanceComponent } from '../attendance/attendance.component';
+
 
 
 @NgModule({
-  declarations: [AttendanceSupervisorComponent, DialogAddAttendanceComponent, DialogAssignComponent],
+  declarations: [AttendanceSupervisorComponent, DialogAssignComponent],
   imports: [
     CommonModule,
     AttendanceSupervisorRoutingModule,
     MaterialModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
-  entryComponents: [
-    DialogAddAttendanceComponent,
-    DialogAssignComponent,
-  ],
+  entryComponents: [    
+    DialogAssignComponent,    
+    ],
 })
 export class AttendanceSupervisorModule { }

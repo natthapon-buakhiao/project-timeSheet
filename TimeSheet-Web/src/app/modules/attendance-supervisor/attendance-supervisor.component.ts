@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AddAttendanceDialogComponent } from './../attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { DialogAddAttendanceComponent } from './dialog-add-attendance/dialog-add-attendance.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,16 +29,19 @@ export class AttendanceSupervisorComponent implements OnInit {
   displayedColumns: string[] = ['date', 'project',  'site', 'task', 'timeIn', 'timeOut'];
   dataSource = ELEMENT_DATA;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }
   onDialogAddAattendance() {
     console.log('open dialog Add attendance');
-    const dialogRef = this.dialog.open(DialogAddAttendanceComponent, {
-      width: '600px',
+    const dialogRef = this.dialog.open(AddAttendanceDialogComponent, {
+      width: '750px',
       position: {
-        top: '5%'
+        top: '10%'
       },
     });
 
@@ -50,9 +55,9 @@ export class AttendanceSupervisorComponent implements OnInit {
   onDialogAssign() {
     console.log('open dialog Add attendance');
     const dialogRef = this.dialog.open(DialogAssignComponent, {
-      width: '800px',
+      width: '750px',
       position: {
-        top: '5%'
+        top: '15%'
       },
     });
 
@@ -61,6 +66,10 @@ export class AttendanceSupervisorComponent implements OnInit {
       //   this.getAccount();
       // }
     });
+  }
+
+  back(){
+    this.router.navigate(['/dashboard']);
   }
 
 }

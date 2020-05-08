@@ -3,25 +3,25 @@
         <div style="text-align: right;">
             <button mat-raised-button class="btn-submit">
                 <mat-icon>library_books</mat-icon>
-                history
-            </button>
-            <button mat-raised-button class="btn-submit">
-                <mat-icon>supervisor_account</mat-icon>
+                View History
+            </button>&nbsp;
+            <button mat-raised-button [routerLink]="['./user-profile']" class="btn-submit">
+                <mat-icon >supervisor_account</mat-icon>
                 Profile
-            </button>
+            </button>&nbsp;
             <button mat-raised-button class="btn-submit" (click)="onDialogAssign()">
                 <mat-icon>assignment_return</mat-icon>
-                Add assign
-            </button>
+                Add Assign Project 
+            </button>&nbsp;
             <button mat-raised-button class="btn-submit" (click)="onDialogAddAattendance()">
                 <mat-icon> assessment</mat-icon>
-                Add attendance
+                Add Attendance
             </button>
         </div> <br>
         <div style="text-align: right;">
-            <button mat-raised-button class="btn-submit" >
+            <button mat-raised-button class="btn-submit" (click)="back()">
                 <mat-icon>work_outline</mat-icon>
-                Time out
+                Back
             </button>
         </div>
         <div class="row mt-3">
