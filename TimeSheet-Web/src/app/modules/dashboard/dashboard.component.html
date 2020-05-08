@@ -2,4 +2,23 @@
     <div class="row headTilteDialog">
         <h3 mat-dialog-title>Dash Board</h3>
     </div>
+    <div class="row">
+        <div class="col-6">
+          <div> <a style="font-size: 1.75rem;">DASHBOARD</a></div>
+        </div>
+        <div class="col-6" style="text-align: right;">
+          <button mat-raised-button class="btn-submit" (click)="goAttendance()">
+            <mat-icon>library_books</mat-icon>
+            Go Attendance
+          </button>&nbsp;
+          <button mat-raised-button class="btn-submit" (click)="goSupervisor()">
+            <mat-icon>supervisor_account</mat-icon>
+            Go Supervisor
+          </button>&nbsp;
+          <button mat-raised-button class="btn-submit" (click)="back()">
+            <mat-icon>supervisor_account</mat-icon>
+            Logout
+          </button>&nbsp;
+        </div>
+      </div><br>
 </div>
