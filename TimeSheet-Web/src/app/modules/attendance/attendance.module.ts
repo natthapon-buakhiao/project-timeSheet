@@ -11,7 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [AttendanceComponent, AddAttendanceDialogComponent],
+  declarations: [AttendanceComponent],
   imports: [
     CommonModule,
     AttendanceRoutingModule,
@@ -20,7 +20,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     SharedModule
   ],
-  entryComponents:[AddAttendanceDialogComponent],
+  entryComponents:[],
   providers: [
     RequestAttendanceService
   ],

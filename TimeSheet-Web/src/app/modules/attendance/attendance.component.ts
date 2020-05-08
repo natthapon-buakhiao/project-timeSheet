@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
 import { ReqInsertAttendance } from './../../shared/model/requestAttendance';
 import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
@@ -36,7 +37,8 @@ export class AttendanceComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
-    private reqProfileService : RequestProfileService
+    private reqProfileService : RequestProfileService,
+    private router: Router
   ) { }
 
   
@@ -56,7 +58,6 @@ export class AttendanceComponent implements OnInit {
 getUserProfile(){
   let request = new ReqProfile();
   this.setToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  console.log(this.setToken);
   request.token = this.setToken;
   console.log(request);
 
@@ -68,12 +69,10 @@ getUserProfile(){
    });
   }
 
-
-
   openDialogAdd(): void {
     console.log('The dialog was open add');
     const dialogRef = this.dialog.open(AddAttendanceDialogComponent, {
-      width: '650px',
+      width: '750px',
       position: {
         top: '10%',
       },
@@ -85,6 +84,10 @@ getUserProfile(){
       }
     });
 
+  }
+
+  back(){
+    this.router.navigate(['/dashboard']);
   }
 
 }
