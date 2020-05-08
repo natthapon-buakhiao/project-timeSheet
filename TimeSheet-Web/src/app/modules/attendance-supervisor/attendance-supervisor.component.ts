@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { AddAttendanceDialogComponent } from './../attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit } from '@angular/core';
-import { DialogAddAttendanceComponent } from './dialog-add-attendance/dialog-add-attendance.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
 

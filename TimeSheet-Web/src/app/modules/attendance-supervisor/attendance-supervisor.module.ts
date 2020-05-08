@@ -6,7 +6,6 @@ import { AttendanceSupervisorRoutingModule } from './attendance-supervisor-routi
 import { AttendanceSupervisorComponent } from './attendance-supervisor.component';
 import { MaterialModule } from 'src/app/material.module';
 import {MatIconModule} from '@angular/material/icon';
-import { DialogAddAttendanceComponent } from './dialog-add-attendance/dialog-add-attendance.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
 import { AttendanceComponent } from '../attendance/attendance.component';
