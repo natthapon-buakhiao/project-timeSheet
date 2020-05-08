@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
     .subscribe(success => {
       console.log(success);
       if (success === true) {
-        this.router.navigate(['/attendance']);
+        this.router.navigate(['/dashboard']);
+        // this.router.navigateByUrl("/");
         console.log('accessToken = ' + this._login.getTokens() );
       }
 
