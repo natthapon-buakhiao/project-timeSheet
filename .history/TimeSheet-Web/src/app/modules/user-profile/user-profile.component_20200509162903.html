@@ -14,12 +14,12 @@
             [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required" class="text-danger help-block">
-              {{'First Name' | mandatoryfield}}
+              {{'FIName' | mandatoryfield}}
             </div>
           </div>
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.whitespace" class="text-danger help-block">
-              {{'First Name' | mandatoryfield}}
+              {{'Name' | mandatoryfield}}
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@
           <mat-label> Last Name </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control"  formControlName="lastName"
+          <input class="form-control" formControlName="lastName"
             [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required" class="text-danger help-block">
@@ -47,7 +47,7 @@
           <mat-label> Birth Of Date </mat-label>
         </div>
         <div class="col-4">       
-            <input class="form-control" formControlName="birthday" matInput [matDatepicker]="picker">
+            <input class="form-control" formControlName="date" matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>        
         </div>
@@ -92,8 +92,7 @@
           <mat-label> Position </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control" formControlName="position"
-           [ngClass]="{'is-invalid': submitted && f.position.errors}">
+          <input class="form-control" formControlName="position" [ngClass]="{'is-invalid': submitted && f.engName.errors}">
           <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
             <div *ngIf="f.position.errors.required" class="text-danger help-block">
               {{'Position' | mandatoryfield}}
@@ -112,8 +111,8 @@
           <mat-label> Site </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control" formControlName="site"
-            [ngClass]="{'is-invalid': submitted && f.site.errors}">
+          <input class="form-control" formControlName="site" 
+            [ngClass]="{'is-invalid': submitted && f.email.errors}">
           <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
             <div *ngIf="f.site.errors.required" class="text-danger help-block">
               {{'Site' | mandatoryfield}}
@@ -129,8 +128,8 @@
     </div>
   </form>
 
-    <div mat-dialog-actions  class="mt-3" style="float: right;">
-      <button mat-raised-button class="btn-submit" type="submit"  (click)="onSave()">Save</button>&nbsp;
+    <div mat-dialog-actions class="mt-3" style="float: right;">
+      <button mat-raised-button class="btn-submit">Save</button>&nbsp;
       <button mat-raised-button type="submit" class="btn-submit" (click)="openDialogEdit()">Edit</button>&nbsp;
       <button mat-raised-button class="btn-cancle" (click)="back()">Back</button>
     </div>

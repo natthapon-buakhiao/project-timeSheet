@@ -9,7 +9,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UserProfileComponent } from './user-profile.component';
 import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-user-profile-dialog.component';
 import { UserProfileService } from 'src/app/service/user-profile.service';
-import { RequestProfileService } from 'src/app/service/request-profile.service';
 
 
 @NgModule({
