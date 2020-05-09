@@ -21,14 +21,9 @@ import lombok.Data;
 @Table (name = "PROFILE")
 public class Profile {    
     @Id
-    @Column(name = "USER_CODE")
-	private String userCode;
-
-    @Column(name = "FIRSTNAME")
-    private String firstName;
-
-    @Column(name = "LASTNAME")
-    private String lastName;
+	@Column(name="PROFILE_ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "BIRTHDAY")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Bangkok")
@@ -40,15 +35,9 @@ public class Profile {
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "POSITION")
-    private String position;
-
-    @Column(name = "SITE")
-    private String site;
-
-    // @OneToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "ATTENDANCE_ID")
-    // private Attendance attendance;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ATTENDANCE_ID")
+    private Attendance attendance;
 
 
 }
