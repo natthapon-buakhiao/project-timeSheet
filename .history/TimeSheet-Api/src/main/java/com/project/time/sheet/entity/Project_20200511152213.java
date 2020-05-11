@@ -26,6 +26,7 @@ public class Project {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    
     // @ManyToOne
     // @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", insertable = false, updatable = false)
     // private Attendance userId;
