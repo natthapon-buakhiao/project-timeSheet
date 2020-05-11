@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReqProfile } from 'src/app/shared/model/reqLogin';
 import { RequestProfileService } from 'src/app/service/request-profile.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReqUserProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 
@@ -15,7 +15,7 @@ import { UserProfileService } from 'src/app/service/user-profile.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  createProfileGroup: FormGroup;
+  createProfile: FormGroup;
   submitted = false;
   setToken: any;
   dataProfile: any;
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private reqProfileService: RequestProfileService,
-    private formBuild: FormBuilder,
+    private _FormBuild: FormBuilder,
     private userProfileService: UserProfileService,
   ) { }
 
@@ -48,27 +48,27 @@ export class UserProfileComponent implements OnInit {
      });
     }
 
-    get f() { return null; }
+    get f() { return this.createProfile.controls; }
 
 
     setFromProfile(dataProfile) {
-      this.createProfileGroup = this.formBuild.group({
-        userCode: [dataProfile.userCode],
-        firstName: [dataProfile.localFirstName],
-        lastName: [dataProfile.localLastName],
-        position: [dataProfile.position],
-        birthday: [''],
-        age: [''],
-        address: [''],
-        site: [dataProfile.department]
+      this.createProfile = this._FormBuild.group({
+        userCode: [dataProfile.userCode,Validators.required],
+        firstName: [dataProfile.localFirstName,Validators.required],
+        lastName: [dataProfile.localLastName,Validators.required],
+        position: [dataProfile.position,Validators.required],
+        birthday: ['',Validators.required],
+        age: ['',Validators.required],
+        address: ['',Validators.required],
+        site: [dataProfile.department,Validators.required]
       });
-      console.log( this.createProfileGroup);
+      console.log( this.createProfile);
 
     }
 
     onSubmit() {
       this.submitted = true;
-      if (this.createProfileGroup.invalid) {
+      if (this.createProfile.invalid) {
         return;
       } else {
         // this.saveSwal.title = Message.MESSAGE_SAVE;
@@ -79,14 +79,14 @@ export class UserProfileComponent implements OnInit {
     onSave() {
       // this.loading.show();
       let request = new ReqUserProfile();
-      request.userCode = this.createProfileGroup.controls.userCode.value;
-      request.firstName = this.createProfileGroup.controls.firstName.value;
-      request.lastName = this.createProfileGroup.controls.lastName.value;
-      request.birthday = this.createProfileGroup.controls.birthday.value;
-      request.age = this.createProfileGroup.controls.age.value;
-      request.address = this.createProfileGroup.controls.address.value;
-      request.position = this.createProfileGroup.controls.position.value;
-      request.site = this.createProfileGroup.controls.site.value;
+      request.userCode = this.createProfile.controls['userCode'].value;
+      request.firstName = this.createProfile.controls['firstName'].value;
+      request.lastName = this.createProfile.controls['lastName'].value;
+      request.birthday = this.createProfile.controls['birthday'].value;
+      request.age = this.createProfile.controls['age'].value;
+      request.address = this.createProfile.controls['address'].value;
+      request.position = this.createProfile.controls['position'].value;
+      request.site = this.createProfile.controls['site'].value;
       this.userProfileService.insetProfile(request).subscribe((res) => {
         console.log("edit Customer Success");
         console.log(res);

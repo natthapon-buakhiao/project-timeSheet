@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { AttendanceRoutingModule } from './attendance-routing.module';
 import { AttendanceComponent } from './attendance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 
@@ -18,7 +18,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   entryComponents:[],
   providers: [

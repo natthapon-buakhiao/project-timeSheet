@@ -12,11 +12,11 @@
                                 <mat-label>Username</mat-label>
                                 <input matInput formControlName="userCode"
                                     [ngClass]="{'is-invalid': submitted && f.username.errors}">
-                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                                     <div *ngIf="f.username.errors.required" class="text-danger help-block">
                                         {{'username' | mandatoryfield}}
                                     </div>
-                                </div>
+                                </div> -->
                                 <mat-icon matSuffix>person</mat-icon>
                             </mat-form-field>
                         </div>
@@ -25,11 +25,11 @@
                                 <mat-label>Password</mat-label>
                                 <input type="password" matInput formControlName="password"
                                     [ngClass]="{'is-invalid': submitted && f.password.errors}">
-                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                     <div *ngIf="f.password.errors.required" class="text-danger help-block">
                                         {{'password' | mandatoryfield}}
                                     </div>
-                                </div>
+                                </div> -->
                                 <mat-icon matSuffix>vpn_key</mat-icon>
                             </mat-form-field>
                         </div>

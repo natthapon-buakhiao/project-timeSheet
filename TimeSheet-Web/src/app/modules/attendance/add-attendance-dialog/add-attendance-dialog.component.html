@@ -3,7 +3,7 @@
   </div><br>
   
 
-
+  <form [formGroup]="createAttendance" (ngSubmit)="onSave()">
 
   <div mat-dialog-content>
     <div class="row mt-3">
@@ -13,16 +13,16 @@
       <div class="col-4">
         <input class="form-control" formControlName="project"
           [ngClass]="{'is-invalid': submitted && f.project.errors}">
-        <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
+        <!-- <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
           <div *ngIf="f.project.errors.required" class="text-danger help-block">
-            <!-- {{'Project' | mandatoryfield}} -->
+            {{'Project' | mandatoryfield}}
           </div>
         </div>
         <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
           <div *ngIf="f.project.errors.whitespace" class="text-danger help-block">
-            <!-- {{'Project' | mandatoryfield}} -->
+            {{'Project' | mandatoryfield}}
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> Site </mat-label>
@@ -30,17 +30,18 @@
       <div class="col-4">
         <input class="form-control" formControlName="site"
           [ngClass]="{'is-invalid': submitted && f.site.errors}">
-        <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
+        <!-- <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
           <div *ngIf="f.site.errors.required" class="text-danger help-block">
-            <!-- {{'Site' | mandatoryfield}} -->
+            {{'Site' | mandatoryfield}}
           </div>
         </div>
         <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
           <div *ngIf="f.site.errors.whitespace" class="text-danger help-block">
-            <!-- {{'Site' | mandatoryfield}} -->
+            {{'Site' | mandatoryfield}}
           </div>
-        </div>
+        </div> -->
       </div>
+    </div>
     </div>
 
     <div class="row mt-3">
@@ -51,16 +52,17 @@
         <textarea class="form-control" formControlName="task"
           [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
         <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
-          <div *ngIf="f.task.errors.required" class="text-danger help-block">
-            <!-- {{'Task' | mandatoryfield}} -->
+          <!-- <div *ngIf="f.task.errors.required" class="text-danger help-block">
+            {{'Task' | mandatoryfield}}
           </div>
         </div>
         <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
           <div *ngIf="f.task.errors.whitespace" class="text-danger help-block">
-            <!-- {{'Task' | mandatoryfield}} -->
+            {{'Task' | mandatoryfield}}
           </div>
-        </div>
+        </div> -->
       </div>
+    </div>
     </div>
 
     <div class="row mt-3">
@@ -68,36 +70,36 @@
         <mat-label>Time-In</mat-label>
       </div>
       <div class="col-4">
-        <input class="form-control" formControlName="project"
+        <input class="form-control" formControlName="timeIn"
           [ngClass]="{'is-invalid': submitted && f.project.errors}">
-        <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
+        <!-- <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
           <div *ngIf="f.project.errors.required" class="text-danger help-block">
-            <!-- {{'Time-In' | mandatoryfield}} -->
+            {{'Time-In' | mandatoryfield}}
           </div>
         </div>
         <div *ngIf="submitted && f.project.errors" class="invalid-feedback">
           <div *ngIf="f.project.errors.whitespace" class="text-danger help-block">
-            <!-- {{'Time-In' | mandatoryfield}} -->
+            {{'Time-In' | mandatoryfield}}
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> Time-Out </mat-label>
       </div>
       <div class="col-4">
-        <input class="form-control" formControlName="site"
+        <input class="form-control" formControlName="timeOut"
           [ngClass]="{'is-invalid': submitted && f.site.errors}">
-        <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
+        <!-- <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
           <div *ngIf="f.site.errors.required" class="text-danger help-block">
-            <!-- {{'Time-Out' | mandatoryfield}} -->
+            {{'Time-Out' | mandatoryfield}}
           </div>
         </div>
         <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
           <div *ngIf="f.site.errors.whitespace" class="text-danger help-block">
-            <!-- {{'Time-Out' | mandatoryfield}} -->
+            {{'Time-Out' | mandatoryfield}}
           </div>
-        </div>
-      </div>
+        </div> -->
+      </div>    
     </div>
     <div class="row mt-3">
       <div class="col-2 mt-2" style="text-align: right;">
@@ -110,10 +112,8 @@
       </div>
     </div>
 
-
-  </div>
-
   <div mat-dialog-actions class="mt-3" style="float: right;">
     <button mat-raised-button type="submit" class="btn-submit">Save</button>
     <a mat-raised-button class="btn-cancle"(click)="canCle(false)">Cancel</a>
   </div>
+  

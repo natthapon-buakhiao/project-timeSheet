@@ -1,26 +1,9 @@
 import { Router } from '@angular/router';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
-import { ReqInsertAttendance } from './../../shared/model/requestAttendance';
 import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { RequestProfileService } from 'src/app/service/request-profile.service';
-import { ReqProfile } from 'src/app/shared/model/reqLogin';
-
-export interface PeriodicElement {
-  date: string;
-  site: string;
-  task: string;
-  time1: string;
-  time2: string;
-  project: string;
-  
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-{date:'24-04-2563',site:'BAY',task:'frontend',time1:'13.30',time2:'17.30',project:'A'}
-];
 
 @Component({
   selector: 'app-attendance',
@@ -29,45 +12,36 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AttendanceComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'site', 'task', 'time1', 'time2', 'project'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['date', 'project', 'task', 'site', 'timeIn', 'timeOut'];
+  dataSource = new MatTableDataSource();
 
-  setToken = '';
 
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
-    private reqProfileService : RequestProfileService,
     private router: Router
   ) { }
 
   
 
   ngOnInit() {
-    // this.getAttendance();
-    this.getUserProfile();
+    this.getAttendance();
   }
 
-  // getAttendance(){
-  //   this.reqAttendance.getAttendance().subscribe((res) => {
-  //     this.dataSource = new MatTableDataSource(res.data);
-  //   })
-  // }
+  getAttendance() {
+    this.reqAttendance.getAttendance().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.data);
+      // this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator;
+      console.log('getAttendance Success');
+    },
+      (error) => {
 
+      }
+    )
 
-getUserProfile(){
-  let request = new ReqProfile();
-  this.setToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  request.token = this.setToken;
-  console.log(request);
-
-  this.reqProfileService.getProfile(request).subscribe((res)  => {
-    console.log(res);
-
-  }, (error) => {
-    console.log(error);
-   });
   }
+
 
   openDialogAdd(): void {
     console.log('The dialog was open add');

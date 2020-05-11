@@ -4,8 +4,8 @@ export class ReqProfile {
   }
   
   export class Login{
-      userId?:any;
-      userCode?: string;
-      password?: string;
-      isLogin?: boolean; 
+      userId:any;
+      userCode: string;
+      password: string;
+      isLogin: boolean; 
   }

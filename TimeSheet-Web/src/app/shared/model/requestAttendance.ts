@@ -1,3 +1,8 @@
 export class ReqInsertAttendance{
-    task:string
+    date:Date
+    project:String
+    task:String
+    site:String
+    timeIn:String
+    timeOut:String
 }

@@ -48,14 +48,14 @@
       <td mat-cell *matCellDef="let element"> {{element.task}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="time1">
+    <ng-container matColumnDef="timeIn">
       <th mat-header-cell *matHeaderCellDef> Time-In </th>
-      <td mat-cell *matCellDef="let element"> {{element.time1}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.timeIn}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="time2">
+    <ng-container matColumnDef="timeOut">
       <th mat-header-cell *matHeaderCellDef> Time-Out </th>
-      <td mat-cell *matCellDef="let element"> {{element.time2}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.timeOut}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
