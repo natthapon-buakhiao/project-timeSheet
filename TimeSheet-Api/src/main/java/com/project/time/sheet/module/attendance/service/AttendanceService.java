@@ -43,9 +43,13 @@ public class AttendanceService {
 			
 			Attendance newAttendance = new Attendance();
 			
+			newAttendance.setDate(req.getDate());
+			newAttendance.setProject(req.getProject());
 			newAttendance.setTask(req.getTask());
-	
-			
+			newAttendance.setSite(req.getSite());
+			newAttendance.setTimeIn(req.getTimeIn());
+			newAttendance.setTimeOut(req.getTimeOut());
+						
 			newAttendance = attendanceRepository.save(newAttendance);
 			
 			res.setCode(EnumCodeResponse.SUCCESS.getCode());

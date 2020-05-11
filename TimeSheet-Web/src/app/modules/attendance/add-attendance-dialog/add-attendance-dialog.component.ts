@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'src/app/shared/model/message';
-import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-add-attendance-dialog',
@@ -20,7 +20,6 @@ export class AddAttendanceDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
     private _FormBuild: FormBuilder,  
     private requestAttendance: RequestAttendanceService,
-    private loading: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -64,6 +63,7 @@ export class AddAttendanceDialogComponent implements OnInit {
         // this.loading.hide();
         // this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
         // this.saveSucessSwal.fire();
+        console.log(res)
       }, (error) => {
         // this.loading.hide();
         console.log(error);

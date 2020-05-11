@@ -37,13 +37,19 @@ public class Attendance {
     private Date date;
 
     @Column(name = "TIME_IN")
-    private LocalTime timeIn;
+    private String timeIn;
 
     @Column(name = "TIME_OUT")
-    private LocalTime timeOut;
+    private String timeOut;
 
     @Column(name = "TASK")
     private String task;
+
+    @Column(name = "PROJECT")
+    private String project;
+
+    @Column(name = "SITE")
+    private String site;
 
     // @OneToOne(mappedBy = "attendance")
     // private Profile profile;
