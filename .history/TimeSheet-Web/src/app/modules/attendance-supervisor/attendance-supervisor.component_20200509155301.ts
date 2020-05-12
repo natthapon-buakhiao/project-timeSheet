@@ -3,10 +3,21 @@ import { AddAttendanceDialogComponent } from './../attendance/add-attendance-dia
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
-import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
-import { MatTableDataSource } from '@angular/material/table';
 
-
+export interface PeriodicElement {
+  date: string;
+  project: string;
+  site: string;
+  task: string;
+  timeIn: string;
+  timeOut: string;
+}
+const ELEMENT_DATA: PeriodicElement[] = [
+  {date: '24/4/2020', project: 'timeSheet',
+  site: 'krungsri', task: 'frontend', timeIn: '9.00', timeOut: '17.00'},
+  {date: '25/4/2020', project: 'timeSheet',
+  site: 'krungsri', task: 'backend', timeIn: '9.00', timeOut: '17.00'},
+];
 
 @Component({
   selector: 'app-attendance-supervisor',
@@ -14,33 +25,15 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./attendance-supervisor.component.scss']
 })
 export class AttendanceSupervisorComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'project', 'task', 'site', 'timeIn', 'timeOut'];
-  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['date', 'project',  'site', 'task', 'timeIn', 'timeOut'];
+  dataSource = ELEMENT_DATA;
 
   constructor(
     public dialog: MatDialog,
-    private router: Router,
-    private reqAttendance: RequestAttendanceService
+    private router: Router
     ) { }
 
   ngOnInit() {
-    this.getAttendance();
-  }
-
-  getAttendance() {
-    this.reqAttendance.getAttendance().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res.data);
-      console.log(res);
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
-      console.log('getAttendance Success');
-    },
-      (error) => {
-        console.log(error);
-
-      }
-    );
-
   }
   onDialogAddAattendance() {
     console.log('open dialog Add attendance');
@@ -55,7 +48,6 @@ export class AttendanceSupervisorComponent implements OnInit {
       // if (result) {
       //   this.getAccount();
       // }
-      this.getAttendance();
     });
   }
 
