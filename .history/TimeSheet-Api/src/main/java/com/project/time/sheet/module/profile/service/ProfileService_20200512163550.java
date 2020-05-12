@@ -4,7 +4,7 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
-import com.project.time.sheet.repository.UserProfileMsRepository;
+import com.project.time.sheet.repository.ProfileRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class ProfileService {
             profile.setAddress(req.getAddress());
             profile.setPosition(req.getPosition());
             profile.setSite(req.getSite());
-            userProfileMsRepository.save(profile);
+            profileRepository.save(profile);
 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());

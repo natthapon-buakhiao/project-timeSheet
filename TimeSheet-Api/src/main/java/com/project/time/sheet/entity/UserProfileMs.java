@@ -18,8 +18,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name = "PROFILE")
-public class Profile {    
+@Table (name = "USER_PROFILE_MS")
+public class UserProfileMs {    
     @Id
     @Column(name = "USER_CODE")
 	private String userCode;

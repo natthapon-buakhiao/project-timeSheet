@@ -30,7 +30,7 @@ public class ProfileService {
             profile.setAddress(req.getAddress());
             profile.setPosition(req.getPosition());
             profile.setSite(req.getSite());
-            userProfileMsRepository.save(profile);
+            profileRepository.save(profile);
 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());
