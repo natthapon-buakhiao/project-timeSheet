@@ -34,12 +34,12 @@ export class UserProfileComponent implements OnInit {
     this.createProfile = new FormGroup({
       userCode: new FormControl(),
       firstName: new FormControl(),
-      lastName: new FormControl(),
-      position: new FormControl(),
-      birthday: new FormControl(),
-      age: new FormControl(),
-      address: new FormControl(),
-      site: new FormControl(),
+      lastName: new FormControl,
+      position: new FormControl,
+      birthday: new FormControl,
+      age: new FormControl,
+      address: new FormControl,
+      site: new FormControl,
 
     });
   }

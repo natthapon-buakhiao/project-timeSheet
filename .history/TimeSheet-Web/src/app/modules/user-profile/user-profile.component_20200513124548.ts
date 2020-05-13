@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReqProfile } from 'src/app/shared/model/reqLogin';
 import { RequestProfileService } from 'src/app/service/request-profile.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReqUserProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 
@@ -32,14 +32,14 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserProfile();
     this.createProfile = new FormGroup({
-      userCode: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      position: new FormControl(),
-      birthday: new FormControl(),
-      age: new FormControl(),
-      address: new FormControl(),
-      site: new FormControl(),
+      userCode: new FormControl,
+      firstName: new FormControl,
+      lastName: new FormControl,
+      position: new FormControl,
+      birthday: new FormControl,
+      age: new FormControl,
+      address: new FormControl,
+      site: new FormControl,
 
     });
   }

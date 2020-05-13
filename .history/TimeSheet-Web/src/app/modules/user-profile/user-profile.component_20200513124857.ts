@@ -38,8 +38,8 @@ export class UserProfileComponent implements OnInit {
       position: new FormControl(),
       birthday: new FormControl(),
       age: new FormControl(),
-      address: new FormControl(),
-      site: new FormControl(),
+      address: new FormControl,
+      site: new FormControl,
 
     });
   }

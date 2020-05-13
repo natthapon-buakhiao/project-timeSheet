@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
       birthday: new FormControl(),
       age: new FormControl(),
       address: new FormControl(),
-      site: new FormControl(),
+      site: new FormControl,
 
     });
   }
