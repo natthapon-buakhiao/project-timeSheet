@@ -8,7 +8,6 @@ import { Message } from 'src/app/shared/model/message';
 import { ReqProfile } from 'src/app/shared/model/reqLogin';
 import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-attendance-dialog',

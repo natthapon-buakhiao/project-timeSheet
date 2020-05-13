@@ -6,9 +6,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Message } from 'src/app/shared/model/message';
 import { ReqProfile } from 'src/app/shared/model/reqLogin';
-import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 
 @Component({
   selector: 'app-add-attendance-dialog',
