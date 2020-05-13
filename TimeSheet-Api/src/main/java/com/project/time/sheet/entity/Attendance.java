@@ -29,8 +29,8 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "USER_ID")
-    private String userId;
+    @Column(name = "USER_Code")
+    private String userCode;
     
     @Column(name = "DATE")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Bangkok")
