@@ -1,7 +1,6 @@
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +20,7 @@ import { RequestProfileService } from 'src/app/service/request-profile.service';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    SweetAlert2Module.forRoot()
     
   ],
   entryComponents:[EditUserProfileDialogComponent],

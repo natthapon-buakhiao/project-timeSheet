@@ -22,38 +22,6 @@ public class TimeSheetApplication {
 	ApplicationRunner init( AttendanceRepository attendanceRepository) {
 		return args -> {
 
-			Attendance a1 = new Attendance();
-			Long l1 = new Long(123);
-			LocalTime timeIn = LocalTime.now();
-			LocalTime timeOut = LocalTime.now();
-			Date date = new Date();
-
-			a1.setId(l1);
-			a1.setUserId(userId);
-
-
-			// History h1 = new History();
-			// Long l1 = new Long(1);
-			// LocalTime timeIn = LocalTime.now();
-			// LocalTime timeOut = LocalTime.now();
-			// Date date = new Date();
-
-			// h1.setSignId(l1);
-			// h1.setFirstName("Natthapon");
-			// h1.setLastName("Buakhiao");
-			// h1.setPosition("Employee");
-			// h1.setTask("backend");
-			// h1.setProject("time sheet");
-			// h1.setTimeIn(timeIn);
-			// h1.setTimeOut(timeOut);
-			// h1.setDate(date);
-
-			// historyRepository.save(h1);
-
-
-
-
-
 		};
 	}
 

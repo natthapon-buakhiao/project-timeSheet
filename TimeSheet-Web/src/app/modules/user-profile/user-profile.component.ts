@@ -1,12 +1,16 @@
 import { Router } from '@angular/router';
 import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-user-profile-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReqProfile } from 'src/app/shared/model/reqLogin';
 import { RequestProfileService } from 'src/app/service/request-profile.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ReqUserProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
+import { Message } from 'src/app/shared/model/message';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +19,8 @@ import { UserProfileService } from 'src/app/service/user-profile.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
+  @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
   createProfile: FormGroup;
   submitted = false;
   setToken: any;
@@ -27,10 +33,22 @@ export class UserProfileComponent implements OnInit {
     private reqProfileService: RequestProfileService,
     private _FormBuild: FormBuilder,
     private userProfileService: UserProfileService,
+    private loading: NgxSpinnerService,
+    private noWhitespaceValidator: noWhitespaceValidator,
   ) { }
 
   ngOnInit() {
     this.getUserProfile();
+    this.createProfile = new FormGroup({
+      userCode: new FormControl,
+      firstName: new FormControl,
+      lastName: new FormControl,
+      position: new FormControl,
+      birthday:new FormControl,
+      age: new FormControl,
+      address: new FormControl,
+      site: new FormControl
+    });
   }
 
   getUserProfile() {
@@ -58,8 +76,8 @@ export class UserProfileComponent implements OnInit {
         lastName: [dataProfile.localLastName,Validators.required],
         position: [dataProfile.position,Validators.required],
         birthday: ['',Validators.required],
-        age: ['',Validators.required],
-        address: ['',Validators.required],
+        age: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
+        address: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
         site: [dataProfile.department,Validators.required]
       });
       console.log( this.createProfile);
@@ -71,13 +89,13 @@ export class UserProfileComponent implements OnInit {
       if (this.createProfile.invalid) {
         return;
       } else {
-        // this.saveSwal.title = Message.MESSAGE_SAVE;
-        // this.saveSwal.fire();
+        this.saveSwal.title = Message.MESSAGE_SAVE;
+        this.saveSwal.fire();
       }
     }
 
     onSave() {
-      // this.loading.show();
+      this.loading.show();
       let request = new ReqUserProfile();
       request.userCode = this.createProfile.controls['userCode'].value;
       request.firstName = this.createProfile.controls['firstName'].value;
@@ -88,14 +106,15 @@ export class UserProfileComponent implements OnInit {
       request.position = this.createProfile.controls['position'].value;
       request.site = this.createProfile.controls['site'].value;
       this.userProfileService.insetProfile(request).subscribe((res) => {
-        console.log("edit Customer Success");
+        console.log("edit UserProfile Success");
         console.log(res);
-        // this.loading.hide();
-        // this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
-        // this.saveSucessSwal.fire();
+        this.loading.hide();
+        this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
+        this.saveSucessSwal.fire();
+        this.router.navigate(['/attendance']);
       },
         (error) => {
-        //  this.loading.hide();
+         this.loading.hide();
           console.log(error);
         });
     }
@@ -115,6 +134,9 @@ export class UserProfileComponent implements OnInit {
     });
 
   }
+
+
+
 
   back(){
     this.router.navigate(['/attendance']);
