@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReqInsertAttendance {
-    
+    private String userCode;
     private Date date;
     private String task;
     private String project;

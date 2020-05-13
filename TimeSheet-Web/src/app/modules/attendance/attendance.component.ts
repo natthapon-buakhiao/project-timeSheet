@@ -53,7 +53,7 @@ export class AttendanceComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.getCustomer();
+        this.getAttendance();
         console.log("Add Success!")
       }
     });

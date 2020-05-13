@@ -42,7 +42,7 @@ public class AttendanceService {
 		try {
 			
 			Attendance newAttendance = new Attendance();
-			
+			newAttendance.setUserCode(req.getUserCode());
 			newAttendance.setDate(req.getDate());
 			newAttendance.setProject(req.getProject());
 			newAttendance.setTask(req.getTask());
