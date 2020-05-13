@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, String> {
 
-    @Query( "SELECT n FROM UserProfileMs n WHERE n.userCode = ?1")
+    @Query( "SELECT n FROM UserProfileMs n WHERE n.userCode = ?1",nativeQuery = true)
     List<UserProfileMs> findByUserCode(String userCode);
     
 }

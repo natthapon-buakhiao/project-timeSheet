@@ -4,7 +4,6 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.exception.DataNotFoundException;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.project.time.sheet.common.EnumCodeResponse;
@@ -26,39 +25,20 @@ public class ProfileService {
         ResponseModel res = new ResponseModel();
 
         try {
-            List<UserProfileMs> userProfileList = userProfileMsRepository.findByUserCode(req.getUserCode());
-            System.out.println("xxxxxxxxxxxx "+ userProfileList.size());
             UserProfileMs profile = new UserProfileMs();
-            if(userProfileList.size() == 0){
-                profile.setUserCode(req.getUserCode());
-                profile.setFirstName(req.getFirstName());
-                profile.setLastName(req.getLastName());
-                profile.setBirthday(req.getBirthday());
-                profile.setAge(req.getAge());
-                profile.setAddress(req.getAddress());
-                profile.setPosition(req.getPosition());
-                profile.setSite(req.getSite());
-                userProfileMsRepository.save(profile);
+            
+            profile.setUserCode(req.getUserCode());
+            profile.setFirstName(req.getFirstName());
+            profile.setLastName(req.getLastName());
+            profile.setBirthday(req.getBirthday());
+            profile.setAge(req.getAge());
+            profile.setAddress(req.getAddress());
+            profile.setPosition(req.getPosition());
+            profile.setSite(req.getSite());
+            userProfileMsRepository.save(profile);
 
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
-             } else {
-                res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-             }
-             
-            // profile.setUserCode(req.getUserCode());
-            // profile.setFirstName(req.getFirstName());
-            // profile.setLastName(req.getLastName());
-            // profile.setBirthday(req.getBirthday());
-            // profile.setAge(req.getAge());
-            // profile.setAddress(req.getAddress());
-            // profile.setPosition(req.getPosition());
-            // profile.setSite(req.getSite());
-            // userProfileMsRepository.save(profile);
-
-            // res.setCode(EnumCodeResponse.SUCCESS.getCode());
-			// res.setMessage(EnumCodeResponse.SUCCESS.name());
+            res.setCode(EnumCodeResponse.SUCCESS.getCode());
+			res.setMessage(EnumCodeResponse.SUCCESS.name());
 
         } catch (Exception e) {
             res.setCode(EnumCodeResponse.FAIL.getCode());

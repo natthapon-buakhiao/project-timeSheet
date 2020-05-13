@@ -1,7 +1,6 @@
 package com.project.time.sheet.module.profile.controller;
 
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.module.profile.models.ReqEditProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.module.profile.service.ProfileService;
 
@@ -37,7 +36,7 @@ public class UserProfileController {
 				
 				ResponseModel res = new ResponseModel();
 				
-				res = profileService.editProfile(req);
+				res = productService.editProduct(req);
 				
 				return ResponseEntity.ok(res);
 			}

@@ -37,7 +37,7 @@ public class UserProfileController {
 				
 				ResponseModel res = new ResponseModel();
 				
-				res = profileService.editProfile(req);
+				res = editProfile.editProduct(req);
 				
 				return ResponseEntity.ok(res);
 			}

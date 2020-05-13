@@ -40,13 +40,7 @@ public class ProfileService {
                 profile.setSite(req.getSite());
                 userProfileMsRepository.save(profile);
 
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
-             } else {
-                res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-             }
-             
+            }
             // profile.setUserCode(req.getUserCode());
             // profile.setFirstName(req.getFirstName());
             // profile.setLastName(req.getLastName());

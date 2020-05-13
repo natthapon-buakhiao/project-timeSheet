@@ -44,7 +44,7 @@ public class ProfileService {
                 res.setMessage(EnumCodeResponse.SUCCESS.name());
              } else {
                 res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
              }
              
             // profile.setUserCode(req.getUserCode());

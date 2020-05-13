@@ -1,7 +1,6 @@
 package com.project.time.sheet.module.profile.controller;
 
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.module.profile.models.ReqEditProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.module.profile.service.ProfileService;
 
@@ -23,7 +22,7 @@ public class UserProfileController {
     @Autowired
     ProfileService profileService;
 
-            @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
 			public ResponseEntity<ResponseModel> insert(@RequestBody ReqInsertProfile req){
 				
 				ResponseModel res = new ResponseModel();
@@ -32,14 +31,7 @@ public class UserProfileController {
 				
 				return ResponseEntity.ok(res);
             }
-            @RequestMapping(value = "/edit", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req){
-				
-				ResponseModel res = new ResponseModel();
-				
-				res = profileService.editProfile(req);
-				
-				return ResponseEntity.ok(res);
-			}
+            
+            
     
 }
