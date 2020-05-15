@@ -105,11 +105,13 @@
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> Date </mat-label>
       </div>
-      <div class="col-4">       
-        <input class="form-control" formControlName="date" matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>        
-    </div>
+          <div class="input-group" class="col-4">
+            <input formControlName="date" class="form-control" [matDatepicker]="pickerStart">
+            <div class="input-group-append">
+                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStart></mat-datepicker>
+            </div>
+        </div>
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> User Code </mat-label>
       </div>

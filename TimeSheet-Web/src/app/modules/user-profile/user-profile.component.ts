@@ -78,9 +78,9 @@ export class UserProfileComponent implements OnInit {
         firstName: [dataProfile.localFirstName,Validators.required],
         lastName: [dataProfile.localLastName,Validators.required],
         position: [dataProfile.position,Validators.required],
-        birthday: ['',Validators.required],
-        age: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
-        address: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
+        birthday: [dataProfile.birthday,Validators.required],
+        age: [dataProfile.age,Validators.required],
+        address: [dataProfile.address,Validators.required],
         site: [dataProfile.department,Validators.required]
       });
       console.log( this.createProfile);
@@ -125,7 +125,7 @@ export class UserProfileComponent implements OnInit {
   openDialogEdit() {
     console.log('The dialog was open add');
     const dialogRef = this.dialog.open(EditUserProfileDialogComponent, {
-      width: '750px',
+      width: '1000px',
       position: {
         top: '10%',
       },
