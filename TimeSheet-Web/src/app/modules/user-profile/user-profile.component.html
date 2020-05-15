@@ -9,14 +9,14 @@
           <mat-label> First Name </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control"  formControlName="firstName">
+          <input class="form-control"  formControlName="firstName" disabled>
 
         </div>
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Last Name </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control"  formControlName="lastName">
+          <input class="form-control"  formControlName="lastName" disabled>
 
         </div>
       </div>
@@ -27,16 +27,14 @@
           <mat-label> Birth Of Date </mat-label>
         </div>
         <div class="col-4">       
-            <input class="form-control" formControlName="birthday" matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>        
+            <input class="form-control" formControlName="birthday" disabled>               
         </div>
 
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Age </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control" formControlName="age">
+          <input class="form-control" formControlName="age" disabled>
 
         </div>
       </div>
@@ -46,14 +44,14 @@
           <mat-label> Address </mat-label>
         </div>
         <div class="col-4">
-          <textarea class="form-control" formControlName="address"></textarea>
+          <textarea class="form-control" formControlName="address" disabled></textarea>
 
         </div>
         <div class="col-2 mt-2" style="text-align: right;">
           <mat-label> Position </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control" formControlName="position">         
+          <input class="form-control" formControlName="position" disabled>         
         </div>
       </div>
 
@@ -62,12 +60,12 @@
           <mat-label> Site </mat-label>
         </div>
         <div class="col-4">
-          <input class="form-control" formControlName="site">
+          <input class="form-control" formControlName="site" disabled>
 
         </div>
       </div>
     <div mat-dialog-actions  class="mt-3" style="float: right;">
-      <button mat-raised-button class="btn-submit" type="submit">Save</button>&nbsp;
+      <!-- <button mat-raised-button class="btn-submit" type="submit">Save</button>&nbsp; -->
       <button mat-raised-button type="submit" class="btn-submit" (click)="openDialogEdit()">Edit</button>&nbsp;
       <button mat-raised-button class="btn-cancle" (click)="back()">Back</button>
     </div>    
