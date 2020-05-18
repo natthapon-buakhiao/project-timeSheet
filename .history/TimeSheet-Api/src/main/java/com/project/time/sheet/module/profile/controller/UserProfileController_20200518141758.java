@@ -1,11 +1,7 @@
 package com.project.time.sheet.module.profile.controller;
 
-import java.util.List;
-
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.module.profile.models.ReqEditProfile;
-import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.module.profile.service.ProfileService;
 
@@ -35,8 +31,7 @@ public class UserProfileController {
                 res = profileService.insertProfile(req);
 				
 				return ResponseEntity.ok(res);
-			}
-			
+            }
             @RequestMapping(value = "/edit", method = RequestMethod.POST)
 			public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req){
 				

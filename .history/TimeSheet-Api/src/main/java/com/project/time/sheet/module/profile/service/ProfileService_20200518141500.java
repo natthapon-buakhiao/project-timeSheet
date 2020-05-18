@@ -4,13 +4,11 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.exception.DataNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.module.profile.models.ReqEditProfile;
-import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.repository.UserProfileMsRepository;
 
@@ -22,28 +20,6 @@ public class ProfileService {
 
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
-
-    public ResponseModel<List<UserProfileMs>> inquiryUserProfile(ReqInquiryProfile req) {
-       
-		ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
-		try {
-            List<UserProfileMs> data = new ArrayList<UserProfileMs>();
-            Optional<UserProfileMs> userProfile = userProfileMsRepository.findById(req.getUserCode());
-            if (userProfile.isPresent()) {
-                data.add(userProfile.get());
-                res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
-
-            } else {
-                throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
-            }
-		}catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		return res;
-    }
 
     public ResponseModel insertProfile(ReqInsertProfile req) {
 
