@@ -25,7 +25,6 @@ export class UserProfileComponent implements OnInit {
   submitted = false;
   setToken: any;
   dataProfile: any;
-  firstName: any;
 
 
   constructor(
@@ -41,14 +40,14 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserProfile();
     this.createProfile = new FormGroup({
-      userCode: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      position: new FormControl(),
-      birthday:new FormControl(),
-      age: new FormControl(),
-      address: new FormControl(),
-      site: new FormControl()
+      userCode: new FormControl,
+      firstName: new FormControl,
+      lastName: new FormControl,
+      position: new FormControl,
+      birthday:new FormControl,
+      age: new FormControl,
+      address: new FormControl,
+      site: new FormControl
     });
   }
 
@@ -61,8 +60,6 @@ export class UserProfileComponent implements OnInit {
     this.reqProfileService.getProfile(request).subscribe((res)  => {
       this.dataProfile = res;
       console.log( this.dataProfile);
-      this.firstName = this.dataProfile.userCode;
-      console.log(this.firstName)
       this.setFromProfile(res);
     }, (error) => {
       console.log(error);
@@ -78,9 +75,9 @@ export class UserProfileComponent implements OnInit {
         firstName: [dataProfile.localFirstName,Validators.required],
         lastName: [dataProfile.localLastName,Validators.required],
         position: [dataProfile.position,Validators.required],
-        birthday: [dataProfile.birthday,Validators.required],
-        age: [dataProfile.age,Validators.required],
-        address: [dataProfile.address,Validators.required],
+        birthday: ['',Validators.required],
+        age: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
+        address: ['',Validators.required, this.noWhitespaceValidator.noWhitespace],
         site: [dataProfile.department,Validators.required]
       });
       console.log( this.createProfile);
@@ -114,7 +111,7 @@ export class UserProfileComponent implements OnInit {
         this.loading.hide();
         this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
         this.saveSucessSwal.fire();
-        // this.router.navigate(['/attendance']);
+        this.router.navigate(['/attendance']);
       },
         (error) => {
          this.loading.hide();
@@ -125,7 +122,7 @@ export class UserProfileComponent implements OnInit {
   openDialogEdit() {
     console.log('The dialog was open add');
     const dialogRef = this.dialog.open(EditUserProfileDialogComponent, {
-      width: '1000px',
+      width: '750px',
       position: {
         top: '10%',
       },

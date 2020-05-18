@@ -20,7 +20,3 @@ export class ReqEditUserProfile {
     site: string;
 }
 
-export class RequestInquiryProfile {
-    userCode: string;
-}
-

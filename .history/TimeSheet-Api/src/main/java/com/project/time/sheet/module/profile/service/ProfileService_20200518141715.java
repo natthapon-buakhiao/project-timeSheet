@@ -4,13 +4,11 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.exception.DataNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.module.profile.models.ReqEditProfile;
-import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.repository.UserProfileMsRepository;
 

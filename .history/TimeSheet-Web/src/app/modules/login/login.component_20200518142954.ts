@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     .subscribe(success => {
       console.log(success);
       if (success === true) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
         // this.router.navigateByUrl("/");
         console.log('accessToken = ' + this._login.getTokens() );
         this.getUserProfile();
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
       request.address = this.createProfile.controls['address'].value;
       request.position = this.createProfile.controls['position'].value;
       request.site = this.createProfile.controls['site'].value;
-      this.userProfileService.insertProfile(request).subscribe((res) => {
+      this.userProfileService.insetProfile(request).subscribe((res) => {
         console.log("edit UserProfile Success");
         console.log(res);
       },

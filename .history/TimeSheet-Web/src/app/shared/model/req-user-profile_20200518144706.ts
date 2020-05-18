@@ -8,7 +8,6 @@ export class ReqUserProfile {
     position: string;
     site: string;
 }
-
 export class ReqEditUserProfile {
     userCode: string;
     firstName: string;
@@ -18,9 +17,5 @@ export class ReqEditUserProfile {
     address: string;
     position: string;
     site: string;
-}
-
-export class RequestInquiryProfile {
-    userCode: string;
 }
 
