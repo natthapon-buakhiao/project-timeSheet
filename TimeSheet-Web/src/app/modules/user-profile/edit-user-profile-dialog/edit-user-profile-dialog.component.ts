@@ -101,7 +101,7 @@ export class EditUserProfileDialogComponent implements OnInit {
       request.address = this.editProfile.controls['address'].value;
       request.position = this.editProfile.controls['position'].value;
       request.site = this.editProfile.controls['site'].value;
-      this.userProfileService.insetProfile(request).subscribe((res) => {
+      this.userProfileService.insertProfile(request).subscribe((res) => {
         console.log("edit UserProfile Success");
         console.log(res);
         this.loading.hide();

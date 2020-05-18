@@ -105,7 +105,7 @@ export class UserProfileComponent implements OnInit {
       request.address = this.createProfile.controls['address'].value;
       request.position = this.createProfile.controls['position'].value;
       request.site = this.createProfile.controls['site'].value;
-      this.userProfileService.insetProfile(request).subscribe((res) => {
+      this.userProfileService.insertProfile(request).subscribe((res) => {
         console.log("edit UserProfile Success");
         console.log(res);
         this.loading.hide();
