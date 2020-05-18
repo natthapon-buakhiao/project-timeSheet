@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { AddAttendanceDialogComponent } from './../attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
+import { DialogAssignComponent } from '../dashboard/dialog-assign/dialog-assign.component';
 import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -59,21 +59,7 @@ export class AttendanceSupervisorComponent implements OnInit {
     });
   }
 
-  onDialogAssign() {
-    console.log('open dialog Add attendance');
-    const dialogRef = this.dialog.open(DialogAssignComponent, {
-      width: '750px',
-      position: {
-        top: '15%'
-      },
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // if (result) {
-      //   this.getAccount();
-      // }
-    });
-  }
 
   back(){
     this.router.navigate(['/dashboard']);
