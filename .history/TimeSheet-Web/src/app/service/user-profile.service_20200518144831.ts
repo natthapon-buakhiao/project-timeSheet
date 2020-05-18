@@ -1,6 +1,6 @@
 import { tap } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { ReqUserProfile, RequestInquiryProfile, ReqEditUserProfile } from '../shared/model/req-user-profile';
+import { ReqUserProfile, RequestInquiryProfile } from '../shared/model/req-user-profile';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -32,8 +32,8 @@ export class UserProfileService {
     );
   }
 
-  editProfile(request: ReqEditUserProfile): Observable<any> {
-    let url = 'http://localhost:8091/profile/edit';
+  insetProfile(request: ReqUserProfile): Observable<any> {
+    let url = 'http://localhost:8091/profile/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("editUserPrpfile success"))
     );

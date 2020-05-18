@@ -32,7 +32,7 @@ export class UserProfileService {
     );
   }
 
-  editProfile(request: ReqEditUserProfile): Observable<any> {
+  insetProfile(request: ReqEditUserProfile): Observable<any> {
     let url = 'http://localhost:8091/profile/edit';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("editUserPrpfile success"))
