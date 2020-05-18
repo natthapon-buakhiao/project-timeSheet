@@ -118,12 +118,8 @@ export class LoginComponent implements OnInit {
     }
 
   showAccessToken(){
-    var data = JSON.parse(sessionStorage.getItem('token')); // GET localStorage key = token มาดู
-    console.log("accessToken", data.accessToken)
-
-    // localStorage.removeItem('token'); เอาไว้ Remove Key 
-    // localStorage.clear เอาไว้ Remove clear localStorage
-    
+    var data = JSON.parse(sessionStorage.getItem('token'));
+    console.log("accessToken", data.accessToken)    
   }
 
 }
