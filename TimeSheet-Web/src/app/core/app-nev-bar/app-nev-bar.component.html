@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="width: 200px;"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)" style="width: 200px;">
+        <mat-toolbar>
+            <img src="./assets/img/timesheet.png" class="img-login2">
+        </mat-toolbar>
+        <mat-accordion>
+            <ng-container *ngFor="let item of listMenu;">
+                <mat-nav-list class="header" [routerLink]="[item.link]" *ngIf="item.isShow" style="margin-top: 10px;"
+                    (click)="openMenu(item)"
+                    [ngClass]="{'make-active':item.id == selectMenu,'make-notActive':item.id != selectMenu}">
+                    <a style="color: black; font-size: 13px;" mat-list-item>{{item.name}}</a>
+                </mat-nav-list>
+            </ng-container>
+        </mat-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="app-toolbar">
+            <mat-toolbar-row>
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <span class="example-spacer"></span>
+                <span class="mt-2">{{userCode}}</span>
+                <button type="button" mat-icon-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon aria-label="Side nav toggle icon">account_circle</mat-icon>
+                </button>
+                <mat-menu #appMenu="matMenu">
+                    <button mat-menu-item (click)="clearCache()">
+                        <mat-icon>input</mat-icon> Logout
+                    </button>
+                </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<ngx-spinner bdOpacity=0.9 bdColor="rgba(40,40,40,0.8)" size="medium" color="#82dcc3" type="ball-spin-clockwise-fade"
+    [fullScreen]="true">
+    <p style="color: white"> </p>
+</ngx-spinner>
