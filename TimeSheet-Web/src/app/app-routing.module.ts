@@ -1,3 +1,4 @@
+import { AppNevBarComponent } from './core/app-nev-bar/app-nev-bar.component';
 import { AppLayoutComponent } from './core/app-layout/app-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,7 +9,7 @@ import { AuthguardService } from './service/authguard.service';
 const routes: Routes = [
   {
     path: '',
-    component: AppLayoutComponent,
+    component: AppNevBarComponent,
     children: [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full'},   
     { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)},

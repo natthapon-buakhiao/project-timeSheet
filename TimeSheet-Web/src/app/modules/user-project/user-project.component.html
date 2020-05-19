@@ -1,7 +1,5 @@
 <div class="page-main">
-    <div class="row headTilteDialog">
-        <h3 mat-dialog-title>Time Sheet</h3>
-      </div>
+
   <div class="row">
       <div class="col-6">
         <div> <a style="font-size: 1.75rem;">User Project</a></div>
@@ -10,7 +8,7 @@
 
         <button mat-raised-button class="btn-submit" (click)="openDialogAddUser()">
           <mat-icon>supervisor_account</mat-icon>
-          Add User
+          Add User Project
         </button>&nbsp;
         <!-- <button mat-raised-button class="btn-submit" [routerLink]="['./user-profile']">
           <mat-icon>supervisor_account</mat-icon>
@@ -46,17 +44,8 @@
       <ng-container matColumnDef="task">
         <th mat-header-cell *matHeaderCellDef> Task </th>
         <td mat-cell *matCellDef="let element"> {{element.task}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="timeIn">
-        <th mat-header-cell *matHeaderCellDef> Time-In </th>
-        <td mat-cell *matCellDef="let element"> {{element.timeIn}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="timeOut">
-        <th mat-header-cell *matHeaderCellDef> Time-Out </th>
-        <td mat-cell *matCellDef="let element"> {{element.timeOut}} </td>
-      </ng-container>
+      </ng-container>  
+
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
