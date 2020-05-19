@@ -1,7 +1,5 @@
 <div class="page-main">
-  <div class="row headTilteDialog">
-    <h3 mat-dialog-title>Time Sheet</h3>
-  </div>
+
 <div class="row">
     <div class="col-6">
       <div> <a style="font-size: 1.75rem;">Attendance List</a></div>
@@ -15,19 +13,8 @@
         <mat-icon>assessment</mat-icon>
         Add Attendance List
       </button>&nbsp;
-      <button mat-raised-button class="btn-submit" [routerLink]="['./user-profile']">
-        <mat-icon>supervisor_account</mat-icon>
-        Profile
-      </button>&nbsp;
-    </div>
-  </div><br>
-  
-  <div style="text-align: right;">
-    <button mat-raised-button class="btn-submit" (click)="back()">
-        <mat-icon>work_outline</mat-icon>
-        Back
-    </button>
-  </div><br>
+  </div><br> 
+
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -65,3 +52,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+

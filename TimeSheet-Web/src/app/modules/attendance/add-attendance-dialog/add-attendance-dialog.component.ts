@@ -109,7 +109,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     }
 
 
-  canCle(){
+  canCle(status){
     this.dialogRef.close(status);        
   }
 
