@@ -1,31 +1,21 @@
 <div class="page-main">
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-12">
       <div> <a style="font-size: 1.75rem;">DASHBOARD</a></div>
     </div>
-    <div class="col-6" style="text-align: right;">
-      <button mat-raised-button class="btn-submit" (click)="onDialogAssign()">
-        <mat-icon>assignment_return</mat-icon>
-        Assign Project 
-    </button>&nbsp;
-      <!-- <button mat-raised-button class="btn-submit" (click)="goAttendance()">
-        <mat-icon>library_books</mat-icon>
-        Go Attendance
-      </button>&nbsp;
-      <button mat-raised-button class="btn-submit" (click)="goSupervisor()">
-        <mat-icon>supervisor_account</mat-icon>
-        Go Supervisor
-      </button>&nbsp; -->
-      <!-- <button mat-raised-button class="btn-submit" (click)="back()">
-        <mat-icon>supervisor_account</mat-icon>
-        Logout
-      </button>&nbsp; -->
-    </div>
-  </div><br>
-  
+  </div>
 
-  <div class="row mt-4">
+<div class="row">
+  <div class="col-12" style="text-align: right;">
+    <button mat-raised-button class="btn-submit" (click)="onDialogAssign()">
+      <mat-icon>assignment_return</mat-icon>
+      Assign Project 
+  </button>
+  </div>
+</div>  
+
+  <div class="row">
     <div class="col-3 mt-3" >
       <mat-card class="example-card">
         <mat-card-header style="cursor: pointer;" (click)="goUserProject()">

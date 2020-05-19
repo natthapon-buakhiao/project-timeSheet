@@ -36,11 +36,10 @@ export class AttendanceComponent implements OnInit {
     this.reqAttendance.getAttendance().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      console.log('getAttendance Success');
+      this.dataSource.paginator = this.paginator;      
     },
       (error) => {
-
+        console.log(error + "get Fail!!")
       }
     )
 
@@ -55,20 +54,13 @@ export class AttendanceComponent implements OnInit {
         top: '10%',
       },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("55555555555555555555555")
+    dialogRef.afterClosed().subscribe(result => {      
       if (result) {
         this.getAttendance();
         console.log("Add Success!")
       }
     });
 
-  }
-
-  back(){
-    this.router.navigate(['/dashboard']);
-  }
-
-  
+  }  
 
 }

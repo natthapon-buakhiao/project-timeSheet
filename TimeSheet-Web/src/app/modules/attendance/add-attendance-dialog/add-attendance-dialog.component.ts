@@ -36,13 +36,13 @@ export class AddAttendanceDialogComponent implements OnInit {
   ngOnInit() {
     this.getUserProfile();
     this.createAttendance = new FormGroup({
-      userCode: new FormControl,
-      date: new FormControl,
-      project:new FormControl,
-        task:new FormControl,
-        timeIn:new FormControl,
-        timeOut:new FormControl,
-        site: new FormControl,
+      userCode: new FormControl(),
+      date: new FormControl(),
+      project:new FormControl(),
+        task:new FormControl(),
+        timeIn:new FormControl(),
+        timeOut:new FormControl(),
+        site: new FormControl(),
     }); 
   }
   
@@ -109,7 +109,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     }
 
 
-  canCle(status){
+  canCle(){
     this.dialogRef.close(status);        
   }
 

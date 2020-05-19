@@ -118,7 +118,7 @@ export class EditUserProfileDialogComponent implements OnInit {
 
 
     canCle(status){
-      this.dialogRef.close(status)        
+      this.dialogRef.close(status);        
     }
 
 

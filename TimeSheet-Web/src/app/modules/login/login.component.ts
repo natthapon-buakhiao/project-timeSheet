@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private reqProfileService: RequestProfileService,
     private userProfileService: UserProfileService,
-    private _FormBuild: FormBuilder
+    private _FormBuild: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       if (success === true) {
         this.router.navigate(['/']);
         // this.router.navigateByUrl("/");
-        console.log('accessToken = ' + this._login.getTokens() );
+        console.log('accessToken = ' + this._login.getTokens());
         this.getUserProfile();
       }
 
@@ -109,8 +109,7 @@ export class LoginComponent implements OnInit {
       request.address = this.createProfile.controls['address'].value;
       request.position = this.createProfile.controls['position'].value;
       request.site = this.createProfile.controls['site'].value;
-      this.userProfileService.insertProfile(request).subscribe((res) => {
-        console.log("edit UserProfile Success");
+      this.userProfileService.insertProfile(request).subscribe((res) => {     
         console.log(res);
       },
         (error) => {
