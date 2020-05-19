@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onDialogAssign() {
-    console.log('open dialog Add attendance');
+    console.log('open dialog Assign Project');
     const dialogRef = this.dialog.open(DialogAssignComponent, {
       width: '750px',
       position: {

@@ -1,3 +1,4 @@
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UserProfileComponent } from './../user-profile/user-profile.component';
 import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    SweetAlert2Module.forRoot()
   ],
   entryComponents: [    
     DialogAssignComponent    

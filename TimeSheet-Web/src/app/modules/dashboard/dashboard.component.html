@@ -1,17 +1,5 @@
 <div class="page-main">
-  <div class="row headTilteDialog">
-    <h3 mat-dialog-title>Time Sheet</h3>
-          <span class="example-spacer"></span>
-          <!-- <span class="mt-2">{{userCode}}</span> -->
-          <button type="button" mat-icon-button [matMenuTriggerFor]="appMenu">
-              <mat-icon aria-label="Side nav toggle icon">account_circle</mat-icon>
-          </button>
-          <mat-menu #appMenu="matMenu">
-              <button mat-menu-item (click)="logout()">
-                  <mat-icon>input</mat-icon> Logout
-              </button>
-          </mat-menu>
-  </div>
+
   <div class="row">
     <div class="col-6">
       <div> <a style="font-size: 1.75rem;">DASHBOARD</a></div>
@@ -21,14 +9,14 @@
         <mat-icon>assignment_return</mat-icon>
         Assign Project 
     </button>&nbsp;
-      <button mat-raised-button class="btn-submit" (click)="goAttendance()">
+      <!-- <button mat-raised-button class="btn-submit" (click)="goAttendance()">
         <mat-icon>library_books</mat-icon>
         Go Attendance
       </button>&nbsp;
       <button mat-raised-button class="btn-submit" (click)="goSupervisor()">
         <mat-icon>supervisor_account</mat-icon>
         Go Supervisor
-      </button>&nbsp;
+      </button>&nbsp; -->
       <!-- <button mat-raised-button class="btn-submit" (click)="back()">
         <mat-icon>supervisor_account</mat-icon>
         Logout
@@ -57,6 +45,7 @@
       </mat-card>
     </div>
   </div>
+  
 
 </div>
 
