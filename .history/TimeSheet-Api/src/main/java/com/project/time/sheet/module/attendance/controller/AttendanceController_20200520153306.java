@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.Attendance;
-import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
 import com.project.time.sheet.module.attendance.service.AttendanceService;
 
@@ -29,12 +28,12 @@ public class AttendanceController {
 	AttendanceService attendanceService;
 
 
-	@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-	public ResponseEntity<ResponseModel<List<Attendance>>> inquiry(@RequestBody ReqInquiryAttendance req){
-		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
-		res = attendanceService.inquiryAttendance(req);
-		return ResponseEntity.ok(res);
-	}
+    // @RequestMapping(value = "/inquiry", method = RequestMethod.GET)
+	// public ResponseEntity<ResponseModel<List<Attendance>>> inquiry(){
+	// 	ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
+	// 	res = attendanceService.inquiryAttendance();
+	// 	return ResponseEntity.ok(res);
+    // }
     
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)

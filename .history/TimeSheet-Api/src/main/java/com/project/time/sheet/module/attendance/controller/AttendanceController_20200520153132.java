@@ -28,7 +28,6 @@ public class AttendanceController {
     @Autowired
 	AttendanceService attendanceService;
 
-
 	@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel<List<Attendance>>> inquiry(@RequestBody ReqInquiryAttendance req){
 		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();

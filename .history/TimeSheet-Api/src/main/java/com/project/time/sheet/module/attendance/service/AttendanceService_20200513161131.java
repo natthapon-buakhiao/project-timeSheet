@@ -7,7 +7,6 @@ import java.util.Optional;
 import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.Attendance;
-import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
 import com.project.time.sheet.repository.AttendanceRepository;
 
@@ -21,22 +20,14 @@ public class AttendanceService {
     @Autowired
     AttendanceRepository attendanceRepository;
 
-	public ResponseModel<List<Attendance>> inquiryAttendance(ReqInquiryAttendance req) {
-       
+    public ResponseModel<List<Attendance>> inquiryAttendance() {
 		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
 		try {
-            List<Attendance> data = new ArrayList<Attendance>();
-			List<Attendance> attendanceList = attendanceRepository.findAllUserCode(req.getUserCode());
-            // if (attendanceList.isEmpty()) {
-					data.addAll(attendanceList);
-				// }
-				res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
-
-            // } else {
-            //     throw new DataNotFoundException("Data not found, Method : inquiryAttendance");
-            // }
+			List<Attendance> attendanceList = new ArrayList<Attendance>();
+			attendanceList = attendanceRepository.findAll();
+			res.setCode(EnumCodeResponse.SUCCESS.getCode());
+			res.setMessage(EnumCodeResponse.SUCCESS.name());
+			res.setData(attendanceList);
 		}catch (Exception e) {
 			res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
