@@ -42,7 +42,7 @@ public class TimeSheetApplication {
 			p2.setDescription("Forntend");
 			p2.setUserCodeSupervisor("admin09");
 			p2.setUserCodeEmployee("employee_1");
-			p2.setDate(d1);
+			p1.setDate(d1);
 			projectRepository.save(p2);
 
 			Project p3 = new Project();
@@ -52,7 +52,7 @@ public class TimeSheetApplication {
 			p3.setDescription("Forntend");
 			p3.setUserCodeSupervisor("admin09");
 			p3.setUserCodeEmployee("employee_2");
-			p3.setDate(d1);
+			p1.setDate(d1);
 			projectRepository.save(p3);
 
 

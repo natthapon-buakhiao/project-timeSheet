@@ -1,7 +1,5 @@
 package com.project.time.sheet.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -35,10 +31,6 @@ public class Project {
 
     @Column(name = "USER_CODE_EMPLOYEE")
     private String userCodeEmployee;
-
-    @Column(name = "DATE")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date date;
 
     // @ManyToOne
     // @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", insertable = false, updatable = false)

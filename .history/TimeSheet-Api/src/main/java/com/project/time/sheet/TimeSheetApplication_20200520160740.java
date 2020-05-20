@@ -26,13 +26,12 @@ public class TimeSheetApplication {
 			
 			Project p1 = new Project();
 			Long l1 = new Long(1);
-			Date d1 = new Date();
+			Date d1 = new Date()
 			p1.setId(l1);
 			p1.setProjectName("A");
 			p1.setDescription("Backend");
 			p1.setUserCodeSupervisor("admin09");
 			p1.setUserCodeEmployee("employee_1");
-			p1.setDate(d1);
 			projectRepository.save(p1);
 
 			Project p2 = new Project();
@@ -42,7 +41,6 @@ public class TimeSheetApplication {
 			p2.setDescription("Forntend");
 			p2.setUserCodeSupervisor("admin09");
 			p2.setUserCodeEmployee("employee_1");
-			p2.setDate(d1);
 			projectRepository.save(p2);
 
 			Project p3 = new Project();
@@ -52,7 +50,6 @@ public class TimeSheetApplication {
 			p3.setDescription("Forntend");
 			p3.setUserCodeSupervisor("admin09");
 			p3.setUserCodeEmployee("employee_2");
-			p3.setDate(d1);
 			projectRepository.save(p3);
 
 
