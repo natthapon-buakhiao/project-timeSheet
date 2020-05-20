@@ -1,7 +1,6 @@
 package com.project.time.sheet.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.project.time.sheet.entity.UserProfileMs;
 
@@ -14,6 +13,6 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, St
     List<UserProfileMs> findByUserCode(String userCode);
 
     @Query( "SELECT n FROM UserProfileMs n WHERE n.userCode =?1")
-	Optional<UserProfileMs> findAllUserCode(String userCode);
+	Optional<UserProfileMs> findAllUserCode(String userCodeEmployee);
     
 }
