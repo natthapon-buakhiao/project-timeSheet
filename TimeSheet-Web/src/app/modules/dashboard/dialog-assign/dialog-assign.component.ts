@@ -6,6 +6,12 @@ import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 
+
+interface UserCodeEmployee {
+  name: string;
+  type: string; 
+}
+
 @Component({
   selector: 'app-dialog-assign',
   templateUrl: './dialog-assign.component.html',
@@ -16,6 +22,13 @@ export class DialogAssignComponent implements OnInit {
 
   createAssign: FormGroup
   submitted = false;
+
+  userCodeEmployeeControl = new FormControl('', Validators.required);
+  userCodeEmployees: UserCodeEmployee[] = [
+    {type:'BF',name: 'BF'},
+    {type:'DP',name: 'DP'},
+    {type:'WD',name: 'WD'},    
+  ];
 
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
   @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
@@ -39,12 +52,13 @@ export class DialogAssignComponent implements OnInit {
   get f() { return this.createAssign.controls; }
 
   
-  setFormAttendance(dataUser){
+  setFormProject(dataUser){
     this.createAssign = this._FormBuild.group({
       userCode:[dataUser.userCode,Validators.required],
       date:['',Validators.required],
       project:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
       description:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
+    
   
     })
   }

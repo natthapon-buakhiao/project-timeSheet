@@ -35,23 +35,8 @@ export class DashboardComponent implements OnInit {
       // }
     });
   }
-
-  logout(){
-    this.router.navigate(['/login']);
-    sessionStorage.clear();
-  }
-
+  
   goUserProject(){
     this.router.navigate(['/user-project']);
   }
-
-  goAttendance(){
-    this.router.navigate(['/attendance']);
-  }
-
-  goSupervisor(){
-    this.router.navigate(['/supervisor']);
-  }
-
-
 }
