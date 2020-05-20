@@ -33,7 +33,7 @@ public class Attendance {
     private String userCode;
     
     @Column(name = "DATE")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd)
     private Date date;
 
     @Column(name = "TIME_IN")
