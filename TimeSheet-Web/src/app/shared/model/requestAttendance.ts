@@ -7,3 +7,7 @@ export class ReqInsertAttendance{
     timeIn:string
     timeOut:string
 }
+
+export class RequestInquiryAttendace {
+    userCode: string;
+}

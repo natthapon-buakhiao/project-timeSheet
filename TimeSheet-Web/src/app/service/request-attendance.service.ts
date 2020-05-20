@@ -1,4 +1,4 @@
-import { ReqInsertAttendance } from './../shared/model/requestAttendance';
+import { ReqInsertAttendance, RequestInquiryAttendace } from './../shared/model/requestAttendance';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -21,18 +21,25 @@ export class RequestAttendanceService {
     
   }
 
-  getAttendance():Observable<any>{
-    let url = 'http://localhost:8091/attendance/inquiry';
-    return this.http.get(url,httpOptions).pipe(
-      tap(_ => console.log("getAttendance success"))
-    )
-  }
+  // getAttendance():Observable<any>{
+  //   let url = 'http://localhost:8091/attendance/inquiry';
+  //   return this.http.get(url,httpOptions).pipe(
+  //     tap(_ => console.log("getAttendance success"))
+  //   )
+  // }
 
   insetAttendance(request:ReqInsertAttendance):Observable<any>{
     let url = 'http://localhost:8091/attendance/insert';
     return this.http.post(url,request,httpOptions).pipe(
       tap(_ => console.log("insetAttendance success"))
     )
+  }
+
+  inquiryAttendance(request: RequestInquiryAttendace): Observable<any> {
+    let url = 'http://localhost:8091/attendance/inquiry';
+    return this.http.post<any>(url, request, httpOptions).pipe(
+      tap(_ => console.log('getAttendance success'))
+    );
   }
 
 }

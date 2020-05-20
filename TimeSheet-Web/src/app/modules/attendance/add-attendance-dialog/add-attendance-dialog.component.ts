@@ -1,6 +1,6 @@
 import { RequestProfileService } from './../../../service/request-profile.service';
 import { RequestAttendanceService } from './../../../service/request-attendance.service';
-import { ReqInsertAttendance } from './../../../shared/model/requestAttendance';
+import { ReqInsertAttendance, RequestInquiryAttendace } from './../../../shared/model/requestAttendance';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -9,6 +9,7 @@ import { ReqProfile } from 'src/app/shared/model/reqLogin';
 import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserProfileService } from 'src/app/service/user-profile.service';
 
 @Component({
   selector: 'app-add-attendance-dialog',
@@ -23,12 +24,14 @@ export class AddAttendanceDialogComponent implements OnInit {
   submitted = false;
   dataUser: any;
   setToken: any;
+  dataProfile: any;
 
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
     private _FormBuild: FormBuilder,  
     private requestAttendance: RequestAttendanceService,
     private reqProfileService: RequestProfileService,
+    private userProfileService: UserProfileService,
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
   ) { }
@@ -50,18 +53,18 @@ export class AddAttendanceDialogComponent implements OnInit {
     get f() { return this.createAttendance.controls; }
 
     getUserProfile() {
-      let request = new ReqProfile();
-      this.setToken = JSON.parse(sessionStorage.getItem('accessToken'));
-      request.token = this.setToken;
-      console.log(request);
-  
-      this.reqProfileService.getProfile(request).subscribe((res)  => {
-        this.dataUser = res;
-        console.log( this.dataUser);
-        this.setFormAttendance(res);
+      let request = new RequestInquiryAttendace();
+      let data: any;
+      this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
+      request.userCode = this.dataProfile.userCode;
+      this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+        console.log(res);
+        data = res.data[0];
+        this.setFormAttendance(data);
       }, (error) => {
-        console.log(error);
-       });
+          console.log(error);
+      }
+      );
       }
 
     setFormAttendance(dataUser){
@@ -109,7 +112,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     }
 
 
-  canCle(){
+  canCle(status){
     this.dialogRef.close(status);        
   }
 

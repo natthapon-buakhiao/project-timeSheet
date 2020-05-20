@@ -24,24 +24,24 @@ export class AttendanceSupervisorComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getAttendance();
+    // this.getAttendance();
   }
 
-  getAttendance() {
-    this.reqAttendance.getAttendance().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res.data);
-      console.log(res);
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
-      console.log('getAttendance Success');
-    },
-      (error) => {
-        console.log(error);
+  // getAttendance() {
+  //   this.reqAttendance.getAttendance().subscribe((res) => {
+  //     this.dataSource = new MatTableDataSource(res.data);
+  //     console.log(res);
+  //     // this.dataSource.sort = this.sort;
+  //     // this.dataSource.paginator = this.paginator;
+  //     console.log('getAttendance Success');
+  //   },
+  //     (error) => {
+  //       console.log(error);
 
-      }
-    );
+  //     }
+  //   );
 
-  }
+  // }
   onDialogAddAattendance() {
     console.log('open dialog Add attendance');
     const dialogRef = this.dialog.open(AddAttendanceDialogComponent, {
@@ -55,7 +55,7 @@ export class AttendanceSupervisorComponent implements OnInit {
       // if (result) {
       //   this.getAccount();
       // }
-      this.getAttendance();
+      // this.getAttendance();
     });
   }
 

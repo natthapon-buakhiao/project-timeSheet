@@ -1,3 +1,4 @@
+import { RequestInquiryAttendace } from './../../shared/model/requestAttendance';
 import { Router } from '@angular/router';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
 import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
@@ -6,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { UserProfileService } from 'src/app/service/user-profile.service';
+import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
 
 @Component({
   selector: 'app-attendance',
@@ -19,30 +22,48 @@ export class AttendanceComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
+  dataProfile: any;
 
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
-    private router: Router
+    private router: Router,
+    private userProfileService: UserProfileService,
   ) { }
 
-  
+
 
   ngOnInit() {
-    this.getAttendance();
+    this.getUserProfile();
   }
 
-  getAttendance() {
-    this.reqAttendance.getAttendance().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res.data);
+  inquiryAttendance(data) {
+    let request = new RequestInquiryAttendace();
+    request.userCode = data.userCode;
+    this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.data); 
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;      
+      this.dataSource.paginator = this.paginator;
     },
       (error) => {
         console.log(error + "get Fail!!")
       }
     )
 
+  }
+
+  getUserProfile() {
+    let request = new RequestInquiryProfile();
+    let data: any;
+    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
+    request.userCode = this.dataProfile.userCode;
+    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+      console.log(res);
+      data = res.data[0];
+      this.inquiryAttendance(data);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 
@@ -54,13 +75,13 @@ export class AttendanceComponent implements OnInit {
         top: '10%',
       },
     });
-    dialogRef.afterClosed().subscribe(result => {      
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getAttendance();
+        this.getUserProfile();
         console.log("Add Success!")
       }
     });
 
-  }  
+  }
 
 }
