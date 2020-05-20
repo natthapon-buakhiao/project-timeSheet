@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
+import { UserProfileService } from 'src/app/service/user-profile.service';
 
 @Component({
   selector: 'app-app-nev-bar',
@@ -8,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AppNevBarComponent implements OnInit {
 
+  dataProfile: any;
+  userCode2: any;
+
   listMenu = [
     { id: 0, code: "Dash Board", name: "Dash Board", link: "/dashboard", isShow: true },
     { id: 1, code: "Attendance List", name: "Attendance List", link: "/attendance", isShow: true },
@@ -15,10 +20,24 @@ export class AppNevBarComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private userProfileService: UserProfileService,
   ) { }
 
   ngOnInit() {
+    this.getUserProfile();
+  }
+
+
+  getUserProfile() {
+    let request = new RequestInquiryProfile();   
+    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
+    request.userCode = this.dataProfile.userCode;
+    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+      this.userCode2 = res.data[0].userCode;  
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   openMenu(i) {
