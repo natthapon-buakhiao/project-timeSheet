@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserProjectComponent implements OnInit {
 
-  displayedColumns: string[] = ['userCode','date', 'project', 'task','userCodeSup'];
+  displayedColumns: string[] = ['userCode', 'project', 'task', 'date'];
   dataSource = new MatTableDataSource();
 
   constructor(

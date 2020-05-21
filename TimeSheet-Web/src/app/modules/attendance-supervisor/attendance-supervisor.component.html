@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-6">
-          <div> <a style="font-size: 1.75rem;">Attendance List</a></div>
+          <div> <a style="font-size: 1.75rem;">Attendance List Supervisor</a></div>
         </div>
         <div class="col-6" style="text-align: right;">
             <button mat-raised-button class="btn-submit">
@@ -12,20 +12,9 @@
               <button mat-raised-button class="btn-submit" (click)="onDialogAddAattendance()">
                 <mat-icon>assessment</mat-icon>
                 Add Attendance List
-              </button>&nbsp;
-              <button mat-raised-button [routerLink]="['./user-profile']" class="btn-submit">
-                <mat-icon>supervisor_account</mat-icon>
-                Profile
-              </button>&nbsp;
-        </div>
-      </div><br>
-      
-      <div style="text-align: right;">
-        <button mat-raised-button class="btn-submit" (click)="back()">
-            <mat-icon>work_outline</mat-icon>
-            Back
-        </button>
-      </div><br>
+              </button>
+      </div><br>    
+
     
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     
