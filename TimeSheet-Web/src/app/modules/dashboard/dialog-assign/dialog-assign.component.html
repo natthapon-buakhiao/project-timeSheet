@@ -2,27 +2,20 @@
   <h2 mat-dialog-title>Assign Project</h2>
 </div><br>
 
-<form [formGroup]="createAssign" (ngSubmit)="onSubmit()">
+<form [formGroup]="createAssignProject" (ngSubmit)="onSubmit()">
   <div class="row mt-3">
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label>User Code Supervisor</mat-label>
     </div>
-    <!-- <div class="col-4">
-      <mat-select class="form-control" formControlName="userCodeEmployee"
-      [ngClass]="{'is-invalid': submitted && f.userCodeEmployee.errors}">
-        <mat-option *ngFor="let userCodeEmployee of userCodeEmployees " [value]="userCodeEmployee.type">
-            {{userCodeEmployee.name}}
-        </mat-option>
-    </mat-select>
-    </div> -->
     <div class="col-4">
-      <input class="form-control" formControlName="userCodeSup" disabled>
+      <input class="form-control" formControlName="userCodeSupervisor" disabled>
     </div>
+    
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Project </mat-label>
     </div>
     <div class="col-4">
-      <input class="form-control" formControlName="project" >
+      <input class="form-control" formControlName="projectName" >
 
     </div>
   </div>

@@ -1,3 +1,5 @@
+import { ReqProfile } from './../../../shared/model/reqLogin';
+import { ReqInsertProject } from './../../../shared/model/req-project';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -5,12 +7,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
+import { RequestProjectService } from 'src/app/service/request-project.service';
+import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
+import { UserProfileService } from 'src/app/service/user-profile.service';
 
 
-interface UserCodeEmployee {
-  name: string;
-  type: string; 
-}
+
 
 @Component({
   selector: 'app-dialog-assign',
@@ -20,15 +22,11 @@ interface UserCodeEmployee {
 export class DialogAssignComponent implements OnInit {
 
 
-  createAssign: FormGroup
+  createAssignProject: FormGroup
   submitted = false;
+  dataSup: any;
 
-  userCodeEmployeeControl = new FormControl('', Validators.required);
-  userCodeEmployees: UserCodeEmployee[] = [
-    {type:'BF',name: 'BF'},
-    {type:'DP',name: 'DP'},
-    {type:'WD',name: 'WD'},    
-  ];
+
 
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
   @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
@@ -37,35 +35,53 @@ export class DialogAssignComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private _FormBuild: FormBuilder,  
               private loading: NgxSpinnerService,
-              private noWhitespaceValidator: noWhitespaceValidator, ) { }
+              private noWhitespaceValidator: noWhitespaceValidator,
+              private reqInsertProject: RequestProjectService,
+              private userProfileService: UserProfileService, ) { }
 
   ngOnInit() {
-
-    this.createAssign = new FormGroup({
-      userCode: new FormControl(),
+    this.getUserProfile();
+    this.createAssignProject = new FormGroup({
+      userCodeSupervisor: new FormControl(),
       date: new FormControl(),
-      project:new FormControl(),
+      projectName:new FormControl(),
       description: new FormControl()
     }); 
   }
 
-  get f() { return this.createAssign.controls; }
+  getUserProfile() {
+    let request = new RequestInquiryProfile();
+    let data: any;
+    this.dataSup = JSON.parse(localStorage.getItem('userProfileIam'));
+    request.userCode = this.dataSup.userCode;
+    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+      console.log(res);
+      data = res.data[0];
+      this.setFormProject(data);
+    }, (error) => {
+        console.log(error);
+    }
+    );
+    }
+
+  get f() { return this.createAssignProject.controls; }
 
   
-  setFormProject(dataUser){
-    this.createAssign = this._FormBuild.group({
-      userCode:[dataUser.userCode,Validators.required],
+  setFormProject(dataSup){
+    this.createAssignProject = this._FormBuild.group({
+      userCodeSupervisor:[dataSup.userCode,Validators.required],
       date:['',Validators.required],
-      project:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
+      projectName:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
       description:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
     
   
-    })
+    })    
+    console.log(this.createAssignProject)
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.createAssign.invalid) {
+    if (this.createAssignProject.invalid) {
       return;
     } else {
       this.saveSwal.title = Message.MESSAGE_SAVE;
@@ -74,23 +90,23 @@ export class DialogAssignComponent implements OnInit {
   }
 
   onSave(){
-    console.log(this.createAssign);
-    // let requestInsert = new ReqInsertAttendance();     
-    // requestInsert.userCode = this.createAssign.controls['userCode'].value;
-    // requestInsert.date = this.createAssign.controls['date'].value;
-    // requestInsert.project = this.createAssign.controls['project'].value;
-    // requestInsert.description = this.createAssign.controls['description'].value;
+    console.log(this.createAssignProject);
+    let requestInsert = new ReqInsertProject();     
+    requestInsert.userCodeSupervisor = this.createAssignProject.controls['userCodeSupervisor'].value;
+    requestInsert.date = this.createAssignProject.controls['date'].value;
+    requestInsert.projectName = this.createAssignProject.controls['projectName'].value;
+    requestInsert.description = this.createAssignProject.controls['description'].value;
 
 
-    // this.requestAttendance.insetAttendance(requestInsert).subscribe((res) => {
-    //   this.loading.hide();
-    //   this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
-    //   this.saveSucessSwal.fire(); 
-    //   console.log(res)    
-    // }, (error) => {
-    //   this.loading.hide();
-    //   console.log(error);
-    // });
+    this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {
+      this.loading.hide();
+      this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
+      this.saveSucessSwal.fire(); 
+      console.log(res)    
+    }, (error) => {
+      this.loading.hide();
+      console.log(error);
+    });
   }
 
 
