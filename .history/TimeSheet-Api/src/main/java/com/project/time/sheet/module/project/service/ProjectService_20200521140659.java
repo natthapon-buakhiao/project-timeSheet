@@ -36,6 +36,7 @@ public class ProjectService {
 
                 newProject.setProjectName(req.getProjectName());
                 newProject.setDescription(req.getDescription());
+                newProject.setUserCodeEmployee(req.getUserCodeEmployee());
                 newProject.setUserCodeSupervisor(req.getUserCodeSupervisor());
                 newProject.setDate(req.getDate());
                 projectRepository.save(newProject);

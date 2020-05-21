@@ -32,10 +32,11 @@ public class ProjectService {
             Optional<UserProfileMs> userSup = userProfileMsRepository.findAllUserCode(req.getUserCodeSupervisor());
             
 
-            if(userSup.isPresent()){
+            if(userEmployee.isPresent() && userSup.isPresent()){
 
                 newProject.setProjectName(req.getProjectName());
                 newProject.setDescription(req.getDescription());
+                newProject.setUserCodeEmployee(req.getUserCodeEmployee());
                 newProject.setUserCodeSupervisor(req.getUserCodeSupervisor());
                 newProject.setDate(req.getDate());
                 projectRepository.save(newProject);
