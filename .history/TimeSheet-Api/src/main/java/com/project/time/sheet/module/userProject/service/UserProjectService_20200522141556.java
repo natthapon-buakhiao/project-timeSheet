@@ -68,7 +68,7 @@ public class UserProjectService {
             if(user.isPresent() && project.isPresent()){
                 id.setUserCode(user.get().getUserCode());
                 id.setProjectCode(project.get().getProjectCode());
-                newUserProject.setId(id);
+                newUserProject.setUId(id);
                 newUserProject.setTask(req.getTask());
                 newUserProject.setDate(req.getDate());
                 

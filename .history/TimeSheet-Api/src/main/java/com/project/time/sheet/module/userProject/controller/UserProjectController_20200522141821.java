@@ -1,10 +1,6 @@
 package com.project.time.sheet.module.userProject.controller;
 
-import java.util.List;
-
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.entity.UserProject;
-import com.project.time.sheet.module.userProject.models.ReqInquiryUserProject;
 import com.project.time.sheet.module.userProject.models.ReqInsertUserProject;
 import com.project.time.sheet.module.userProject.service.UserProjectService;
 
@@ -28,9 +24,9 @@ public class UserProjectController {
     UserProjectService userProjectService;
 
     @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-	public ResponseEntity<ResponseModel<List<UserProject>>> inquiry(@RequestBody ReqInquiryUserProject req){
-		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
-		res = userProjectService.inquiryUserProject(req);
+	public ResponseEntity<ResponseModel<List<UserProject>>> inquiry(@RequestBody ReqInquiryAttendance req){
+		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
+		res = attendanceService.inquiryAttendance(req);
 		return ResponseEntity.ok(res);
 	}
 

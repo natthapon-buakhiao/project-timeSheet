@@ -29,8 +29,8 @@ public class UserProjectController {
 
     @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel<List<UserProject>>> inquiry(@RequestBody ReqInquiryUserProject req){
-		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
-		res = userProjectService.inquiryUserProject(req);
+		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
+		res = attendanceService.inquiryAttendance(req);
 		return ResponseEntity.ok(res);
 	}
 

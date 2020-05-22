@@ -1,6 +1,5 @@
 package com.project.time.sheet.module.userProject.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.entity.UserProject;
 import com.project.time.sheet.entity.UserProjectPk;
 import com.project.time.sheet.exception.DataNotFoundException;
-import com.project.time.sheet.module.userProject.models.ReqInquiryUserProject;
 import com.project.time.sheet.module.userProject.models.ReqInsertUserProject;
 import com.project.time.sheet.repository.ProjectRepository;
 import com.project.time.sheet.repository.UserProfileMsRepository;
@@ -30,14 +28,14 @@ public class UserProjectService {
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
 
-    public ResponseModel<List<UserProject>> inquiryUserProject(ReqInquiryUserProject req) {
+    public ResponseModel<List<Attendance>> inquiryUserProject(ReqInquiryUserProject req) {
        
-		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
+		ResponseModel<List<Attendance>> res = new ResponseModel<List<Attendance>>();
 		try {
-            List<UserProject> data = new ArrayList<UserProject>();
-			List<UserProject> userList = userProjectRepository.findAllUserCode(req.getUserCode());
+            List<Attendance> data = new ArrayList<Attendance>();
+			List<Attendance> attendanceList = attendanceRepository.findAllUserCode(req.getUserCode());
             // if (attendanceList.isEmpty()) {
-					data.addAll(userList);
+					data.addAll(attendanceList);
 				// }
 				res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
@@ -68,7 +66,7 @@ public class UserProjectService {
             if(user.isPresent() && project.isPresent()){
                 id.setUserCode(user.get().getUserCode());
                 id.setProjectCode(project.get().getProjectCode());
-                newUserProject.setId(id);
+                newUserProject.setUId(id);
                 newUserProject.setTask(req.getTask());
                 newUserProject.setDate(req.getDate());
                 

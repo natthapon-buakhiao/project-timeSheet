@@ -35,9 +35,9 @@ public class UserProjectService {
 		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
 		try {
             List<UserProject> data = new ArrayList<UserProject>();
-			List<UserProject> userList = userProjectRepository.findAllUserCode(req.getUserCode());
+			List<UserProject> userList = userProjectRepository.fi
             // if (attendanceList.isEmpty()) {
-					data.addAll(userList);
+					data.addAll(attendanceList);
 				// }
 				res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
@@ -68,7 +68,7 @@ public class UserProjectService {
             if(user.isPresent() && project.isPresent()){
                 id.setUserCode(user.get().getUserCode());
                 id.setProjectCode(project.get().getProjectCode());
-                newUserProject.setId(id);
+                newUserProject.setUId(id);
                 newUserProject.setTask(req.getTask());
                 newUserProject.setDate(req.getDate());
                 

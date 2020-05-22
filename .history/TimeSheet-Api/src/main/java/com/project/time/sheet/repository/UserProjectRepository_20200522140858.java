@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserProjectRepository extends JpaRepository<UserProject ,UserProjectPk> {
 
-    @Query( "SELECT n FROM UserProject n WHERE n.id.userCode =?1")
-    List<UserProject> findAllUserCode(String userCode);
+    @Query( "SELECT n FROM UserProject n WHERE n.uId.userCode =?1")
+    List<UserProject> findAllUId(String uid);
     
 }
