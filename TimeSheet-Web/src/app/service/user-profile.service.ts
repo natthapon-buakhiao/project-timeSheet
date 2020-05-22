@@ -18,6 +18,13 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) { }
 
+  getAllUser(): Observable<any> {
+    let url = 'http://localhost:8091/profile/getdata';
+    return this.http.get<any>(url, httpOptions).pipe(
+      tap(_ => console.log('getAllUser success'))
+    );
+  }
+
   inquiryUserProfile(request: RequestInquiryProfile): Observable<any> {
     let url = 'http://localhost:8091/profile/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(

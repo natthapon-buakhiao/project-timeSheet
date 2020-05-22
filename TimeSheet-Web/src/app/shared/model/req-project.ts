@@ -1,4 +1,5 @@
 export class ReqInsertProject {
+    projectCode: string;
     projectName: string;
     description: string;
     userCodeSupervisor: string;
