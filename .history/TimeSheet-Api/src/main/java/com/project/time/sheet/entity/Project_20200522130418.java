@@ -20,10 +20,9 @@ import lombok.Data;
 @Table (name = "PROJECT")
 public class Project {
     @Id
-	@Column(name="PROJECT_CODE")
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String projectCode;
-
+	@Column(name="PROJECT_ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "PROJECT_NAME")
     private String projectName;
@@ -40,18 +39,9 @@ public class Project {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
 
-    
-    // @OneToMany(
-    //     mappedBy = "projectCode",
-    //     cascade = CascadeType.ALL,
-    //     orphanRemoval = true
-    // )
-    // private List<UserProject> projects = new ArrayList<>();
-
     // @ManyToOne
     // @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", insertable = false, updatable = false)
     // private Attendance userId;
-
 
     
 

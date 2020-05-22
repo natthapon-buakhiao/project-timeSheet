@@ -25,7 +25,7 @@ public class UserProject implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "PROJECTS_PROJECT_CODE ", referencedColumnName = "PROJECT_CODE", insertable = false, updatable = false)
+    @JoinColumn(name = "PROJECTS_PROJECT_ ", referencedColumnName = "PROJECT_CODE", insertable = false, updatable = false)
     private Project projects;
     
 }
