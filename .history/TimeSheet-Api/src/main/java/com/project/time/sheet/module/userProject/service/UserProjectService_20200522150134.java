@@ -59,9 +59,9 @@ public class UserProjectService {
 		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
 		try {
             List<UserProject> data = new ArrayList<UserProject>();
-			List<UserProject> projectList = userProjectRepository.findAllProjectCode(req.getProjectCode());
+			List<UserProject> userList = userProjectRepository.findAllUserCode(req.getUserCode());
             // if (attendanceList.isEmpty()) {
-					data.addAll(projectList);
+					data.addAll(userList);
 				// }
 				res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());

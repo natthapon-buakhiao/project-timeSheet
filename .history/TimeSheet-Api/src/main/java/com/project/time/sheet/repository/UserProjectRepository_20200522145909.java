@@ -13,7 +13,8 @@ public interface UserProjectRepository extends JpaRepository<UserProject ,UserPr
     @Query( "SELECT n FROM UserProject n WHERE n.id.userCode =?1")
     List<UserProject> findAllUserCode(String userCode);
 
-    @Query( "SELECT n FROM UserProject n WHERE n.id.projectCode =?1")
-    List<UserProject> findAllProjectCode(String projectCode);
+    @Query( "SELECT n FROM UserProject n WHERE n.id.userCode =?1")
+    List<UserProject> findAllProjectCode(String     private String projectCode;
+    );
     
 }

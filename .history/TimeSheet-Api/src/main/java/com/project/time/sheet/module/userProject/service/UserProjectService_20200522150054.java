@@ -12,7 +12,6 @@ import com.project.time.sheet.entity.UserProject;
 import com.project.time.sheet.entity.UserProjectPk;
 import com.project.time.sheet.exception.DataNotFoundException;
 import com.project.time.sheet.module.userProject.models.ReqInquiryUserProject;
-import com.project.time.sheet.module.userProject.models.ReqInquiryUserProjectId;
 import com.project.time.sheet.module.userProject.models.ReqInsertUserProject;
 import com.project.time.sheet.repository.ProjectRepository;
 import com.project.time.sheet.repository.UserProfileMsRepository;
@@ -54,14 +53,14 @@ public class UserProjectService {
 		return res;
     }
 
-    public ResponseModel<List<UserProject>> inquiryUserProjectId(ReqInquiryUserProjectId req) {
+    public ResponseModel<List<UserProject>> inquiryUserProjectId(ReqInquiryUserProject req) {
        
 		ResponseModel<List<UserProject>> res = new ResponseModel<List<UserProject>>();
 		try {
             List<UserProject> data = new ArrayList<UserProject>();
-			List<UserProject> projectList = userProjectRepository.findAllProjectCode(req.getProjectCode());
+			List<UserProject> userList = userProjectRepository.findAllUserCode(req.getUserCode());
             // if (attendanceList.isEmpty()) {
-					data.addAll(projectList);
+					data.addAll(userList);
 				// }
 				res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
