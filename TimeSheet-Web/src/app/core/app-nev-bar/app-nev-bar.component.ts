@@ -29,15 +29,8 @@ export class AppNevBarComponent implements OnInit {
   }
 
 
-  getUserProfile() {
-    let request = new RequestInquiryProfile();   
-    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
-      this.userCode2 = res.data[0].userCode;  
-    }, (error) => {
-      console.log(error);
-    });
+  getUserProfile() {   
+    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));    
   }
 
   openMenu(i) {

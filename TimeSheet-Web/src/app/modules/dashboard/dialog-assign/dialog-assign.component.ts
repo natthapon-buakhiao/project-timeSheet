@@ -45,6 +45,7 @@ export class DialogAssignComponent implements OnInit {
       userCodeSupervisor: new FormControl(),
       date: new FormControl(),
       projectName:new FormControl(),
+      projectCode:new FormControl(),
       description: new FormControl()
     }); 
   }
@@ -69,6 +70,7 @@ export class DialogAssignComponent implements OnInit {
   
   setFormProject(dataSup){
     this.createAssignProject = this._FormBuild.group({
+      projectCode:[''],
       userCodeSupervisor:[dataSup.userCode,Validators.required],
       date:['',Validators.required],
       projectName:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
@@ -96,6 +98,7 @@ export class DialogAssignComponent implements OnInit {
     requestInsert.date = this.createAssignProject.controls['date'].value;
     requestInsert.projectName = this.createAssignProject.controls['projectName'].value;
     requestInsert.description = this.createAssignProject.controls['description'].value;
+    requestInsert.projectCode = this.createAssignProject.controls['projectCode'].value;
 
 
     this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {
