@@ -33,7 +33,7 @@ public class UserProjectService {
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
 
-    public ResponseModel<List<UserProjectBean>> inquiryUserProject(ReqInquiryUserProject req) {
+    public ResponseModel<List<UserProjectBean>> inquiryProject(ReqInquiryUserProject req) {
        
 		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
 		try {
