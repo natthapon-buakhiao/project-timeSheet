@@ -1,4 +1,4 @@
-package com.project.time.sheet.module.userProject.controller;
+// package com.project.time.sheet.module.userProject.controller;
 
 import java.util.List;
 
@@ -29,19 +29,19 @@ public class UserProjectController {
     @Autowired
     UserProjectService userProjectService;
 
-    // @RequestMapping(value = "/inquiry-project", method = RequestMethod.POST)
-	// public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUser(@RequestBody ReqInquiryUserProject req){
-	// 	ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
-	// 	res = userProjectService.inquiryProject(req);
-	// 	return ResponseEntity.ok(res);
-    // }
+    @RequestMapping(value = "/inquiry-project", method = RequestMethod.POST)
+	public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUser(@RequestBody ReqInquiryUserProject req){
+		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+		res = userProjectService.inquiryProject(req);
+		return ResponseEntity.ok(res);
+    }
     
-    // @RequestMapping(value = "/inquiry-userproject", method = RequestMethod.POST)
-	// public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryProject(@RequestBody ReqInquiryUserProjectCode req){
-	// 	ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
-	// 	res = userProjectService.inquiryUserProject(req);
-	// 	return ResponseEntity.ok(res);
-	// }
+    @RequestMapping(value = "/inquiry-userproject", method = RequestMethod.POST)
+	public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryProject(@RequestBody ReqInquiryUserProjectCode req){
+		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+		res = userProjectService.inquiryUserProject(req);
+		return ResponseEntity.ok(res);
+	}
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> insertUserProject(@RequestBody ReqInsertUserProject req){

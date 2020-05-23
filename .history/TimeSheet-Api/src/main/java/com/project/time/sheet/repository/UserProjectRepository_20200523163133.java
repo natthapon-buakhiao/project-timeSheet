@@ -2,7 +2,6 @@ package com.project.time.sheet.repository;
 
 import java.util.List;
 
-import com.project.time.sheet.entity.Project;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.entity.UserProject;
 import com.project.time.sheet.entity.UserProjectPk;

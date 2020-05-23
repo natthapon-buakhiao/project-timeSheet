@@ -33,57 +33,57 @@ public class UserProjectService {
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
 
-    // public ResponseModel<List<UserProjectBean>> inquiryProject(ReqInquiryUserProject req) {
+    public ResponseModel<List<UserProjectBean>> inquiryProject(ReqInquiryUserProject req) {
        
-	// 	ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
-	// 	try {
-    //         List<UserProjectBean> data = new ArrayList<UserProjectBean>();
-    //         UserProfileMs user = userProfileMsRepository.getOne(req.getUserCode());
+		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+		try {
+            List<UserProjectBean> data = new ArrayList<UserProjectBean>();
+            UserProfileMs user = userProfileMsRepository.getOne(req.getUserCode());
 
-    //         List<UserProject> userList = userProjectRepository.findById_UserCode(user);
+            List<UserProject> userList = userProjectRepository.findById_UserCode(user);
 
-    //         for(UserProject userProject : userList) {
-    //             UserProjectBean bean = new UserProjectBean();
-    //                 BeanUtils.copyProperties(userProject, bean);
-    //                 data.add(bean);
-	// 		}
-	// 			res.setData(data);
-    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
-    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
+            for(UserProject userProject : userList) {
+                UserProjectBean bean = new UserProjectBean();
+                    BeanUtils.copyProperties(userProject, bean);
+                    data.add(bean);
+			}
+				res.setData(data);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-	// 	}catch (Exception e) {
-	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
-	// 		res.setMessage(e.getMessage());
-	// 	}
-	// 	return res;
-    // }
+		}catch (Exception e) {
+			res.setCode(EnumCodeResponse.FAIL.getCode());
+			res.setMessage(e.getMessage());
+		}
+		return res;
+    }
 
-    // public ResponseModel<List<UserProjectBean>> inquiryUserProject(ReqInquiryUserProjectCode req) {
+    public ResponseModel<List<UserProjectBean>> inquiryUserProject(ReqInquiryUserProjectCode req) {
        
-	// 	ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
-	// 	try {
-    //         List<UserProjectBean> data = new ArrayList<UserProjectBean>();
-    //         Project project = projectRepository.getOne(req.getProjectCode());
+		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+		try {
+            List<UserProjectBean> data = new ArrayList<UserProjectBean>();
+            Project project = projectRepository.getOne(req.getProjectCode());
 
-    //         List<UserProject> userList = userProjectRepository.findById_ProjectCode(project);
+            List<UserProject> userList = userProjectRepository.findById_ProjectCode(project);
 
-    //         for(UserProject userProject : userList) {
-    //             UserProjectBean bean = new UserProjectBean();
-    //                 BeanUtils.copyProperties(userProject, bean);
-    //                 data.add(bean);
-	// 		}
-	// 			res.setData(data);
-    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
-    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
+            for(UserProject userProject : userList) {
+                UserProjectBean bean = new UserProjectBean();
+                    BeanUtils.copyProperties(userProject, bean);
+                    data.add(bean);
+			}
+				res.setData(data);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-	// 	}catch (Exception e) {
-	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
-	// 		res.setMessage(e.getMessage());
-	// 	}
-	// 	return res;
-    // }
+		}catch (Exception e) {
+			res.setCode(EnumCodeResponse.FAIL.getCode());
+			res.setMessage(e.getMessage());
+		}
+		return res;
+    }
 
 
 
