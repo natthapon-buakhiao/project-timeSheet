@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { noWhitespaceValidator } from './shared/noWhitespaceValidator';
+import { InterceptorService } from './service/interceptor.service';
 
 
 
@@ -34,6 +35,7 @@ import { noWhitespaceValidator } from './shared/noWhitespaceValidator';
           
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     noWhitespaceValidator
   ],
   bootstrap: [AppComponent]

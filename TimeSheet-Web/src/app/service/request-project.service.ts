@@ -17,7 +17,12 @@ export class RequestProjectService {
 
   constructor(private http: HttpClient) { }
 
-  
+  getAllProject(): Observable<any> {
+    let url = 'http://localhost:8091/project/getdata';
+    return this.http.get<any>(url, httpOptions).pipe(
+      tap(_ => console.log('getAllProject success'))
+    );
+  }
 
   insetProject(request: ReqInsertProject): Observable<any> {
     let url = 'http://localhost:8091/project/insert';
