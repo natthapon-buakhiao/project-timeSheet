@@ -37,9 +37,9 @@ public class UserProjectController {
     }
     
     @RequestMapping(value = "/inquiry-userproject", method = RequestMethod.POST)
-	public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUserProject_ProjectCode(@RequestBody ReqInquiryUserProjectCode req){
+	public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUserProject(@RequestBody ReqInquiryUserProjectCode req){
 		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
-		res = userProjectService.inquiryUserProject_ProjectCode(req);
+		res = userProjectService.inquiryUserProject(req);
 		return ResponseEntity.ok(res);
 	}
 

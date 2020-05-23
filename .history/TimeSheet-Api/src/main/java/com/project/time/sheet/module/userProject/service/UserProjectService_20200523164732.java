@@ -59,7 +59,7 @@ public class UserProjectService {
 		return res;
     }
 
-    public ResponseModel<List<UserProjectBean>> inquiryUserProject_ProjectCode(ReqInquiryUserProjectCode req) {
+    public ResponseModel<List<UserProjectBean>> inquiryUserProject(ReqInquiryUserProjectCode req) {
        
 		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
 		try {
