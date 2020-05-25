@@ -33,7 +33,17 @@
       <mat-label> Task </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="task"></textarea>
+      <textarea class="form-control" formControlName="task" [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
+      <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.required" class="text-danger help-block">
+          {{'task' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.whitespace" class="text-danger help-block">
+          {{'task' | mandatoryfield}}
+        </div>
+      </div>
 
     </div>
   </div>

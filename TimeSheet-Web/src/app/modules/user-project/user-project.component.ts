@@ -16,16 +16,19 @@ export class UserProjectComponent implements OnInit {
 
   displayedColumns: string[] = ['userCode', 'project', 'task', 'date'];
   dataSource = new MatTableDataSource();
-
+  dataUserProject: any;
   dataProfile: any;
 
   constructor(
     public dialog: MatDialog,   
     private reqUserProject: RequestUserProjectService,
-    private userProfileService: UserProfileService
+    private userProfileService: UserProfileService,
   ) { }
 
   ngOnInit() {
+    this.dataUserProject = history.state;
+    console.log(this.dataUserProject.data.projectCode)
+    
     // this.getUserProject();
     this.inquiryUserProject();
   }
@@ -33,9 +36,10 @@ export class UserProjectComponent implements OnInit {
 
   inquiryUserProject() {
     let request = new RequestInquiryProject();
-    request.projectCode = "6";
+    request.projectCode = this.dataUserProject.data.projectCode;
+    console.log(this.dataUserProject)
     this.reqUserProject.getUserProject(request).subscribe((res) => {
-      console.log(res.data)
+      console.log(res)
       this.dataSource = new MatTableDataSource(res.data); 
       // this.dataSource.sort = this.sort;
       // this.dataSource.paginator = this.paginator;
@@ -50,12 +54,12 @@ export class UserProjectComponent implements OnInit {
   getUserProject() {
     let request = new RequestInquiryProfile();
     let data: any;
-    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
       data = res.data[0];
-      // this.inquiryUserProject(data);
+      this.inquiryUserProject();
     }, (error) => {
       console.log(error);
     });
@@ -72,9 +76,9 @@ export class UserProjectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // if (result) {
-      //   this.getAccount();
-      // }
+      if (result) {
+        this.inquiryUserProject();
+      }
     });
   }
 }

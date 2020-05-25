@@ -44,7 +44,7 @@ export class AddUserProjectDialogComponent implements OnInit {
   }
 
   getAllUser() {    
-    this.dataUserProject = JSON.parse(localStorage.getItem('userProfileIam'));  
+    this.dataUserProject = JSON.parse(sessionStorage.getItem('userProfileIam'));  
     this.userProfileService.getAllUser().subscribe((res) => {
     this.setFormUserProject();
     console.log(res)
