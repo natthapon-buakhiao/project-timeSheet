@@ -18,14 +18,14 @@ export class RequestUserProjectService {
   constructor(private http: HttpClient) { }
 
   inquiryUser(request: RequestInquiryUser): Observable<any> {
-    let url = 'http://localhost:8091/userproject/inquiry-user';
+    let url = 'http://localhost:8091/userproject/inquiry-project';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiry UserProject success'))
     );
   }
 
   getUserProject(request: RequestInquiryProject): Observable<any> {
-    let url = 'http://localhost:8091/userproject/inquiry-project';
+    let url = 'http://localhost:8091/userproject/inquiry-userproject';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiry UserProject success'))
     );

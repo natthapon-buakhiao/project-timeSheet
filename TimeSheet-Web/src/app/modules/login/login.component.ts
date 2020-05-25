@@ -47,10 +47,11 @@ export class LoginComponent implements OnInit {
     .subscribe(success => {
       console.log(success);
       if (success === true) {
-        this.router.navigate(['/']);
+        this.getUserProfile();
+        
         // this.router.navigateByUrl("/");
         console.log('accessToken = ' + this._login.getTokens());
-        this.getUserProfile();
+        
       }
 
     });
@@ -76,7 +77,8 @@ export class LoginComponent implements OnInit {
     this.reqProfileService.getProfile(request).subscribe((res)  => {
       this.dataProfile = res;
       console.log( this.dataProfile);
-      localStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
+      sessionStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
+      this.router.navigate(['/']);
       this.setFromProfile(this.dataProfile);
     }, (error) => {
       console.log(error);
