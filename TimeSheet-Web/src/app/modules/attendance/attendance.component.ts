@@ -55,7 +55,7 @@ export class AttendanceComponent implements OnInit {
   getUserProfile() {
     let request = new RequestInquiryProfile();
     let data: any;
-    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
