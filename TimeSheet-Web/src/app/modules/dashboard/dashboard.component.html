@@ -16,13 +16,13 @@
 </div>  
 
   <div class="row">
-    <div class="col-3 mt-3" >
+    <div class="col-3 mt-3" *ngFor="let project of projectList">
       <mat-card style="cursor: pointer;">
-        <mat-card-header style="place-content: center;" (click)="goUserProject()">
+        <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
           <!-- <img mat-card-avatar class="example-header-image" src="./assets/img/timesheet.png"> -->
-          <mat-card-title class="example-card" >Project A</mat-card-title>          
+          <mat-card-title class="example-card" >{{project.projectName}}</mat-card-title>          
         </mat-card-header>
-        <mat-card-content style="text-align: center;">Description</mat-card-content>
+        <mat-card-content style="text-align: center;">{{project.description}}</mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions style="text-align: center">
           <button mat-button class="card-button">

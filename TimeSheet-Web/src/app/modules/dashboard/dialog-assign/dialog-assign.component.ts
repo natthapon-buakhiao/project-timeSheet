@@ -25,6 +25,7 @@ export class DialogAssignComponent implements OnInit {
   createAssignProject: FormGroup
   submitted = false;
   dataSup: any;
+  
 
 
 
@@ -53,7 +54,7 @@ export class DialogAssignComponent implements OnInit {
   getUserProfile() {
     let request = new RequestInquiryProfile();
     let data: any;
-    this.dataSup = JSON.parse(localStorage.getItem('userProfileIam'));
+    this.dataSup = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataSup.userCode;
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
@@ -70,7 +71,7 @@ export class DialogAssignComponent implements OnInit {
   
   setFormProject(dataSup){
     this.createAssignProject = this._FormBuild.group({
-      projectCode:[''],
+      projectCode:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
       userCodeSupervisor:[dataSup.userCode,Validators.required],
       date:['',Validators.required],
       projectName:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
