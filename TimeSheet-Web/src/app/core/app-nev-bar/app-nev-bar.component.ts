@@ -11,7 +11,7 @@ import { UserProfileService } from 'src/app/service/user-profile.service';
 export class AppNevBarComponent implements OnInit {
 
   dataProfile: any;
-  userCode2: any;
+  userCode = '';
 
   listMenu = [
     { id: 0, code: "Dash Board", name: "Dash Board", link: "/dashboard", isShow: true },
@@ -22,15 +22,18 @@ export class AppNevBarComponent implements OnInit {
   constructor(
     private router: Router,
     private userProfileService: UserProfileService,
-  ) { }
+  ) { 
+     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+     this.userCode = this.dataProfile != null ? this.dataProfile.userCode : '';
+  }
 
   ngOnInit() {
-    this.getUserProfile();
+    // this.getUserProfile();
   }
 
 
   getUserProfile() {   
-    this.dataProfile = JSON.parse(localStorage.getItem('userProfileIam'));    
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));    
   }
 
   openMenu(i) {
