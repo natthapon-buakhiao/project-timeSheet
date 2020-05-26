@@ -1,6 +1,7 @@
 package com.project.time.sheet.module.profile.service;
 
 import com.project.time.sheet.common.models.ResponseModel;
+import com.project.time.sheet.entity.User;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.exception.DataNotFoundException;
 
@@ -13,6 +14,7 @@ import com.project.time.sheet.module.profile.models.ReqEditProfile;
 import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
 import com.project.time.sheet.repository.UserProfileMsRepository;
+import com.project.time.sheet.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public class ProfileService {
 
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public ResponseModel<List<UserProfileMs>> getAllUserProfile() {
 		ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
@@ -43,7 +47,8 @@ public class ProfileService {
 		ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
 		try {
             List<UserProfileMs> data = new ArrayList<UserProfileMs>();
-            Optional<UserProfileMs> userProfile = userProfileMsRepository.findById(req.getUserCode());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<UserProfileMs> userProfile = userProfileMsRepository.findByUser(user);
             if (userProfile.isPresent()) {
                 data.add(userProfile.get());
                 res.setData(data);
@@ -53,22 +58,35 @@ public class ProfileService {
             } else {
                 throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
             }
-		}catch (Exception e) {
+            
+        }catch (DataNotFoundException e){
+            res.setCode(e.getCode());
+            res.setMessage(e.getMessage());
+            
+        }
+        catch (Exception e) {
 			res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
 		}
 		return res;
     }
 
-    public ResponseModel insertProfile(ReqInsertProfile req) {
+    public ResponseModel insertProfile(ReqInsertProfile req) throws DataNotFoundException {
 
         ResponseModel res = new ResponseModel();
 
         try {
-            List<UserProfileMs> userProfileList = userProfileMsRepository.findByUserCode(req.getUserCode());
+            User user = userRepository.getOne(req.getUserCode());
+            List<UserProfileMs> userProfileList = userProfileMsRepository.findAllUserCode(user);
+            Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
             UserProfileMs profile = new UserProfileMs();
-            if(userProfileList.size() == 0){
-                profile.setUserCode(req.getUserCode());
+
+            if(!(userCode.isPresent())){
+                throw new DataNotFoundException("Data not found, Method : insertUserProfile");
+
+            }
+            else if(userProfileList.size() == 0){
+                profile.setUser(user);
                 profile.setFirstName(req.getFirstName());
                 profile.setLastName(req.getLastName());
                 profile.setBirthday(req.getBirthday());
@@ -80,12 +98,20 @@ public class ProfileService {
 
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
                 res.setMessage(EnumCodeResponse.SUCCESS.name());
-             } else {
+
+            }
+            else {
                 res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
                 res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-             }
+            }
 
-        } catch (Exception e) {
+        }
+        catch (DataNotFoundException e){
+            res.setCode(e.getCode());
+            res.setMessage(e.getMessage());
+            
+        }
+         catch (Exception e) {
             res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
         }
@@ -98,7 +124,8 @@ public class ProfileService {
         ResponseModel res = new ResponseModel();
 
         try {
-            Optional<UserProfileMs> newUserProfile = userProfileMsRepository.findById(req.getUserCode());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<UserProfileMs> newUserProfile = userProfileMsRepository.findByUser(user);
 
             if (newUserProfile.isPresent()) {
                 newUserProfile.get().setBirthday(req.getBirthday());
