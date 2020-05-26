@@ -1,6 +1,5 @@
 package com.project.time.sheet.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.project.time.sheet.entity.User;
