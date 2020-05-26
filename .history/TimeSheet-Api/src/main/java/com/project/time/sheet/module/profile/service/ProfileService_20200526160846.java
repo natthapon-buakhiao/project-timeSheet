@@ -86,7 +86,7 @@ public class ProfileService {
                 throw new DataNotFoundException("Data not found, Method : insertUserProfile");
 
             }
-            else if(userProfileList.size() == 0 && userFnameLnameList.size() == 0){
+            else if(userProfileList.size() == 0 || ){
                 profile.setUser(user);
                 profile.setFirstName(req.getFirstName());
                 profile.setLastName(req.getLastName());

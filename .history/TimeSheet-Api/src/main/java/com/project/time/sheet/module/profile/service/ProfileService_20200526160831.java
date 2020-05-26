@@ -79,14 +79,14 @@ public class ProfileService {
             User user = userRepository.getOne(req.getUserCode());
             List<UserProfileMs> userProfileList = userProfileMsRepository.findAllUserCode(user);
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
-            List<UserProfileMs> userFnameLnameList = userProfileMsRepository.findByFnameAndLname(req.getFirstName(),req.getLastName());
+            List<UserProfileMs> userFnameLnameList = userProfileMsRepository.findByFnameAndLname(req.getFirstName());
             UserProfileMs profile = new UserProfileMs();
 
             if(!(userCode.isPresent())){
                 throw new DataNotFoundException("Data not found, Method : insertUserProfile");
 
             }
-            else if(userProfileList.size() == 0 && userFnameLnameList.size() == 0){
+            else if(userProfileList.size() == 0){
                 profile.setUser(user);
                 profile.setFirstName(req.getFirstName());
                 profile.setLastName(req.getLastName());

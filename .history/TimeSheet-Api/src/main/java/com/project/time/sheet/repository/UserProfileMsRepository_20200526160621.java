@@ -18,5 +18,5 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, St
     List<UserProfileMs> findAllUserCode(User user);
 
     @Query("SELECT e FROM UserProfileMs e WHERE e.firstName = ?1 and e.lastName = ?2")
-    List<UserProfileMs> findByFnameAndLname(String firstName, String lastName);
+    List<UserProfileMs> findByFnameAndLname(String firstName, String lname);
 }
