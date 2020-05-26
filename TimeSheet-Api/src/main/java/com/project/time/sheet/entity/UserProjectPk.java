@@ -26,12 +26,12 @@ public class UserProjectPk implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "USER_CODE")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private UserProfileMs userCode;
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "PROJECT_CODE")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Project projectCode;
+	private Project project;
 
     
 }
