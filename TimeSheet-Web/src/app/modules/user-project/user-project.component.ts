@@ -27,8 +27,7 @@ export class UserProjectComponent implements OnInit {
 
   ngOnInit() {
     this.dataUserProject = history.state;
-    console.log(this.dataUserProject.data.projectCode)
-    
+    // console.log(this.dataUserProject.data.projectCode)    
     // this.getUserProject();
     this.inquiryUserProject();
   }
@@ -46,9 +45,7 @@ export class UserProjectComponent implements OnInit {
     },
       (error) => {
         console.log(error + "get Fail!!")
-      }
-    )
-
+      });
   }
 
   getUserProject() {

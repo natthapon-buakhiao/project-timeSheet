@@ -26,8 +26,18 @@
       <mat-label> Project Name</mat-label>
     </div>
     <div class="col-4">
-      <input class="form-control" formControlName="projectName">
-
+      <input class="form-control" formControlName="projectName"
+        [ngClass]="{'is-invalid': submitted && f.projectName.errors}">
+      <div *ngIf="submitted && f.projectName.errors" class="invalid-feedback">
+        <div *ngIf="f.projectName.errors.required" class="text-danger help-block">
+          {{'Project Name' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.projectName.errors" class="invalid-feedback">
+        <div *ngIf="f.projectName.errors.whitespace" class="text-danger help-block">
+          {{'Project Name' | mandatoryfield}}
+        </div>
+      </div>
     </div>
   </div>
 
@@ -36,8 +46,18 @@
       <mat-label> Description </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="description"></textarea>
-
+      <textarea class="form-control" formControlName="description"
+      [ngClass]="{'is-invalid': submitted && f.description.errors}"></textarea>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required" class="text-danger help-block">
+          {{'Description' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.whitespace" class="text-danger help-block">
+          {{'Description' | mandatoryfield}}
+        </div>
+      </div>
     </div>
   </div>
 

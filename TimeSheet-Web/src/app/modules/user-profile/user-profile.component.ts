@@ -2,15 +2,12 @@ import { Router } from '@angular/router';
 import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-user-profile-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReqProfile } from 'src/app/shared/model/reqLogin';
-import { RequestProfileService } from 'src/app/service/request-profile.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ReqUserProfile, RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
+import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
-import { Message } from 'src/app/shared/model/message';
+
+
 
 @Component({
   selector: 'app-user-profile',
@@ -30,11 +27,9 @@ export class UserProfileComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private reqProfileService: RequestProfileService,
     private _FormBuild: FormBuilder,
     private userProfileService: UserProfileService,
-    private loading: NgxSpinnerService,
-    private noWhitespaceValidator: noWhitespaceValidator,
+
   ) { }
 
   ngOnInit() {
@@ -44,7 +39,7 @@ export class UserProfileComponent implements OnInit {
       firstName: new FormControl(),
       lastName: new FormControl(),
       position: new FormControl(),
-      birthday:new FormControl(),
+      birthday: new FormControl(),
       age: new FormControl(),
       address: new FormControl(),
       site: new FormControl()
@@ -61,28 +56,25 @@ export class UserProfileComponent implements OnInit {
       data = res.data[0];
       this.setFromProfile(data);
     }, (error) => {
-        console.log(error);
-    }
-    );
-    }
+      console.log(error);
+    });
+  }
 
-    get f() { return this.createProfile.controls; }
+  get f() { return this.createProfile.controls; }
 
 
-    setFromProfile(dataProfile) {
-      this.createProfile = this._FormBuild.group({
-        userCode: [dataProfile.userCode,Validators.required],
-        firstName: [dataProfile.firstName,Validators.required],
-        lastName: [dataProfile.lastName,Validators.required],
-        position: [dataProfile.position,Validators.required],
-        birthday: [dataProfile.birthday,Validators.required],
-        age: [dataProfile.age,Validators.required],
-        address: [dataProfile.address,Validators.required],
-        site: [dataProfile.site,Validators.required]
-      });
-      console.log( this.createProfile);
-
-    }
+  setFromProfile(dataProfile) {
+    this.createProfile = this._FormBuild.group({
+      userCode: [dataProfile.userCode, Validators.required],
+      firstName: [dataProfile.firstName, Validators.required],
+      lastName: [dataProfile.lastName, Validators.required],
+      position: [dataProfile.position, Validators.required],
+      birthday: [dataProfile.birthday, Validators.required],
+      age: [dataProfile.age, Validators.required],
+      address: [dataProfile.address, Validators.required],
+      site: [dataProfile.site, Validators.required]
+    });
+  }
 
 
   openDialogEdit(dataProfile) {
@@ -100,15 +92,7 @@ export class UserProfileComponent implements OnInit {
         console.log("Edit Success!")
       }
     });
-
   }
 
 
-
-
-  back(){
-    this.router.navigate(['/attendance']);
-  }
-
-  
 }

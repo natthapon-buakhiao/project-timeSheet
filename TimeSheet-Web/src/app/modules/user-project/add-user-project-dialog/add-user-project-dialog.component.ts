@@ -59,13 +59,12 @@ export class AddUserProjectDialogComponent implements OnInit {
 
   setFormUserProject() {
     this.createUserProject = this._FormBuild.group({
-      userCode: ['', Validators.required],
+      userCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       date: ['', Validators.required],
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-
-
-    })
+      
+    });
     console.log(this.createUserProject)
   }
 
