@@ -8,6 +8,7 @@ import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.common.models.UserProjectBean;
 import com.project.time.sheet.entity.Project;
+import com.project.time.sheet.entity.User;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.entity.UserProject;
 import com.project.time.sheet.entity.UserProjectPk;
@@ -18,6 +19,7 @@ import com.project.time.sheet.module.userProject.models.ReqInsertUserProject;
 import com.project.time.sheet.repository.ProjectRepository;
 import com.project.time.sheet.repository.UserProfileMsRepository;
 import com.project.time.sheet.repository.UserProjectRepository;
+import com.project.time.sheet.repository.UserRepository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +34,16 @@ public class UserProjectService {
     ProjectRepository projectRepository;
     @Autowired
     UserProfileMsRepository userProfileMsRepository;
+    @Autowired 
+    UserRepository userRepository;
 
     public ResponseModel<List<UserProjectBean>> inquiryUserProject(ReqInquiryUserProject req) {
        
 		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
 		try {
             List<UserProjectBean> data = new ArrayList<UserProjectBean>();
-            UserProfileMs user = userProfileMsRepository.getOne(req.getUserCode());
-
-            List<UserProject> userList = userProjectRepository.findById_UserCode(user);
+            User user = userRepository.getOne(req.getUserCode());
+            List<UserProject> userList = userProjectRepository.findById_User(user);
 
             for(UserProject userProject : userList) {
                 UserProjectBean bean = new UserProjectBean();
@@ -66,7 +69,7 @@ public class UserProjectService {
             List<UserProjectBean> data = new ArrayList<UserProjectBean>();
             Project project = projectRepository.getOne(req.getProjectCode());
 
-            List<UserProject> userList = userProjectRepository.findById_ProjectCode(project);
+            List<UserProject> userList = userProjectRepository.findById_Project(project);
 
             for(UserProject userProject : userList) {
                 UserProjectBean bean = new UserProjectBean();
@@ -95,10 +98,10 @@ public class UserProjectService {
             UserProject newUserProject = new UserProject();
             UserProjectPk id = new UserProjectPk();
                 Project project = projectRepository.getOne(req.getProjectCode());
-                UserProfileMs user = userProfileMsRepository.getOne(req.getUserCode());
+                User user = userRepository.getOne(req.getUserCode());
 
-                id.setUserCode(user);
-                id.setProjectCode(project);
+                id.setUser(user);
+                id.setProject(project);
                 newUserProject.setId(id);
                 newUserProject.setTask(req.getTask());
                 newUserProject.setDate(req.getDate());

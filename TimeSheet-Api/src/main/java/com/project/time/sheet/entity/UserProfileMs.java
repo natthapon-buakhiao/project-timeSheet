@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -21,8 +22,14 @@ import lombok.Data;
 @Table (name = "USER_PROFILE_MS")
 public class UserProfileMs {    
     @Id
-    @Column(name = "USER_CODE")
-	private String userCode;
+	@Column(name="USER_PROFILE_ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_CODE", referencedColumnName = "USER_CODE")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User user;
 
     @Column(name = "FIRSTNAME")
     private String firstName;
@@ -45,10 +52,6 @@ public class UserProfileMs {
 
     @Column(name = "SITE")
     private String site;
-
-    // @OneToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "ATTENDANCE_ID")
-    // private Attendance attendance;
 
 
 }
