@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { RequestProfileService } from 'src/app/service/request-profile.service';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
@@ -65,15 +64,16 @@ export class EditUserProfileDialogComponent implements OnInit {
 
 
   setFromProfile(dataProfile) {
+    console.log(dataProfile)
     this.editProfile = this._FormBuild.group({
-      userCode: [dataProfile.userCode, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      firstName: [dataProfile.firstName, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      lastName: [dataProfile.lastName, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      position: [dataProfile.position, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      birthday: [dataProfile.birthday, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      age: [dataProfile.age, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      address: [dataProfile.address, Validators.required, this.noWhitespaceValidator.noWhitespace],
-      site: [dataProfile.site, Validators.required, this.noWhitespaceValidator.noWhitespace]
+      userCode: [dataProfile.user.userCode, Validators.required],
+      firstName: [dataProfile.firstName, Validators.required],
+      lastName: [dataProfile.lastName, Validators.required],
+      position: [dataProfile.position, Validators.required],
+      birthday: [dataProfile.birthday, Validators.required],
+      age: [dataProfile.age, Validators.required],
+      address: [dataProfile.address, Validators.required],
+      site: [dataProfile.site, Validators.required]
     });
     console.log(this.editProfile);
 
