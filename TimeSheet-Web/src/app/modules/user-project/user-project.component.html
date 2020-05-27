@@ -22,12 +22,12 @@
 
         <ng-container matColumnDef="userCode">
           <th mat-header-cell *matHeaderCellDef> User Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.id.userCode.userCode}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id.user.userCode}} </td>
         </ng-container>
 
         <ng-container matColumnDef="project">
-          <th mat-header-cell *matHeaderCellDef> Project Code</th>
-          <td mat-cell *matCellDef="let element"> {{element.id.projectCode.projectCode}} </td>
+          <th mat-header-cell *matHeaderCellDef> Project Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.id.project.projectName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="task">

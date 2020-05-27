@@ -9,8 +9,8 @@
     </div>
     <div class="col-4">
       <mat-select class="form-control" formControlName="userCode" name="userCode">
-        <mat-option *ngFor="let data of dataUserProject " [value]="data.userCode">
-            {{data.userCode}}
+        <mat-option *ngFor="let data of dataUserProject " [value]="data.user.userCode">
+            {{data.user.userCode}}
         </mat-option>
     </mat-select>
     </div>
