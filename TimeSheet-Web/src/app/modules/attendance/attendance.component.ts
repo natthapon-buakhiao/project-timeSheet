@@ -1,3 +1,5 @@
+import { UserService } from './../../service/user.service';
+import { RequestInquiryUser } from './../../shared/model/request-user-project';
 import { RequestInquiryAttendace } from './../../shared/model/requestAttendance';
 import { Router } from '@angular/router';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
@@ -29,12 +31,13 @@ export class AttendanceComponent implements OnInit {
     private reqAttendance: RequestAttendanceService,
     private router: Router,
     private userProfileService: UserProfileService,
+    private userService: UserService
   ) { }
 
 
 
   ngOnInit() {
-    this.getUserProfile();
+    this.getUser();
   }
 
   inquiryAttendance(data) {
@@ -52,12 +55,12 @@ export class AttendanceComponent implements OnInit {
 
   }
 
-  getUserProfile() {
-    let request = new RequestInquiryProfile();
+  getUser() {
+    let request = new RequestInquiryUser();
     let data: any;
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+    this.userService.inquiryUser(request).subscribe((res) => {
       console.log(res);
       data = res.data[0];
       this.inquiryAttendance(data);
@@ -77,7 +80,7 @@ export class AttendanceComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getUserProfile();
+        this.getUser();
         console.log("Add Success!")
       }
     });

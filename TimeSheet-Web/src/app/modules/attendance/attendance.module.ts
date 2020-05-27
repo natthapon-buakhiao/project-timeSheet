@@ -7,14 +7,13 @@ import { AttendanceComponent } from './attendance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
 
 
 
 
 
 @NgModule({
-  declarations: [AttendanceComponent, AddAttendanceDialogComponent],
+  declarations: [AttendanceComponent],
   imports: [
     CommonModule,
     AttendanceRoutingModule,

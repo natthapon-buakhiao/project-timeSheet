@@ -5,11 +5,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Message } from 'src/app/shared/model/message';
-import { ReqProfile } from 'src/app/shared/model/reqLogin';
-import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
+import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserProfileService } from 'src/app/service/user-profile.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-add-attendance-dialog',
@@ -31,13 +31,13 @@ export class AddAttendanceDialogComponent implements OnInit {
     private _FormBuild: FormBuilder,  
     private requestAttendance: RequestAttendanceService,
     private reqProfileService: RequestProfileService,
-    private userProfileService: UserProfileService,
+    private userService: UserService,
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
   ) { }
 
   ngOnInit() {
-    this.getUserProfile();
+    this.getUser();
     this.createAttendance = new FormGroup({
       userCode: new FormControl(),
       date: new FormControl(),
@@ -52,12 +52,12 @@ export class AddAttendanceDialogComponent implements OnInit {
 
     get f() { return this.createAttendance.controls; }
 
-    getUserProfile() {
+    getUser() {
       let request = new RequestInquiryAttendace();
       let data: any;
       this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
       request.userCode = this.dataProfile.userCode;
-      this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+      this.userService.inquiryUser(request).subscribe((res) => {
         console.log(res);
         data = res.data[0];
         this.setFormAttendance(data);
@@ -77,6 +77,7 @@ export class AddAttendanceDialogComponent implements OnInit {
         timeOut:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
         site:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
       })
+      console.log(this.createAttendance)
     }
 
     onSubmit() {
