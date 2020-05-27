@@ -21,7 +21,7 @@ export class RequestProfileService {
   ) { }
 
 
-  getProfile(request: ReqProfile): Observable<any> {
+  getProfileIAM(request: ReqProfile): Observable<any> {
     let url = 'http://localhost:8091/iam/inquiryProfile';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('getProfile success'))

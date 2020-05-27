@@ -19,8 +19,7 @@ export class LoginService {
   ) {}
 
    login(userCode: string, password: string ): Observable<any> {
-    const objLogin = {
-      "isIamAdmin": "Y",
+    const objLogin = {      
       "password": password,
       "userCode": userCode
     };

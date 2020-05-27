@@ -1,3 +1,4 @@
+import { RequestInquiryUser } from './../../../shared/model/request-user-project';
 import { ReqProfile } from './../../../shared/model/reqLogin';
 import { ReqInsertProject } from './../../../shared/model/req-project';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
@@ -10,6 +11,7 @@ import { Message } from 'src/app/shared/model/message';
 import { RequestProjectService } from 'src/app/service/request-project.service';
 import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
+import { UserService } from 'src/app/service/user.service';
 
 
 
@@ -38,10 +40,11 @@ export class DialogAssignComponent implements OnInit {
               private loading: NgxSpinnerService,
               private noWhitespaceValidator: noWhitespaceValidator,
               private reqInsertProject: RequestProjectService,
-              private userProfileService: UserProfileService, ) { }
+              private userProfileService: UserProfileService,
+              private userService: UserService ) { }
 
   ngOnInit() {
-    this.getUserProfile();
+    this.getUser();
     this.createAssignProject = new FormGroup({
       userCodeSupervisor: new FormControl(),
       date: new FormControl(),
@@ -51,12 +54,12 @@ export class DialogAssignComponent implements OnInit {
     }); 
   }
 
-  getUserProfile() {
-    let request = new RequestInquiryProfile();
+  getUser() {
+    let request = new RequestInquiryUser();
     let data: any;
     this.dataSup = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataSup.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+    this.userService.inquiryUser(request).subscribe((res) => {
       console.log(res);
       data = res.data[0];
       this.setFormProject(data);

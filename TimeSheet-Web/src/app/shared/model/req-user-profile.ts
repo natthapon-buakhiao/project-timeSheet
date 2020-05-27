@@ -1,4 +1,4 @@
-export class ReqUserProfile {
+export class ReqInsertUserProfile {
     userCode: string;
     firstName: string;
     lastName: string;
