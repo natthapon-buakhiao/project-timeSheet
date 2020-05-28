@@ -12,6 +12,7 @@ import { Project } from 'src/app/shared/model/project';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
+import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -50,8 +51,6 @@ export class DashboardComponent implements OnInit {
       console.log(res)
       this.dataUserProject = res.data;
       this.projectList = res.data;  
-      console.log(this.dataUserProject)
-      console.log(this.projectList)
          
     }, (error) => {
         console.log(error);
@@ -101,6 +100,24 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.getAllProject();
+      }
+    });
+  }
+
+  openDialogEdit(projectList) {
+    console.log('The dialog was open edit');
+    const dialogRef = this.dialog.open(EditProjectDialogComponent, {
+      width: '750px',
+      position: {
+        top: '10%'
+      },
+      data: { dataedit: projectList }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllProject();
+        console.log("Edit Success!")
       }
     });
   }

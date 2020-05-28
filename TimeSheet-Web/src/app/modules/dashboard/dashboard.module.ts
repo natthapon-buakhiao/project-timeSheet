@@ -23,7 +23,7 @@ import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-d
     SweetAlert2Module.forRoot()
   ],
   entryComponents: [    
-    DialogAssignComponent    
+    DialogAssignComponent, EditProjectDialogComponent
     ],
 })
 export class DashboardModule { }
