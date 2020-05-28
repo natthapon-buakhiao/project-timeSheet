@@ -14,12 +14,11 @@ public class AttendanceBean {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
     private Date date;
-    private String timeIn;
     private String timeOut;
     private String task;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Project project;
     private String site;
-    
+    private String timeOut;
     
 }
