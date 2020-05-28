@@ -1,3 +1,4 @@
+import { UserService } from './../../service/user.service';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 import { AddUserProjectDialogComponent } from './add-user-project-dialog/add-user-project-dialog.component';
 import { Component, OnInit } from '@angular/core';
@@ -23,11 +24,12 @@ export class UserProjectComponent implements OnInit {
     public dialog: MatDialog,   
     private reqUserProject: RequestUserProjectService,
     private userProfileService: UserProfileService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.dataUserProject = history.state;
-    // console.log(this.dataUserProject.data.projectCode)    
+    console.log(this.dataUserProject)    
     // this.getUserProject();
     this.inquiryUserProject();
   }
@@ -53,7 +55,7 @@ export class UserProjectComponent implements OnInit {
     let data: any;
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+    this.userService.inquiryUser(request).subscribe((res) => {
       console.log(res);
       data = res.data[0];
       this.inquiryUserProject();

@@ -8,6 +8,8 @@ import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 import { ReqInsertUserProject } from 'src/app/shared/model/request-user-project';
+import { UserService } from 'src/app/service/user.service';
+import { RequestProjectService } from 'src/app/service/request-project.service';
 
 @Component({
   selector: 'app-add-user-project-dialog',
@@ -20,6 +22,7 @@ export class AddUserProjectDialogComponent implements OnInit {
   createUserProject: FormGroup;
   submitted = false;
   dataUserProject: any;
+  dataUserProjectCode: any;
 
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
   @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
@@ -31,28 +34,42 @@ export class AddUserProjectDialogComponent implements OnInit {
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqInsertUserProject: RequestUserProjectService,
-    private userProfileService: UserProfileService, ) { }
+    private userService: UserService,
+    private projectService: RequestProjectService ) { }
 
   ngOnInit() {
     this.getAllUser();
+    this.getAllProject();
+
+
     this.createUserProject = new FormGroup({
       userCode: new FormControl(),
       date: new FormControl(),
-      projectCode:new FormControl(),
+      projectCode: new FormControl(),
       task: new FormControl()
-    }); 
+    });
   }
 
-  getAllUser() {    
-    this.dataUserProject = JSON.parse(sessionStorage.getItem('userProfileIam'));  
-    this.userProfileService.getAllUserProfile().subscribe((res) => {
-    this.setFormUserProject();
-    console.log(res)
-    this.dataUserProject = res.data;     
-
+  getAllUser() {
+    this.dataUserProject = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    this.userService.getAllUser().subscribe((res) => {
+      console.log(res)
+      this.setFormUserProject();
+      this.dataUserProject = res.data;
+      console.log(this.dataUserProject)
     }, (error) => {
       console.log(error);
     });
+  }
+
+  getAllProject(){
+    this.projectService.getAllProject().subscribe((res) => {
+      console.log(res)
+      this.dataUserProjectCode = res.data;
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      });
   }
 
   get f() { return this.createUserProject.controls; }
@@ -63,7 +80,7 @@ export class AddUserProjectDialogComponent implements OnInit {
       date: ['', Validators.required],
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-      
+
     });
     console.log(this.createUserProject)
   }
