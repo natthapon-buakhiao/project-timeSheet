@@ -80,6 +80,8 @@ public class AttendanceService {
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);
                 
+                // res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                // res.setMessage(EnumCodeResponse.SUCCESS.name());
 
             }
             else {

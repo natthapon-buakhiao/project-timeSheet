@@ -7,7 +7,6 @@ import com.project.time.sheet.entity.Project;
 import com.project.time.sheet.module.project.models.ReqEditProject;
 import com.project.time.sheet.module.project.models.ReqInquiryProject;
 import com.project.time.sheet.module.project.models.ReqInsertProject;
-import com.project.time.sheet.module.project.models.ReqRemoveProject;
 import com.project.time.sheet.module.project.service.ProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,14 +63,14 @@ public class ProjectController {
      }
 
      @RequestMapping(value = "/remove", method = RequestMethod.POST)
-     public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveProject req){
-         
-        ResponseModel res = new ResponseModel();
-                
-        res = projectService.deleteProject(req);
-                
-        return ResponseEntity.ok(res);
-    }
+			public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveProduct req){
+				
+				ResponseModel res = new ResponseModel();
+				
+				res = productService.DelProduct(req);
+				
+                return ResponseEntity.ok(res);
+            }
             
 
     

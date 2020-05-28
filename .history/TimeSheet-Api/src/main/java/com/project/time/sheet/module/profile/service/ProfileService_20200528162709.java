@@ -56,9 +56,6 @@ public class ProfileService {
             } else {
                 throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
             
         }catch (DataNotFoundException e){
             res.setCode(e.getCode());

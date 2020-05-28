@@ -68,7 +68,7 @@ public class ProjectController {
          
         ResponseModel res = new ResponseModel();
                 
-        res = projectService.deleteProject(req);
+        res = productService.DelProduct(req);
                 
         return ResponseEntity.ok(res);
     }

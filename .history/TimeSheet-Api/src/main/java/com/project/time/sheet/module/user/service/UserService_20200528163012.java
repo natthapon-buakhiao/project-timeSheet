@@ -48,9 +48,6 @@ public class UserService {
             } else {
                 throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
         }catch (DataNotFoundException e){
             res.setCode(e.getCode());
             res.setMessage(e.getMessage());
@@ -74,13 +71,13 @@ public class UserService {
                 newUser.setUserCode(req.getUserCode());
                 userRepository.save(newUser);
 
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
+
             } else {
                 res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
                 res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
 
         
 

@@ -74,13 +74,11 @@ public class UserService {
                 newUser.setUserCode(req.getUserCode());
                 userRepository.save(newUser);
 
+
             } else {
                 res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
                 res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
 
         
 

@@ -80,14 +80,13 @@ public class AttendanceService {
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);
                 
+                // res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                // res.setMessage(EnumCodeResponse.SUCCESS.name());
 
             }
             else {
                 throw new DataNotFoundException("Data not found, Method : insertAttendance");
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
 			
 			
         }catch (DataNotFoundException e){

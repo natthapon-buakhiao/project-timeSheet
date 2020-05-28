@@ -79,9 +79,6 @@ public class UserService {
                 res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
             }
 
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
-
         
 
         } catch (Exception e) {

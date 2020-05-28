@@ -52,13 +52,12 @@ public class ProfileService {
             if (userProfile.isPresent()) {
                 data.add(userProfile.get());
                 res.setData(data);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
             } else {
                 throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
             }
-
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-            res.setMessage(EnumCodeResponse.SUCCESS.name());
             
         }catch (DataNotFoundException e){
             res.setCode(e.getCode());

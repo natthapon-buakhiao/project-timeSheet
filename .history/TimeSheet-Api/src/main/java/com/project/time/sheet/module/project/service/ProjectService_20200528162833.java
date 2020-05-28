@@ -64,10 +64,10 @@ public class ProjectService {
 		ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
 		try {
 			List<Project> projectList = new ArrayList<Project>();
-            projectList = projectRepository.findAll();
-            res.setData(projectList);
+			projectList = projectRepository.findAll();
 			res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());
+			res.setData(projectList);
 		}catch (Exception e) {
 			res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
@@ -94,13 +94,13 @@ public class ProjectService {
                 newProject.setDate(req.getDate());
                 projectRepository.save(newProject);
 
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
+
             } 
             else {
             throw new DataNotFoundException("Data not found, Method : insertProject");
         }
-
-        res.setCode(EnumCodeResponse.SUCCESS.getCode());
-        res.setMessage(EnumCodeResponse.SUCCESS.name());
     }catch (DataNotFoundException e){
         res.setCode(e.getCode());
         res.setMessage(e.getMessage());
