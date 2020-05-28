@@ -56,10 +56,10 @@ export class AddAttendanceDialogComponent implements OnInit {
     this.createAttendance = new FormGroup({
       userCode: new FormControl(),
       date: new FormControl(),
-      projectCode:new FormControl(),
-        task:new FormControl(),
-        timeIn:new FormControl(),
-        timeOut:new FormControl(),
+      projectCode: new FormControl(),
+        task: new FormControl(),
+        timeIn: new FormControl(),
+        timeOut: new FormControl(),
         site: new FormControl(),
     }); 
   }

@@ -25,11 +25,11 @@
   
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.date | date: 'yyyy/MM/dd'}} </td>
           </ng-container>
   
           <ng-container matColumnDef="project">
-            <th mat-header-cell *matHeaderCellDef> Project </th>
+            <th mat-header-cell *matHeaderCellDef> Project Name </th>
             <td mat-cell *matCellDef="let element"> {{element.project.projectName}} </td>
           </ng-container>
   
