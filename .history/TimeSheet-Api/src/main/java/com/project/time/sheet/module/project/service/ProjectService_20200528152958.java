@@ -110,37 +110,36 @@ public class ProjectService {
         
     }
 
-    public ResponseModel editProject(ReqEditProject req) {
+    // public ResponseModel editProject(ReqEditProject req) {
 
-        ResponseModel res = new ResponseModel();
+    //     ResponseModel res = new ResponseModel();
 
-        try {
-            Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
-            Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
+    //     try {
+    //         Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
 
-            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
-                newProject.get().setProjectName(req.getProjectName());
-                newProject.get().setDescription(req.getDescription());
-                projectRepository.save(newProject.get());
+    //         if (newProject.isPresent()) {
+    //             newProject.get().setProjectName(req.getProjectName());
+    //             newProject.get().setDescription(req.getDescription());
+    //             projectRepository.save(newProject.get());
 
-            }
-            else {
-                throw new DataNotFoundException("Data not found, Method : editUserProfile");
-            }
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-			res.setMessage(EnumCodeResponse.SUCCESS.name());
+    //         }
+    //         else {
+    //             throw new DataNotFoundException("Data not found, Method : editUserProfile");
+    //         }
+    //         res.setCode(EnumCodeResponse.SUCCESS.getCode());
+	// 		res.setMessage(EnumCodeResponse.SUCCESS.name());
 
-        }catch (DataNotFoundException e){
-            res.setCode(e.getCode());
-            res.setMessage(e.getMessage());
+    //     }catch (DataNotFoundException e){
+    //         res.setCode(e.getCode());
+    //         res.setMessage(e.getMessage());
             
-        }catch (Exception e){
-            res.setCode(EnumCodeResponse.FAIL.getCode());
-            res.setMessage(e.getMessage());
+    //     }catch (Exception e){
+    //         res.setCode(EnumCodeResponse.FAIL.getCode());
+    //         res.setMessage(e.getMessage());
             
-        }
-        return res;
+    //     }
+    //     return res;
 
-    }
+    // }
     
 }

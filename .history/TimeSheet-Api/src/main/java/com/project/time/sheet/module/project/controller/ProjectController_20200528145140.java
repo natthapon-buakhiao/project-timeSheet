@@ -45,19 +45,19 @@ public class ProjectController {
         return ResponseEntity.ok(res);
      }
 
-    //  @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-    //  public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req){
-    //      ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
-    //      res = projectService.inquiryProject(req);
-    //      return ResponseEntity.ok(res);
-    //  }
+     @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
+     public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req){
+         ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
+         res = projectService.inquiryProject(req);
+         return ResponseEntity.ok(res);
+     }
 
      @RequestMapping(value = "/edit", method = RequestMethod.POST)
      public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req){
          
          ResponseModel res = new ResponseModel();
          
-         res = projectService.editProject(req);
+         res = profileService.editProfile(req);
          
          return ResponseEntity.ok(res);
      }

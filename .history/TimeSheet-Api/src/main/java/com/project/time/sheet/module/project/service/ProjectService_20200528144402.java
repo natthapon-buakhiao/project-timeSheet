@@ -10,7 +10,6 @@ import com.project.time.sheet.entity.Project;
 import com.project.time.sheet.entity.User;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.exception.DataNotFoundException;
-import com.project.time.sheet.module.project.models.ReqEditProject;
 import com.project.time.sheet.module.project.models.ReqInquiryProject;
 import com.project.time.sheet.module.project.models.ReqInsertProject;
 import com.project.time.sheet.repository.ProjectRepository;
@@ -31,32 +30,32 @@ public class ProjectService {
     @Autowired
     UserRepository userRepository;
 
-    // public ResponseModel<List<Project>> inquiryProject(ReqInquiryProject req) {
+    public ResponseModel<List<Project>> inquiryProject(ReqInquiryProject req) {
        
-	// 	ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
-	// 	try {
-    //         List<Project> data = new ArrayList<Project>();
-    //         Optional<Project> project = projectRepository.findByProjectCode(req.getProjectCode());
-    //         if (project.isPresent()) {
-    //             data.add(project.get());
-    //             res.setData(data);
-    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
-    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
+		ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
+		try {
+            List<Project> data = new ArrayList<Project>();
+            Optional<Project> project = projectRepository.findByProjectCode(req.getProjectCode());
+            if (project.isPresent()) {
+                data.add(project.get());
+                res.setData(data);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
-    //         } else {
-    //             throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
-    //         }
-    //     }catch (DataNotFoundException e){
-    //         res.setCode(e.getCode());
-    //         res.setMessage(e.getMessage());
+            } else {
+                throw new DataNotFoundException("Data not found, Method : inquiryUserProfile");
+            }
+        }catch (DataNotFoundException e){
+            res.setCode(e.getCode());
+            res.setMessage(e.getMessage());
             
-    //     }
-    //     catch (Exception e) {
-	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
-	// 		res.setMessage(e.getMessage());
-	// 	}
-	// 	return res;
-    // }
+        }
+        catch (Exception e) {
+			res.setCode(EnumCodeResponse.FAIL.getCode());
+			res.setMessage(e.getMessage());
+		}
+		return res;
+    }
 
     public ResponseModel<List<Project>> getAllProject() {
 		ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
@@ -110,18 +109,19 @@ public class ProjectService {
         
     }
 
-    public ResponseModel editProject(ReqEditProject req) {
+    public ResponseModel editProject(ReqEditProfile req) {
 
         ResponseModel res = new ResponseModel();
 
         try {
-            Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
-            Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<UserProfileMs> newUserProfile = userProfileMsRepository.findByUser(user);
 
-            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
-                newProject.get().setProjectName(req.getProjectName());
-                newProject.get().setDescription(req.getDescription());
-                projectRepository.save(newProject.get());
+            if (newUserProfile.isPresent()) {
+                newUserProfile.get().setBirthday(req.getBirthday());
+                newUserProfile.get().setAge(req.getAge());
+                newUserProfile.get().setAddress(req.getAddress());
+                userProfileMsRepository.save(newUserProfile.get());
 
             }
             else {

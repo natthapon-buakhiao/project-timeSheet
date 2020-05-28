@@ -52,15 +52,15 @@ public class ProjectController {
     //      return ResponseEntity.ok(res);
     //  }
 
-     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-     public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req){
+    //  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    //  public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req){
          
-         ResponseModel res = new ResponseModel();
+    //      ResponseModel res = new ResponseModel();
          
-         res = projectService.editProject(req);
+    //      res = projectService.editProject(req);
          
-         return ResponseEntity.ok(res);
-     }
+    //      return ResponseEntity.ok(res);
+    //  }
             
 
     

@@ -118,7 +118,7 @@ public class ProjectService {
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
 
-            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
+            if (newProject.isPresent()) {
                 newProject.get().setProjectName(req.getProjectName());
                 newProject.get().setDescription(req.getDescription());
                 projectRepository.save(newProject.get());

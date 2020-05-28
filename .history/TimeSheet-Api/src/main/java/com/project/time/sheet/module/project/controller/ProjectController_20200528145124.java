@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.Project;
-import com.project.time.sheet.module.project.models.ReqEditProject;
 import com.project.time.sheet.module.project.models.ReqInquiryProject;
 import com.project.time.sheet.module.project.models.ReqInsertProject;
 import com.project.time.sheet.module.project.service.ProjectService;
@@ -45,19 +44,18 @@ public class ProjectController {
         return ResponseEntity.ok(res);
      }
 
-    //  @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-    //  public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req){
-    //      ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
-    //      res = projectService.inquiryProject(req);
-    //      return ResponseEntity.ok(res);
-    //  }
-
+     @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
+     public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req){
+         ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
+         res = projectService.inquiryProject(req);
+         return ResponseEntity.ok(res);
+     }
      @RequestMapping(value = "/edit", method = RequestMethod.POST)
-     public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req){
+     public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req){
          
          ResponseModel res = new ResponseModel();
          
-         res = projectService.editProject(req);
+         res = profileService.editProfile(req);
          
          return ResponseEntity.ok(res);
      }
