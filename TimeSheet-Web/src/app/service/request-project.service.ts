@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ReqInsertProject } from '../shared/model/req-project';
+import { ReqInsertProject, ReqRemoveProject } from '../shared/model/req-project';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,6 +26,13 @@ export class RequestProjectService {
 
   insetProject(request: ReqInsertProject): Observable<any> {
     let url = 'http://localhost:8091/project/insert';
+    return this.http.post(url, request, httpOptions).pipe(
+      tap(_ => console.log("insert Project success"))
+    );
+  }
+
+  deleteProject(request: ReqRemoveProject): Observable<any> {
+    let url = 'http://localhost:8091/project/delete';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert Project success"))
     );
