@@ -8,10 +8,11 @@ import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
+import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-dialog.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent,DialogAssignComponent],
+  declarations: [DashboardComponent,DialogAssignComponent, EditProjectDialogComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

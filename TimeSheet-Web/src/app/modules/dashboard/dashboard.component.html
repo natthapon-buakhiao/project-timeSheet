@@ -28,13 +28,19 @@
           <button mat-button class="card-button">
             <mat-icon>edit</mat-icon> Edit
           </button>
-          <button mat-button class="card-button">
+          <button mat-button class="card-button" (click)="onDelete()">
             <mat-icon>delete_forever</mat-icon> Delete
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
+
+  <swal #deleteSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#82dcc3"
+  [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onDelete()">
+</swal>
+<swal #deletedSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="getAllProject()" [width]="480">
+</swal>
   
 
 </div>
