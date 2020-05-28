@@ -38,7 +38,7 @@ public class ProjectService {
             List<Project> data = new ArrayList<Project>();
             List<Project> project = projectRepository.findByProjectUserCode(req.getUserCodeSupervisor());
             if (!(project.isEmpty())) {
-                data.addAll(project);
+                data.add(project);
                 res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
                 res.setMessage(EnumCodeResponse.SUCCESS.name());

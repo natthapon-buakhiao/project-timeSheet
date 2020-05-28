@@ -36,9 +36,9 @@ public class ProjectService {
 		ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
 		try {
             List<Project> data = new ArrayList<Project>();
-            List<Project> project = projectRepository.findByProjectUserCode(req.getUserCodeSupervisor());
-            if (!(project.isEmpty())) {
-                data.addAll(project);
+            Optional<Project> project = projectRepository.findByProjectCode(req.getProjectCode());
+            if (project.isPresent()) {
+                data.add(project.get());
                 res.setData(data);
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
                 res.setMessage(EnumCodeResponse.SUCCESS.name());

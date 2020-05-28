@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ReqInquiryProject {
-    private String userCodeSupervisor;
+    private String projectCode;
     
 }
