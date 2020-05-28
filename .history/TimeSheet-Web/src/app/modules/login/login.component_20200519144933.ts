@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
     this.reqProfileService.getProfile(request).subscribe((res)  => {
       this.dataProfile = res;
       console.log( this.dataProfile);
-      localStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
+      sessionStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
       this.setFromProfile(this.dataProfile);
     }, (error) => {
       console.log(error);

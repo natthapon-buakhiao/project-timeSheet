@@ -9,8 +9,8 @@
     </div>
     <div class="col-4">
       <mat-select class="form-control" formControlName="userCode" name="userCode">
-        <mat-option *ngFor="let data of dataUserProject " [value]="data.user.userCode">
-            {{data.user.userCode}}
+        <mat-option *ngFor="let data of dataUserProject " [value]="data.userCode">
+            {{data.userCode}}
         </mat-option>
     </mat-select>
     </div>
@@ -18,19 +18,12 @@
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Project Code</mat-label>
     </div>
-    <div class="col-4">
-      <input class="form-control" formControlName="projectCode"
-      [ngClass]="{'is-invalid': submitted && f.projectCode.errors}">
-      <div *ngIf="submitted && f.projectCode.errors" class="invalid-feedback">
-        <div *ngIf="f.projectCode.errors.required" class="text-danger help-block">
-          {{'Project Code' | mandatoryfield}}
-        </div>
-      </div>
-      <div *ngIf="submitted && f.projectCode.errors" class="invalid-feedback">
-        <div *ngIf="f.projectCode.errors.whitespace" class="text-danger help-block">
-          {{'Project Code' | mandatoryfield}}
-        </div>
-      </div>
+    <div class="col-4">   
+      <mat-select class="form-control" formControlName="projectCode" name="projectCode">
+        <mat-option *ngFor="let data of dataUserProjectCode " [value]="data.projectCode">
+            {{data.projectName}}
+        </mat-option>
+    </mat-select>
     </div>
   </div>
 
