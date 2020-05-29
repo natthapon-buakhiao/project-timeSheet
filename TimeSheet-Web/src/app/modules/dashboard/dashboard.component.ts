@@ -26,8 +26,8 @@ export class DashboardComponent implements OnInit {
 
   dataProfile: any;
   dataUserProject: any;
-
-  projectList: Project [];
+  isSup: boolean = true;
+  projectList: Project[];
 
   constructor(
     private router: Router,
@@ -37,27 +37,33 @@ export class DashboardComponent implements OnInit {
     private reqGetAllProject: RequestProjectService,
     private loading: NgxSpinnerService,
     private removeProject: RequestProjectService
-    
+
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {   
     // this.getUserProfile();
     this.getAllProject();
 
   }
 
-  getAllProject(){
+  getAllProject() {
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    console.log(this.dataProfile.userRoleObjects[0].roleCode)
+    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+      this.isSup = true;
+    } else {
+      this.isSup = false;
+    }
+
     this.reqGetAllProject.getAllProject().subscribe((res) => {
       console.log(res)
       this.dataUserProject = res.data;
-      this.projectList = res.data;  
-         
+      this.projectList = res.data;
+
     }, (error) => {
-        console.log(error);
+      console.log(error);
     });
   }
-
-
 
   getUserProfile() {
     let request = new RequestInquiryProfile();
@@ -66,27 +72,27 @@ export class DashboardComponent implements OnInit {
     request.userCode = this.dataProfile.userCode;
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
-      data = res.data[0];
+      data = res.data;
       this.inquiryUserProject(data);
     }, (error) => {
-        console.log(error);
+      console.log(error);
     });
-    }
+  }
 
-    inquiryUserProject(data){
-      let request = new RequestInquiryUser();
-      request.userCode = data.userCode;
-      console.log(request)
-      this.reqUserProject.inquiryUser(request).subscribe((res) => {
-        console.log(res)   
-        this.dataUserProject = res.data[0].id.projectCode;
-        console.log(res.data[0].id.projectCode)
+  inquiryUserProject(data) {
+    let request = new RequestInquiryUser();
+    request.userCode = data.userCode;
+    console.log(request)
+    this.reqUserProject.inquiryUser(request).subscribe((res) => {
+      console.log(res)
+      this.dataUserProject = res.data[0].id.projectCode;
+      console.log(res.data[0].id.projectCode)
 
-      },
-        (error) => {
-          console.log(error + "get Fail!!")
-        })
-    }
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      })
+  }
 
   onDialogAssign() {
     console.log('open dialog Assign Project');
@@ -142,8 +148,8 @@ export class DashboardComponent implements OnInit {
     })
 
   }
-  
-  goUserProject(data: any){
-    this.router.navigateByUrl('/user-project', { state: { data }});
+
+  goUserProject(data: any) {
+    this.router.navigateByUrl('/user-project', { state: { data } });
   }
 }

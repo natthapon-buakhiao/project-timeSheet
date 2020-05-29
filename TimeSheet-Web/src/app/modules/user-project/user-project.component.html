@@ -6,7 +6,7 @@
     </div>
   </div><br>
 
-  <div class="row">
+  <div class="row" *ngIf="isSup" >
     <div class="col-12" style="text-align: right;">
       <button mat-raised-button class="btn-submit" (click)="openDialogAddUser()">
         <mat-icon>assessment</mat-icon>

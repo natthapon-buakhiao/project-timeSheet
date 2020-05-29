@@ -31,7 +31,7 @@ export class AttendanceComponent implements OnInit {
     private reqAttendance: RequestAttendanceService,
     private userService: UserService
   ) { }
-
+7
 
 
   ngOnInit() {

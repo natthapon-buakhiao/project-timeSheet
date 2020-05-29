@@ -10,11 +10,21 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/service/user.service';
 import { RequestProjectService } from 'src/app/service/request-project.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 @Component({
   selector: 'app-add-attendance-dialog',
   templateUrl: './add-attendance-dialog.component.html',
-  styleUrls: ['./add-attendance-dialog.component.scss']
+  styleUrls: ['./add-attendance-dialog.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    ]
 })
 export class AddAttendanceDialogComponent implements OnInit {
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
