@@ -9,8 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { UserProfileService } from 'src/app/service/user-profile.service';
-import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
+
+
 
 @Component({
   selector: 'app-attendance',
@@ -29,11 +29,9 @@ export class AttendanceComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
-    private router: Router,
-    private userProfileService: UserProfileService,
     private userService: UserService
   ) { }
-
+7
 
 
   ngOnInit() {

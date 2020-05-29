@@ -20,15 +20,13 @@ export class AppNevBarComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router,
-    private userProfileService: UserProfileService,
+    private router: Router,    
   ) { 
      this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
      this.userCode = this.dataProfile != null ? this.dataProfile.userCode : '';
   }
 
-  ngOnInit() {
-    // this.getUserProfile();
+  ngOnInit() {    
   }
 
 

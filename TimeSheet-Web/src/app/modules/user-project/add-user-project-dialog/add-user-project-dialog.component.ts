@@ -10,11 +10,21 @@ import { Message } from 'src/app/shared/model/message';
 import { ReqInsertUserProject } from 'src/app/shared/model/request-user-project';
 import { UserService } from 'src/app/service/user.service';
 import { RequestProjectService } from 'src/app/service/request-project.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 @Component({
   selector: 'app-add-user-project-dialog',
   templateUrl: './add-user-project-dialog.component.html',
-  styleUrls: ['./add-user-project-dialog.component.scss']
+  styleUrls: ['./add-user-project-dialog.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    ]
 })
 export class AddUserProjectDialogComponent implements OnInit {
 

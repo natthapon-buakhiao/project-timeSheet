@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ReqInsertProject, ReqRemoveProject, ReqEditProject } from '../shared/model/req-project';
+import { ReqInsertProject, ReqRemoveProject, ReqEditProject, RequestInquirySup } from '../shared/model/req-project';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,6 +21,13 @@ export class RequestProjectService {
     let url = 'http://localhost:8091/project/getdata';
     return this.http.get<any>(url, httpOptions).pipe(
       tap(_ => console.log('getAllProject success'))
+    );
+  }
+
+  inquirySup(request: RequestInquirySup): Observable<any> {
+    let url = 'http://localhost:8091/project/inquiry';
+    return this.http.post<any>(url, request, httpOptions).pipe(
+      tap(_ => console.log('inquiry Project success'))
     );
   }
 
