@@ -7,11 +7,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
 import { RequestInquiryProfile, ReqEditUserProfile } from 'src/app/shared/model/req-user-profile';
 import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 @Component({
   selector: 'app-edit-user-profile-dialog',
   templateUrl: './edit-user-profile-dialog.component.html',
-  styleUrls: ['./edit-user-profile-dialog.component.scss']
+  styleUrls: ['./edit-user-profile-dialog.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    ]
 })
 export class EditUserProfileDialogComponent implements OnInit {
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;

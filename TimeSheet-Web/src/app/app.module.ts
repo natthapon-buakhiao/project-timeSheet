@@ -1,6 +1,6 @@
 import { AddAttendanceDialogComponent } from './modules/attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,7 +11,8 @@ import { CoreModule } from './core/core.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { noWhitespaceValidator } from './shared/noWhitespaceValidator';
 import { InterceptorService } from './service/interceptor.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from "@angular/material";
+import { AppDateAdapter, APP_DATE_FORMATS} from './shared/common/date.adapter';
 
 
 
@@ -36,8 +37,14 @@ import { InterceptorService } from './service/interceptor.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    noWhitespaceValidator
-  ],
+    noWhitespaceValidator,
+    {
+      provide: DateAdapter, useClass: AppDateAdapter
+  },
+  {
+      provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+  }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -59,10 +59,4 @@ export class AttendanceSupervisorComponent implements OnInit {
     });
   }
 
-
-
-  back(){
-    this.router.navigate(['/dashboard']);
-  }
-
 }
