@@ -125,25 +125,30 @@ public class ProjectService {
         try {
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
-            
 
-            if (newProject.isPresent()) {
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXX");
+            System.out.println(userCode.get().getUserCode());
+            System.out.println(newProject.get().getUserCodeSupervisor());
+
+            // if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
                 newProject.get().setProjectName(req.getProjectName());
                 newProject.get().setDescription(req.getDescription());
                 projectRepository.save(newProject.get());
 
-            }
-            else {
-                throw new DataNotFoundException("Data not found, Method : editUserProfile");
-            }
+            // }
+            // else {
+            //     throw new DataNotFoundException("Data not found, Method : editUserProfile");
+            // }
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());
 
-        }catch (DataNotFoundException e){
+        }
+        catch (DataNotFoundException e){
             res.setCode(e.getCode());
             res.setMessage(e.getMessage());
             
-        }catch (Exception e){
+        }
+        catch (Exception e){
             res.setCode(EnumCodeResponse.FAIL.getCode());
             res.setMessage(e.getMessage());
             

@@ -16,6 +16,7 @@ import com.project.time.sheet.module.project.models.ReqInsertProject;
 import com.project.time.sheet.module.project.models.ReqRemoveProject;
 import com.project.time.sheet.repository.ProjectRepository;
 import com.project.time.sheet.repository.UserProfileMsRepository;
+import com.project.time.sheet.repository.UserProjectRepository;
 import com.project.time.sheet.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class ProjectService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserProjectRepository userProjectRepository;
 
     public ResponseModel<List<Project>> inquiryProject(ReqInquiryProject req) {
        

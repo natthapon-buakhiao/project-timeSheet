@@ -20,7 +20,7 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
     Optional<Project> findByProjectCode(String projectCode);
 
     @Query( "SELECT n FROM Project n WHERE n.projectCode =?1")
-    List<Project> findByProjectList(String projectCode);
+    Optional<Project> findByProjectList(String projectCode);
 
     
     @Query( "SELECT n FROM Project n WHERE n.projectName =?1")

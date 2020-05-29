@@ -32,6 +32,9 @@ public class ProjectService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserProjectRepository userProjectRepository;
+
     public ResponseModel<List<Project>> inquiryProject(ReqInquiryProject req) {
        
 		ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();

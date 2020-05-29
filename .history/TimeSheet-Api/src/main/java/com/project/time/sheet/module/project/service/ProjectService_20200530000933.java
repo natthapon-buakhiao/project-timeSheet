@@ -85,12 +85,12 @@ public class ProjectService {
             List<Project> projectNameList = projectRepository.findAllProjectName(req.getProjectName());
             List<Project> projectList = projectRepository.findByProjectList(req.getProjectCode());
             
-            if(!(userCode.isPresent())){
-                throw new DataNotFoundException("Data not found, Method : insertProject");
+            // if(!(userCode.isPresent())){
+            //     throw new DataNotFoundException("Data not found, Method : insertProject");
 
-            }
+            // }
 
-             else if(projectNameList.size() == 0 && projectList.size() == 0){
+             if(projectNameList.size() == 0 && projectList.size() == 0){
 
                 newProject.setProjectCode(req.getProjectCode());
                 newProject.setProjectName(req.getProjectName());
@@ -98,9 +98,6 @@ public class ProjectService {
                 newProject.setUserCodeSupervisor(req.getUserCodeSupervisor());
                 newProject.setDate(req.getDate());
                 projectRepository.save(newProject);
-
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
             } 
             else {
@@ -125,9 +122,8 @@ public class ProjectService {
         try {
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
-            
 
-            if (newProject.isPresent()) {
+            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
                 newProject.get().setProjectName(req.getProjectName());
                 newProject.get().setDescription(req.getDescription());
                 projectRepository.save(newProject.get());

@@ -83,14 +83,10 @@ public class ProjectService {
             Project newProject = new Project();
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             List<Project> projectNameList = projectRepository.findAllProjectName(req.getProjectName());
-            List<Project> projectList = projectRepository.findByProjectList(req.getProjectCode());
+            List<Project> projectList = projectRepository.findByProjectUserCode(req.getUserCodeSupervisor());
             
-            if(!(userCode.isPresent())){
-                throw new DataNotFoundException("Data not found, Method : insertProject");
 
-            }
-
-             else if(projectNameList.size() == 0 && projectList.size() == 0){
+            if(userCode.isPresent() && projectNameList.size() == 0 && projectList){
 
                 newProject.setProjectCode(req.getProjectCode());
                 newProject.setProjectName(req.getProjectName());
@@ -99,14 +95,13 @@ public class ProjectService {
                 newProject.setDate(req.getDate());
                 projectRepository.save(newProject);
 
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
-
             } 
             else {
-                res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-            }
+            throw new DataNotFoundException("Data not found, Method : insertProject");
+        }
+
+        res.setCode(EnumCodeResponse.SUCCESS.getCode());
+        res.setMessage(EnumCodeResponse.SUCCESS.name());
     }catch (DataNotFoundException e){
         res.setCode(e.getCode());
         res.setMessage(e.getMessage());
@@ -125,9 +120,8 @@ public class ProjectService {
         try {
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
-            
 
-            if (newProject.isPresent()) {
+            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
                 newProject.get().setProjectName(req.getProjectName());
                 newProject.get().setDescription(req.getDescription());
                 projectRepository.save(newProject.get());

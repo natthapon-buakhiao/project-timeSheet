@@ -90,7 +90,7 @@ public class ProjectService {
 
             }
 
-             else if(projectNameList.size() == 0 && projectList.size() == 0){
+             if(projectNameList.size() == 0 && projectList.size() == 0){
 
                 newProject.setProjectCode(req.getProjectCode());
                 newProject.setProjectName(req.getProjectName());
@@ -125,9 +125,8 @@ public class ProjectService {
         try {
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
             Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
-            
 
-            if (newProject.isPresent()) {
+            if (newProject.isPresent() && userCode.get().getUserCode() == newProject.get().getUserCodeSupervisor()) {
                 newProject.get().setProjectName(req.getProjectName());
                 newProject.get().setDescription(req.getDescription());
                 projectRepository.save(newProject.get());
