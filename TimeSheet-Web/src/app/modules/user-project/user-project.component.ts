@@ -1,12 +1,14 @@
 import { UserService } from './../../service/user.service';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 import { AddUserProjectDialogComponent } from './add-user-project-dialog/add-user-project-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestInquiryProject } from 'src/app/shared/model/request-user-project';
 import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-user-project',
@@ -17,13 +19,16 @@ export class UserProjectComponent implements OnInit {
 
   displayedColumns: string[] = ['userCode', 'project', 'task', 'date'];
   dataSource = new MatTableDataSource();
+  
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   dataUserProject: any;
   dataProfile: any;
 
   constructor(
     public dialog: MatDialog,   
     private reqUserProject: RequestUserProjectService,
-    private userProfileService: UserProfileService,
     private userService: UserService
   ) { }
 
@@ -42,8 +47,8 @@ export class UserProjectComponent implements OnInit {
     this.reqUserProject.getUserProject(request).subscribe((res) => {
       console.log(res)
       this.dataSource = new MatTableDataSource(res.data); 
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     },
       (error) => {
         console.log(error + "get Fail!!")
