@@ -13,8 +13,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import lombok.Data;
 
+// @EnableAutoConfiguration
 @Data
 @Entity
 @Table (name = "PROJECT")

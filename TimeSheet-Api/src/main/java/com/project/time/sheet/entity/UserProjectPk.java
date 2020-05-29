@@ -9,9 +9,12 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+// @EnableAutoConfiguration
 
 @Getter
 @Setter
