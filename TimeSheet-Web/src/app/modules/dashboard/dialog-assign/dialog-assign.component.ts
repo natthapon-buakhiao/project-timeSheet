@@ -1,5 +1,4 @@
 import { RequestInquiryUser } from './../../../shared/model/request-user-project';
-import { ReqProfile } from './../../../shared/model/reqLogin';
 import { ReqInsertProject } from './../../../shared/model/req-project';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -9,9 +8,10 @@ import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 import { RequestProjectService } from 'src/app/service/request-project.service';
-import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 import { UserService } from 'src/app/service/user.service';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 
 
 
@@ -19,7 +19,15 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-dialog-assign',
   templateUrl: './dialog-assign.component.html',
-  styleUrls: ['./dialog-assign.component.scss']
+  styleUrls: ['./dialog-assign.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    ]
 })
 export class DialogAssignComponent implements OnInit {
 
@@ -27,7 +35,7 @@ export class DialogAssignComponent implements OnInit {
   createAssignProject: FormGroup
   submitted = false;
   dataSup: any;
-  
+
 
 
 
@@ -35,23 +43,23 @@ export class DialogAssignComponent implements OnInit {
   @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
 
   constructor(public dialogRef: MatDialogRef<DialogAssignComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private _FormBuild: FormBuilder,  
-              private loading: NgxSpinnerService,
-              private noWhitespaceValidator: noWhitespaceValidator,
-              private reqInsertProject: RequestProjectService,
-              private userProfileService: UserProfileService,
-              private userService: UserService ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _FormBuild: FormBuilder,
+    private loading: NgxSpinnerService,
+    private noWhitespaceValidator: noWhitespaceValidator,
+    private reqInsertProject: RequestProjectService,
+    private userProfileService: UserProfileService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.getUser();
     this.createAssignProject = new FormGroup({
       userCodeSupervisor: new FormControl(),
       date: new FormControl(),
-      projectName:new FormControl(),
-      projectCode:new FormControl(),
+      projectName: new FormControl(),
+      projectCode: new FormControl(),
       description: new FormControl()
-    }); 
+    });
   }
 
   getUser() {
@@ -64,24 +72,23 @@ export class DialogAssignComponent implements OnInit {
       data = res.data[0];
       this.setFormProject(data);
     }, (error) => {
-        console.log(error);
-    }
-    );
-    }
+      console.log(error);
+    });
+  }
 
   get f() { return this.createAssignProject.controls; }
 
-  
-  setFormProject(dataSup){
+
+  setFormProject(dataSup) {
     this.createAssignProject = this._FormBuild.group({
-      projectCode:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
-      userCodeSupervisor:[dataSup.userCode,Validators.required],
-      date:['',Validators.required],
-      projectName:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
-      description:['',Validators.required, this.noWhitespaceValidator.noWhitespace],
-    
-  
-    })    
+      projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
+      userCodeSupervisor: [dataSup.userCode, Validators.required],
+      date: ['', Validators.required],
+      projectName: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
+      description: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
+
+
+    })
     console.log(this.createAssignProject)
   }
 
@@ -95,9 +102,9 @@ export class DialogAssignComponent implements OnInit {
     }
   }
 
-  onSave(){
+  onSave() {
     console.log(this.createAssignProject);
-    let requestInsert = new ReqInsertProject();     
+    let requestInsert = new ReqInsertProject();
     requestInsert.userCodeSupervisor = this.createAssignProject.controls['userCodeSupervisor'].value;
     requestInsert.date = this.createAssignProject.controls['date'].value;
     requestInsert.projectName = this.createAssignProject.controls['projectName'].value;
@@ -108,8 +115,8 @@ export class DialogAssignComponent implements OnInit {
     this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {
       this.loading.hide();
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
-      this.saveSucessSwal.fire(); 
-      console.log(res)    
+      this.saveSucessSwal.fire();
+      console.log(res)
     }, (error) => {
       this.loading.hide();
       console.log(error);
@@ -117,11 +124,11 @@ export class DialogAssignComponent implements OnInit {
   }
 
 
-canCle(status){
-  this.dialogRef.close(status);        
-}
+  canCle(status) {
+    this.dialogRef.close(status);
+  }
 
-  
+
 
 
 }

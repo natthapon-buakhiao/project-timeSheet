@@ -6,11 +6,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
 import { ReqEditProject } from 'src/app/shared/model/req-project';
 import { RequestProjectService } from 'src/app/service/request-project.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 @Component({
   selector: 'app-edit-project-dialog',
   templateUrl: './edit-project-dialog.component.html',
-  styleUrls: ['./edit-project-dialog.component.scss']
+  styleUrls: ['./edit-project-dialog.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    ]
 })
 export class EditProjectDialogComponent implements OnInit {
 
@@ -63,7 +73,7 @@ export class EditProjectDialogComponent implements OnInit {
     reqEditProject.description = this.editProject.controls['description'].value;
     reqEditProject.userCodeSupervisor = this.editProject.controls['userCodeSupervisor'].value;
     this.requestProject.editProject(reqEditProject).subscribe((res) => {
-      console.log("edit Customer Success");
+      console.log("edit Project Success");
       this.loading.hide();
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
