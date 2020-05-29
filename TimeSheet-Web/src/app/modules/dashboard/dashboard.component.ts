@@ -1,4 +1,5 @@
-import { ReqRemoveProject } from './../../shared/model/req-project';
+import { UserService } from './../../service/user.service';
+import { ReqRemoveProject, RequestInquirySup } from './../../shared/model/req-project';
 import { UserProfileService } from './../../service/user-profile.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -36,57 +37,48 @@ export class DashboardComponent implements OnInit {
     private reqUserProject: RequestUserProjectService,
     private reqGetAllProject: RequestProjectService,
     private loading: NgxSpinnerService,
-    private removeProject: RequestProjectService
+    private removeProject: RequestProjectService,
+    private userService: UserService,
+    private reqSupProject: RequestProjectService
 
   ) { }
 
   ngOnInit() {   
-    // this.getUserProfile();
-    this.getAllProject();
 
-  }
-
-  getAllProject() {
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    console.log(this.dataProfile.userRoleObjects[0].roleCode)
     if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
       this.isSup = true;
+      this.inquirySup();
+
     } else {
       this.isSup = false;
+      this.inquiryUserProject();
     }
 
-    this.reqGetAllProject.getAllProject().subscribe((res) => {
-      console.log(res)
-      this.dataUserProject = res.data;
-      this.projectList = res.data;
-
-    }, (error) => {
-      console.log(error);
-    });
   }
 
-  getUserProfile() {
-    let request = new RequestInquiryProfile();
-    let data: any;
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
-      console.log(res);
-      data = res.data;
-      this.inquiryUserProject(data);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-
-  inquiryUserProject(data) {
-    let request = new RequestInquiryUser();
-    request.userCode = data.userCode;
+  inquirySup() {
+    let request = new RequestInquirySup();   
+    request.userCodeSupervisor = this.dataProfile.userCode;
     console.log(request)
-    this.reqUserProject.inquiryUser(request).subscribe((res) => {
+    this.reqSupProject.inquirySup(request).subscribe((res) => {
       console.log(res)
-      this.dataUserProject = res.data[0].id.projectCode;
-      console.log(res.data[0].id.projectCode)
+      this.dataUserProject = res.data.projectCode;
+      this.projectList = res.data;
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      })
+  }
+
+  inquiryUserProject() {
+    let request = new RequestInquiryUser();
+    request.userCode = this.dataProfile.userCode;
+    console.log(request)
+    this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
+      console.log(res)
+      this.dataUserProject = res.data.projectCode;
+      this.projectList = res.data;
 
     },
       (error) => {
@@ -105,7 +97,7 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getAllProject();
+        this.inquirySup();
       }
     });
   }
@@ -122,7 +114,7 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getAllProject();
+        this.inquirySup();
         console.log("Edit Success!")
       }
     });

@@ -23,3 +23,7 @@ export class RequestInquiryProfile {
     userCode: string;
 }
 
+export class RequestInquirySup {
+    userCodeSupervisor: string;
+}
+

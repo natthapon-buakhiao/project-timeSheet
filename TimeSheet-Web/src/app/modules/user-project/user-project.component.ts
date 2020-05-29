@@ -61,7 +61,7 @@ export class UserProjectComponent implements OnInit {
     request.projectCode = this.dataUserProject.data.projectCode;
     // console.log(this.dataUserProject)
 
-    this.reqUserProject.getUserProject(request).subscribe((res) => {
+    this.reqUserProject.inquiryUserProjectName(request).subscribe((res) => {
       console.log(res)
       this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;

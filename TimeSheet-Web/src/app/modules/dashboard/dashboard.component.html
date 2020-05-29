@@ -40,9 +40,9 @@
     <div class="col-3 mt-3" *ngFor="let project of projectList">
       <mat-card style="cursor: pointer;">
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">          
-          <mat-card-title class="example-card" >{{project.projectName}}</mat-card-title>          
+          <mat-card-title class="example-card" >{{project.id.project.projectName}}</mat-card-title>          
         </mat-card-header>
-        <mat-card-content style="text-align: center;">{{project.description}}</mat-card-content>
+        <mat-card-content style="text-align: center;">{{project.id.project.description}}</mat-card-content>
       </mat-card>
     </div>
   </div> 
@@ -52,7 +52,7 @@
 <swal #deleteSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#82dcc3"
 [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onDelete()">
 </swal>
-<swal #deletedSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="getAllProject()" [width]="480">
+<swal #deletedSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="inquirySup()" [width]="480">
 </swal>
 
 
