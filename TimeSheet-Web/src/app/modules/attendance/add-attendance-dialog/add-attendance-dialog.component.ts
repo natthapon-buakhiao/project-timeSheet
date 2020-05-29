@@ -8,7 +8,6 @@ import { Message } from 'src/app/shared/model/message';
 import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserProfileService } from 'src/app/service/user-profile.service';
 import { UserService } from 'src/app/service/user.service';
 import { RequestProjectService } from 'src/app/service/request-project.service';
 
@@ -44,8 +43,6 @@ export class AddAttendanceDialogComponent implements OnInit {
     this.projectService.getAllProject().subscribe((res) => {
       console.log(res)
       this.project = res.data;
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
     },
       (error) => {
         console.log(error + "get Fail!!")
