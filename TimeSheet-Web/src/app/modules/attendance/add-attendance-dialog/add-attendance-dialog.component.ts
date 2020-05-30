@@ -12,6 +12,8 @@ import { UserService } from 'src/app/service/user.service';
 import { RequestProjectService } from 'src/app/service/request-project.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
+import { RequestInquiryUser } from 'src/app/shared/model/request-user-project';
+import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 
 @Component({
   selector: 'app-add-attendance-dialog',
@@ -45,20 +47,21 @@ export class AddAttendanceDialogComponent implements OnInit {
     private userService: UserService,
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
-    private projectService: RequestProjectService
+    private projectService: RequestProjectService,
+    private reqUserProject: RequestUserProjectService
   ) { }
 
   ngOnInit() {
 
-    this.projectService.getAllProject().subscribe((res) => {
-      console.log(res)
-      this.project = res.data;
-    },
-      (error) => {
-        console.log(error + "get Fail!!")
-      });
+    // this.projectService.getAllProject().subscribe((res) => {
+    //   console.log(res)
+    //   this.project = res.data;
+    // },
+    //   (error) => {
+    //     console.log(error + "get Fail!!")
+    //   });
 
-
+    this.inquiryUserProject();
     this.getUser();
     this.createAttendance = new FormGroup({
       userCode: new FormControl(),
@@ -87,6 +90,23 @@ export class AddAttendanceDialogComponent implements OnInit {
           console.log(error);
       }
       );
+      }
+
+      inquiryUserProject() {
+        let request = new RequestInquiryUser();
+        this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+        request.userCode = this.dataProfile.userCode;
+        console.log(request)
+        this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
+          console.log(res)
+          this.project = res.data;
+          console.log(this.project)
+
+    
+        },
+          (error) => {
+            console.log(error + "get Fail!!")
+          })
       }
 
     setFormAttendance(dataUser){

@@ -12,8 +12,8 @@
       </div>
       <div class="col-4">
         <mat-select class="form-control" formControlName="projectCode" name="projectCode">
-          <mat-option *ngFor="let data of project " [value]="data.projectCode">
-              {{data.projectName}}
+          <mat-option *ngFor="let data of project " [value]="data.id.project.projectCode">
+              {{data.id.project.projectName}}
           </mat-option>
       </mat-select>
       </div>
@@ -83,7 +83,7 @@
   </div>
   </form>
 
-  <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#82dcc3"
+  <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#ABEBC6"
   [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
 </swal>
 <swal #saveSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="canCle(true)" [width]="480">
