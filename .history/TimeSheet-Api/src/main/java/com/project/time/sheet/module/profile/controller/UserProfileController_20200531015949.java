@@ -57,7 +57,7 @@ public class UserProfileController {
 			}
 
 			@RequestMapping(value = "/getdata", method = RequestMethod.GET)
-			public ResponseEntity<ResponseModel<List<UserProfileMs>>> getAll(){
+			public ResponseEntity<ResponseModel<List<UserProfileMs>>> inquiry(){
 				ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
 				res = profileService.getAllUserProfile();
 				return ResponseEntity.ok(res);
