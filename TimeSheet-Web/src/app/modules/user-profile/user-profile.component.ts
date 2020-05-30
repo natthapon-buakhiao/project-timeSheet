@@ -39,7 +39,6 @@ export class UserProfileComponent implements OnInit {
   setToken: any;
   dataUser: any;
 
-
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -53,8 +52,7 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser();
-    // this.setFromProfile(this.dataUser);
+    this.getUser();   
     this.createProfile = new FormGroup({
       userCode: new FormControl(),
       firstName: new FormControl(),
@@ -75,6 +73,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.inquiryUser(request).subscribe((res) => {
       console.log(res.data[0].userCode);
       data = res.data;
+      this.inquiryUserProfile(data);
       this.setFromProfile(data);
     }, (error) => { 
       console.log(error);
@@ -83,18 +82,31 @@ export class UserProfileComponent implements OnInit {
 
   get f() { return this.createProfile.controls; }
 
+  inquiryUserProfile(data){
+    let request = new RequestInquiryProfile();    
+    request.userCode = data[0].userCode;
+    console.log(request)
+    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
+      console.log(res);
+      data = res.data;
+      this.setFromProfile(data);
+    }, (error) => { 
+      console.log(error);
+    });
+  }
+
 
   setFromProfile(dataUser) {
     console.log(dataUser)
     this.createProfile = this._FormBuild.group({
       userCode: [dataUser[0].userCode, Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      position: ['', Validators.required],
-      birthday: ['', Validators.required],
-      age: ['', Validators.required],
-      address: ['', Validators.required],
-      site: ['', Validators.required]
+      firstName: [dataUser[0].firstName, Validators.required],
+      lastName: [dataUser[0].lastName, Validators.required],
+      position: [dataUser[0].position, Validators.required],
+      birthday: [dataUser[0].birthday, Validators.required],
+      age: [dataUser[0].age, Validators.required],
+      address: [dataUser[0].address, Validators.required],
+      site: [dataUser[0].site, Validators.required]
     });
     console.log(this.createProfile)
   }
@@ -145,15 +157,10 @@ export class UserProfileComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.getUser();
+        this.getUser();
         console.log("Edit Success!")
       }
     });
   }
-
-  // canCle(status) {
-  //   this.dialogRef.close(status);
-  // }
-
 
 }
