@@ -35,8 +35,7 @@ export class UserProjectComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    // console.log('============', this.dataProfile)
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));    
     if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
       this.isSup = true;
     } else {
@@ -45,12 +44,10 @@ export class UserProjectComponent implements OnInit {
 
     try {
       this.dataUserProject = history.state;
-      // console.log(this.dataUserProject)
     } catch (e) {
 
     }
-
-    // this.getUserProject();
+  
     this.inquiryUserProject();
 
   }
@@ -58,8 +55,14 @@ export class UserProjectComponent implements OnInit {
 
   inquiryUserProject() {
     let request = new RequestInquiryProject();
-    request.projectCode = this.dataUserProject.data.projectCode;
-    // console.log(this.dataUserProject)
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam')); 
+    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+      this.isSup = true;
+       request.projectCode = this.dataUserProject.data.projectCode;  
+    } else {
+      this.isSup = false;
+      request.projectCode = this.dataUserProject.data.id.project.projectCode;
+    }    
 
     this.reqUserProject.inquiryUserProjectName(request).subscribe((res) => {
       console.log(res)
@@ -72,29 +75,14 @@ export class UserProjectComponent implements OnInit {
       });
   }
 
-  getUserProject() {
-    let request = new RequestInquiryProfile();
-    let data: any;
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-
-    this.userService.inquiryUser(request).subscribe((res) => {
-      console.log(res);
-      data = res.data[0];
-      this.inquiryUserProject();
-    }, (error) => {
-      console.log(error);
-    });
-  }
-
-
-  openDialogAddUser() {
+  openDialogAddUser(dataUserProject) {
     console.log('open dialog Add attendance');
     const dialogRef = this.dialog.open(AddUserProjectDialogComponent, {
       width: '750px',
       position: {
         top: '15%'
       },
+      data: { dataAdd: dataUserProject }
     });
 
     dialogRef.afterClosed().subscribe(result => {

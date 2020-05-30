@@ -33,6 +33,7 @@ export class AddUserProjectDialogComponent implements OnInit {
   submitted = false;
   dataUserProject: any;
   dataUserProjectCode: any;
+  dataProject: any;
 
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
   @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
@@ -45,12 +46,16 @@ export class AddUserProjectDialogComponent implements OnInit {
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqInsertUserProject: RequestUserProjectService,
     private userService: UserService,
-    private projectService: RequestProjectService ) { }
+    private projectService: RequestProjectService ) { 
+
+    }
 
   ngOnInit() {
-    this.getAllUser();
+ 
+    this.dataProject = history.state;
+    console.log(this.dataProject)
+    this.getAllUser(this.dataProject);
     this.getAllProject();
-
 
     this.createUserProject = new FormGroup({
       userCode: new FormControl(),
@@ -60,11 +65,11 @@ export class AddUserProjectDialogComponent implements OnInit {
     });
   }
 
-  getAllUser() {
+  getAllUser(dataProject) {
     this.dataUserProject = JSON.parse(sessionStorage.getItem('userProfileIam'));
     this.userService.getAllUser().subscribe((res) => {
       console.log(res)
-      this.setFormUserProject();
+      this.setFormUserProject(dataProject);
       this.dataUserProject = res.data;
       console.log(this.dataUserProject)
     }, (error) => {
@@ -84,11 +89,11 @@ export class AddUserProjectDialogComponent implements OnInit {
 
   get f() { return this.createUserProject.controls; }
 
-  setFormUserProject() {
+  setFormUserProject(dataProject) {
     this.createUserProject = this._FormBuild.group({
       userCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       date: ['', Validators.required],
-      projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
+      projectCode: [dataProject.data.projectCode, Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
 
     });

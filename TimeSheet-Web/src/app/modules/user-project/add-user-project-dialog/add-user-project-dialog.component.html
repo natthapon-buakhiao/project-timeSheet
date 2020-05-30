@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Add User Project</h2>
 </div><br>
 
-<form [formGroup] ="createUserProject" (ngSubmit)="onSubmit()">
+<form [formGroup]="createUserProject" (ngSubmit)="onSubmit()">
   <div class="row mt-3">
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label>User Code</mat-label>
@@ -10,20 +10,16 @@
     <div class="col-4">
       <mat-select class="form-control" formControlName="userCode" name="userCode">
         <mat-option *ngFor="let data of dataUserProject " [value]="data.userCode">
-            {{data.userCode}}
+          {{data.userCode}}
         </mat-option>
-    </mat-select>
+      </mat-select>
     </div>
 
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Project Code</mat-label>
     </div>
-    <div class="col-4">   
-      <mat-select class="form-control" formControlName="projectCode" name="projectCode">
-        <mat-option *ngFor="let data of dataUserProjectCode " [value]="data.projectCode">
-            {{data.projectName}}
-        </mat-option>
-    </mat-select>
+    <div class="col-4">
+      <input formControlName="projectCode" class="form-control" disabled>
     </div>
   </div>
 
@@ -32,8 +28,8 @@
       <mat-label> Task </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="task" 
-      [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
+      <textarea class="form-control" formControlName="task"
+        [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
       <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
         <div *ngIf="f.task.errors.required" class="text-danger help-block">
           {{'task' | mandatoryfield}}
@@ -66,8 +62,8 @@
   </div>
 </form>
 
-<swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#82dcc3"
-[showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
+<swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#ABEBC6"
+  [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
 </swal>
 <swal #saveSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="closeDialog(true)" [width]="480">
 </swal>
