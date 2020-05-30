@@ -3,12 +3,10 @@ package com.project.time.sheet.module.profile.controller;
 import java.util.List;
 
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.common.models.UserProfileMsBean;
 import com.project.time.sheet.entity.UserProfileMs;
 import com.project.time.sheet.module.profile.models.ReqEditProfile;
 import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
-import com.project.time.sheet.module.profile.models.ReqListProfile;
 import com.project.time.sheet.module.profile.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +61,10 @@ public class UserProfileController {
 				return ResponseEntity.ok(res);
 			}
 
-			@RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> ListUserProfile(@RequestBody ReqListProfile req){
-				ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-				res = profileService.ListUserProfile(req);
+			@RequestMapping(value = "/inquiry-project", method = RequestMethod.POST)
+			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProject(@RequestBody ReqInquiryUserProject req){
+				ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+				res = userProjectService.inquiryUserProject(req);
 				return ResponseEntity.ok(res);
 			}
     

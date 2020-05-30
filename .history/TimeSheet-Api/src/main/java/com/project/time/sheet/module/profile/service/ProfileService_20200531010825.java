@@ -18,7 +18,6 @@ import com.project.time.sheet.module.profile.models.ReqListProfile;
 import com.project.time.sheet.repository.UserProfileMsRepository;
 import com.project.time.sheet.repository.UserRepository;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,29 +44,30 @@ public class ProfileService {
 		return res;
     }
 
-    public ResponseModel<List<UserProfileMsBean>> ListUserProfile(ReqListProfile req) {
+    // public ResponseModel<List<UserProfileMsBean>> ListUserProfile(ReqListProfile req) {
        
-		ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-		try {
-            List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
-            List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
+	// 	ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
+	// 	try {
+    //         List<UserProjectBean> data = new ArrayList<UserProjectBean>();
+    //         User user = userRepository.getOne(req.getUserCode());
+    //         List<UserProject> userList = userProjectRepository.findById_User(user);
 
-            for(UserProfileMs userProfile : userList) {
-                UserProfileMsBean bean = new UserProfileMsBean();
-                    BeanUtils.copyProperties(userProfile, bean);
-                    data.add(bean);
-			}
-				res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
+    //         for(UserProject userProject : userList) {
+    //             UserProjectBean bean = new UserProjectBean();
+    //                 BeanUtils.copyProperties(userProject, bean);
+    //                 data.add(bean);
+	// 		}
+	// 			res.setData(data);
+    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
+    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-		}catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		return res;
-    }
+	// 	}catch (Exception e) {
+	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
+	// 		res.setMessage(e.getMessage());
+	// 	}
+	// 	return res;
+    // }
 
     public ResponseModel<List<UserProfileMs>> inquiryUserProfile(ReqInquiryProfile req) {
        

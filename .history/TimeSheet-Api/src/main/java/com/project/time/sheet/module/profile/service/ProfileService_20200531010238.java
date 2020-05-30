@@ -14,11 +14,9 @@ import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.module.profile.models.ReqEditProfile;
 import com.project.time.sheet.module.profile.models.ReqInquiryProfile;
 import com.project.time.sheet.module.profile.models.ReqInsertProfile;
-import com.project.time.sheet.module.profile.models.ReqListProfile;
 import com.project.time.sheet.repository.UserProfileMsRepository;
 import com.project.time.sheet.repository.UserRepository;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,14 +45,15 @@ public class ProfileService {
 
     public ResponseModel<List<UserProfileMsBean>> ListUserProfile(ReqListProfile req) {
        
-		ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+		ResponseModel<List<UserProjectBean>> res = new ResponseModel<List<UserProjectBean>>();
 		try {
-            List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
-            List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
+            List<UserProjectBean> data = new ArrayList<UserProjectBean>();
+            User user = userRepository.getOne(req.getUserCode());
+            List<UserProject> userList = userProjectRepository.findById_User(user);
 
-            for(UserProfileMs userProfile : userList) {
-                UserProfileMsBean bean = new UserProfileMsBean();
-                    BeanUtils.copyProperties(userProfile, bean);
+            for(UserProject userProject : userList) {
+                UserProjectBean bean = new UserProjectBean();
+                    BeanUtils.copyProperties(userProject, bean);
                     data.add(bean);
 			}
 				res.setData(data);

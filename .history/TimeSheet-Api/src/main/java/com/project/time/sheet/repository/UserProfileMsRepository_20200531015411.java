@@ -21,5 +21,5 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, St
     List<UserProfileMs> findByFnameAndLname(String firstName, String lastName);
     
     @Query( "SELECT n FROM UserProfileMs n WHERE n.user.lineManager = ?1")
-    List<UserProfileMs> findAllUserLineManager(String lineManager);
+    List<UserProfileMs> findAllUserLineManager(String user);
 }

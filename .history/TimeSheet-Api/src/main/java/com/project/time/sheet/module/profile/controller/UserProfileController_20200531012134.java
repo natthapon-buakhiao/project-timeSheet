@@ -63,7 +63,7 @@ public class UserProfileController {
 				return ResponseEntity.ok(res);
 			}
 
-			@RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
+			@RequestMapping(value = "/inquiry-sta", method = RequestMethod.POST)
 			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> ListUserProfile(@RequestBody ReqListProfile req){
 				ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
 				res = profileService.ListUserProfile(req);

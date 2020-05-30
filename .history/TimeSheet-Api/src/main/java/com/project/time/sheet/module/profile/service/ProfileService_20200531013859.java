@@ -50,7 +50,9 @@ public class ProfileService {
 		ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
 		try {
             List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
-            List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
+            List<User> user = userRepository.findByLineManager(req.getLineManager());
+            User user2 = userRepository.getOne(user.getClass().);
+            List<UserProfileMs> userList = userProfileMsRepository.findAllUser(user2);
 
             for(UserProfileMs userProfile : userList) {
                 UserProfileMsBean bean = new UserProfileMsBean();
