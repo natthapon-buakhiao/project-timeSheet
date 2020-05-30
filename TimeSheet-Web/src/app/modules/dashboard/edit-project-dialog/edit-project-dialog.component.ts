@@ -48,10 +48,10 @@ export class EditProjectDialogComponent implements OnInit {
 
   setFormProject(dataProject) {
     this.editProject = this._FormBuild.group({
-      projectCode: [dataProject.dataedit[0].projectCode, Validators.required],
-      projectName: [dataProject.dataedit[0].projectName, Validators.required],
-      description: [dataProject.dataedit[0].description, Validators.required],
-      userCodeSupervisor: [dataProject.dataedit[0].userCodeSupervisor, Validators.required]
+      projectCode: [dataProject.dataedit.projectCode, Validators.required],
+      projectName: [dataProject.dataedit.projectName, Validators.required],
+      description: [dataProject.dataedit.description, Validators.required],
+      userCodeSupervisor: [dataProject.dataedit.userCodeSupervisor, Validators.required]
     })
   }
 

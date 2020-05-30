@@ -18,6 +18,8 @@
   <div class="row" *ngIf="isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
       <mat-card style="cursor: pointer;">
+        <mat-card-title class="example-card2">Code: {{project.projectCode}}</mat-card-title>
+        <mat-divider></mat-divider>
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
           <!-- <img mat-card-avatar class="example-header-image" src="./assets/img/timesheet.png"> -->
           <mat-card-title class="example-card" >{{project.projectName}}</mat-card-title>          
@@ -25,10 +27,10 @@
         <mat-card-content style="text-align: center;">{{project.description}}</mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions style="text-align: center">
-          <button mat-button class="card-button" (click)="openDialogEdit(projectList)">
+          <button mat-button class="card-button" (click)="openDialogEdit(project)">
             <mat-icon>edit</mat-icon> Edit
           </button>
-          <button mat-button class="card-button" (click)="onDeleteSwal(projectList)">
+          <button mat-button class="card-button" (click)="onDeleteSwal(project)">
             <mat-icon>delete_forever</mat-icon> Delete
           </button>
         </mat-card-actions>
@@ -39,6 +41,8 @@
   <div class="row" *ngIf="!isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
       <mat-card style="cursor: pointer;">
+        <mat-card-title class="example-card2">Code: {{project.id.project.projectCode}}</mat-card-title>
+        <mat-divider></mat-divider>
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">          
           <mat-card-title class="example-card" >{{project.id.project.projectName}}</mat-card-title>          
         </mat-card-header>
@@ -49,7 +53,7 @@
 
 </div>
 
-<swal #deleteSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#82dcc3"
+<swal #deleteSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#ABEBC6"
 [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onDelete()">
 </swal>
 <swal #deletedSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="inquirySup()" [width]="480">

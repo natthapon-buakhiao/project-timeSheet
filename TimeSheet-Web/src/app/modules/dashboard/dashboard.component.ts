@@ -32,13 +32,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public dialog: MatDialog,
-    private userProfileService: UserProfileService,
-    private reqUserProject: RequestUserProjectService,
-    private reqGetAllProject: RequestProjectService,
+    public dialog: MatDialog,   
+    private reqUserProject: RequestUserProjectService,  
     private loading: NgxSpinnerService,
     private removeProject: RequestProjectService,
-    private userService: UserService,
     private reqSupProject: RequestProjectService
 
   ) { }
@@ -63,7 +60,7 @@ export class DashboardComponent implements OnInit {
     console.log(request)
     this.reqSupProject.inquirySup(request).subscribe((res) => {
       console.log(res)
-      this.dataUserProject = res.data.projectCode;
+      this.dataUserProject = res.data;
       this.projectList = res.data;
     },
       (error) => {
@@ -77,7 +74,7 @@ export class DashboardComponent implements OnInit {
     console.log(request)
     this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
       console.log(res)
-      this.dataUserProject = res.data.projectCode;
+      this.dataUserProject = res.data;
       this.projectList = res.data;
 
     },
@@ -120,8 +117,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onDeleteSwal(projectList) {
-    this.projectList = projectList;
+  onDeleteSwal(dataUserProject) {
+    this.dataUserProject = dataUserProject;
     this.deleteSwal.title = Message.MESSAGE_DELETE;
     this.deleteSwal.fire();
   }
@@ -129,8 +126,8 @@ export class DashboardComponent implements OnInit {
   onDelete() {
     this.loading.show();
     let request = new ReqRemoveProject();
-    request.projectCode = this.projectList[0].projectCode;
-    request.userCodeSupervisor = this.projectList[0].userCodeSupervisor;
+    request.projectCode = this.dataUserProject.projectCode;
+    request.userCodeSupervisor = this.dataUserProject.userCodeSupervisor;
     this.removeProject.deleteProject(request).subscribe((res) => {
       this.loading.hide();
       this.deletedSucessSwal.title = Message.MESSAGE_DELETE_SUCCESS;
