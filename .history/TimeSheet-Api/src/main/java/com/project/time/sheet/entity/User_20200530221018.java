@@ -18,7 +18,7 @@ public class User {
     @Column(name = "USER_CODE")
     private String userCode;
 
-    @Column(name = "LINE_MANAGER")
+    @Column(name = "LIBE_MANA")
     private String lineManager;
     
     

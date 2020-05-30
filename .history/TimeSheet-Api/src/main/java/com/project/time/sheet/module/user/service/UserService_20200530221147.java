@@ -72,8 +72,8 @@ public class UserService {
             List<User> userList = userRepository.findAllUserCode(req.getUserCode());
             if(userList.size() == 0){
                 newUser.setUserCode(req.getUserCode());
-                newUser.setLineManager(req.getLineManager());
                 userRepository.save(newUser);
+                
 
                 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
