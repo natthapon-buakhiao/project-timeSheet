@@ -15,7 +15,6 @@ import com.project.time.sheet.repository.ReportRepository;
 import com.project.time.sheet.repository.UserRepository;
 import com.project.time.sheet.entity.User;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +31,9 @@ public class ReportService {
 		try {
             List<ReportBean> data = new ArrayList<ReportBean>();
             User user = userRepository.getOne(req.getUserCode());
-            List<Report> reportList = reportRepository.findByReportUserList(user);
+            List<Report> attendanceList = reportRepository.findByReportUserList(user);
 
-            for(Report report : reportList) {
+            for(Report report : attendanceList) {
                 ReportBean bean = new ReportBean();
                     BeanUtils.copyProperties(report, bean);
                     data.add(bean);

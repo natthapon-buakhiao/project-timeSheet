@@ -31,7 +31,7 @@ public class ReportController {
 	@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel<List<ReportBean>>> inquiryReport(@RequestBody ReqInquiryReport req){
 		ResponseModel<List<ReportBean>> res = new ResponseModel<List<ReportBean>>();
-		res = reportService.inquiryReport(req);
+		res = attendanceService.inquiryReport(req);
 		return ResponseEntity.ok(res);
 	}
 

@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
     @Query( "SELECT n FROM Report n WHERE n.user = ?1")
-    List<Report> findByReportUserList(User user);
+    List<Report> findByUserList(User user);
     
 }

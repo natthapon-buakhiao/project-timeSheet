@@ -1,10 +1,6 @@
 package com.project.time.sheet.module.report.controller;
 
-import java.util.List;
-
-import com.project.time.sheet.common.models.ReportBean;
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.module.report.models.ReqInquiryReport;
 import com.project.time.sheet.module.report.models.ReqInsertReport;
 import com.project.time.sheet.module.report.service.ReportService;
 
@@ -29,9 +25,9 @@ public class ReportController {
 	
 	
 	@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-	public ResponseEntity<ResponseModel<List<ReportBean>>> inquiryReport(@RequestBody ReqInquiryReport req){
-		ResponseModel<List<ReportBean>> res = new ResponseModel<List<ReportBean>>();
-		res = reportService.inquiryReport(req);
+	public ResponseEntity<ResponseModel<List<AttendanceBean>>> inquiry(@RequestBody ReqInquiryAttendance req){
+		ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
+		res = attendanceService.inquiryAttendance(req);
 		return ResponseEntity.ok(res);
 	}
 

@@ -34,7 +34,7 @@ public class ReportService {
             User user = userRepository.getOne(req.getUserCode());
             List<Report> reportList = reportRepository.findByReportUserList(user);
 
-            for(Report report : reportList) {
+            for(Report report : attendanceList) {
                 ReportBean bean = new ReportBean();
                     BeanUtils.copyProperties(report, bean);
                     data.add(bean);
