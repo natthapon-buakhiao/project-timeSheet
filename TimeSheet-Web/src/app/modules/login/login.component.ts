@@ -86,6 +86,7 @@ export class LoginComponent implements OnInit {
     setFromProfile(dataUser) {
       this.createUser = this._FormBuild.group({
         userCode: [dataUser.userCode,Validators.required],
+        lineManager:[dataUser.lineManager.userCode]
       });
       console.log( this.createUser);
       this.onSaveUser();
@@ -95,6 +96,8 @@ export class LoginComponent implements OnInit {
     onSaveUser() {
       let request = new User();
       request.userCode = this.createUser.controls['userCode'].value;
+      request.lineManager = this.createUser.controls['lineManager'].value
+      console.log(request)
       this.userService.insertUser(request).subscribe((res) => {     
         console.log(res);
       },

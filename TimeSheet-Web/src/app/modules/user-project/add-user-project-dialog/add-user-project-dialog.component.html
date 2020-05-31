@@ -29,7 +29,7 @@
     </div>
     <div class="col-10">
       <textarea class="form-control" formControlName="task"
-        [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
+        [ngClass]="{'is-invalid': submitted && f.task.errors}" placeholder="List tasks user worked."></textarea>
       <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
         <div *ngIf="f.task.errors.required" class="text-danger help-block">
           {{'task' | mandatoryfield}}

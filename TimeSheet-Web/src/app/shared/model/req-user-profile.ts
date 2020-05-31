@@ -24,3 +24,7 @@ export class RequestInquiryProfile {
     userCode: string;
 }
 
+
+export class RequestInquiryStaffProfile {
+    lineManager: string;
+}

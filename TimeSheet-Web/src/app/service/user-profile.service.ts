@@ -1,6 +1,6 @@
 import { tap } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { RequestInquiryProfile, ReqEditUserProfile, ReqInsertUserProfile } from '../shared/model/req-user-profile';
+import { RequestInquiryProfile, ReqEditUserProfile, ReqInsertUserProfile, RequestInquiryStaffProfile } from '../shared/model/req-user-profile';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -45,4 +45,12 @@ export class UserProfileService {
       tap(_ => console.log("editUserPrpfile success"))
     );
   }
+
+  inquiryStaffProfile(request: RequestInquiryStaffProfile): Observable<any> {
+    let url = 'http://localhost:8091/profile/inquiry-staff';
+    return this.http.post<any>(url, request, httpOptions).pipe(
+      tap(_ => console.log('inquiry Staff Profile success'))
+    );
+  }
+
 }
