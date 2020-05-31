@@ -97,28 +97,18 @@ public class UserProjectService {
         try {
             UserProject newUserProject = new UserProject();
             UserProjectPk id = new UserProjectPk();
-            List<UserProject> userProjectList = userProjectRepository.findByUserProject(req.getUserCode(),req.getProjectCode());
+                Project project = projectRepository.getOne(req.getProjectCode());
+                User user = userRepository.getOne(req.getUserCode());
 
-                Project newProject = projectRepository.getOne(req.getProjectCode());
-                User newUser = userRepository.getOne(req.getUserCode());
-
-                if(userProjectList.size() == 0){
-                    id.setUser(newUser);
-                    id.setProject(newProject);
-                    newUserProject.setId(id);
-                    newUserProject.setTask(req.getTask());
-                    newUserProject.setDate(req.getDate());
-                    
-                    userProjectRepository.save(newUserProject);
-                    
-                    res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                    res.setMessage(EnumCodeResponse.SUCCESS.name());
-
-                } else {
-                res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-            }
-
+                id.setUser(user);
+                id.setProject(project);
+                newUserProject.setId(id);
+                newUserProject.setTask(req.getTask());
+                newUserProject.setDate(req.getDate());
+                
+                userProjectRepository.save(newUserProject);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
      }catch (DataNotFoundException e){
         res.setCode(e.getCode());

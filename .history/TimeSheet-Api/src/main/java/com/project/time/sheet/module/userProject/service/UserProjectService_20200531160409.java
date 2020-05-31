@@ -97,12 +97,12 @@ public class UserProjectService {
         try {
             UserProject newUserProject = new UserProject();
             UserProjectPk id = new UserProjectPk();
-            List<UserProject> userProjectList = userProjectRepository.findByUserProject(req.getUserCode(),req.getProjectCode());
+            List<UserProject> userProjectList = userProjectRepository.findByUserProject(req.(),req.getLastName());
 
                 Project newProject = projectRepository.getOne(req.getProjectCode());
                 User newUser = userRepository.getOne(req.getUserCode());
 
-                if(userProjectList.size() == 0){
+                if(userList.size() == 0 && projectList.size() == 0){
                     id.setUser(newUser);
                     id.setProject(newProject);
                     newUserProject.setId(id);
