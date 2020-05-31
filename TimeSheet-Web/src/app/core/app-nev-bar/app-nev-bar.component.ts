@@ -12,12 +12,14 @@ export class AppNevBarComponent implements OnInit {
 
   dataProfile: any;
   userCode = '';
+  isSup: boolean = true;
+
 
   listMenu = [
     { id: 0, code: "Dash Board", name: "Dash Board", link: "/dashboard", isShow: true },
     { id: 1, code: "Attendance List", name: "Attendance List", link: "/attendance", isShow: true },
     { id: 2, code: "User Profile", name: "User Profile", link: "/user-profile", isShow: true },
-    // { id: 3, code: "Report", name: "Report", link: "/report", isShow: true },
+    { id: 3, code: "Report", name: "Report", link: "/report", isShow: true },
   ];
 
   constructor(

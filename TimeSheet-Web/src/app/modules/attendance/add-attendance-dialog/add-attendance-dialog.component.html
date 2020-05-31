@@ -32,7 +32,7 @@
         <mat-label> Task </mat-label>
       </div>
       <div class="col-10">
-        <textarea class="form-control" formControlName="task"></textarea>
+        <textarea class="form-control" formControlName="task" placeholder="List tasks you worked."></textarea>
    
       </div>
     </div>
@@ -43,14 +43,14 @@
         <mat-label> Time-In </mat-label>
       </div>
       <div class="col-4">
-        <input class="form-control" formControlName="timeIn">
+        <input class="form-control" formControlName="timeIn" placeholder="Ex. 09:00">
 
       </div>    
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> Time-Out </mat-label>
       </div>
       <div class="col-4">
-        <input class="form-control" formControlName="timeOut">
+        <input class="form-control" formControlName="timeOut" placeholder="Ex. 17:00">
 
       </div>    
     </div>
@@ -65,10 +65,7 @@
                 <mat-datepicker #pickerStart></mat-datepicker>
             </div>
         </div>
-        <!-- <div class="input-group" class="col-4">
-          <input formControlName="date" class="form-control" type="date">
-        </div> -->
-        
+
       <div class="col-2 mt-2" style="text-align: right;">
         <mat-label> User Code </mat-label>
       </div>

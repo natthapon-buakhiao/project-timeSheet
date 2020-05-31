@@ -25,6 +25,8 @@ export class AttendanceComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   dataProfile: any;
+  dataStaff:any;
+  isSup : boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -35,12 +37,38 @@ export class AttendanceComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUser();
+    this.dataStaff = history.state;
+    console.log(this.dataStaff.data)
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+      this.isSup = true;
+      this.inquiryListStaff(this.dataStaff.data);
+
+    } else {
+      this.isSup = false;
+      this.getUser();
+    }
   }
 
   inquiryAttendance(data) {
     let request = new RequestInquiryAttendace();
     request.userCode = data.userCode;
+    this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
+      console.log(res);
+      this.dataSource = new MatTableDataSource(res.data); 
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      }
+    )
+
+  }
+
+  inquiryListStaff(data) {
+    let request = new RequestInquiryAttendace();
+    request.userCode = data;
     this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data); 
