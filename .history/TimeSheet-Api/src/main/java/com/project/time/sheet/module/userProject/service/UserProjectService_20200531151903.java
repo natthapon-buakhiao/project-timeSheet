@@ -97,28 +97,28 @@ public class UserProjectService {
         try {
             UserProject newUserProject = new UserProject();
             UserProjectPk id = new UserProjectPk();
-            List<UserProject> userProjectList = userProjectRepository.findByUserProject(req.getUserCode(),req.getProjectCode());
+            User user = userRepository.getOne(req.getUserCode());
+            List<UserProject> userList = userProjectRepository.findById_User(user);
+
+            Project project = projectRepository.getOne(req.getProjectCode());
+            List<UserProject> projectList = userProjectRepository.findById_Project(project);
 
                 Project newProject = projectRepository.getOne(req.getProjectCode());
                 User newUser = userRepository.getOne(req.getUserCode());
 
-                if(userProjectList.size() == 0){
-                    id.setUser(newUser);
-                    id.setProject(newProject);
-                    newUserProject.setId(id);
-                    newUserProject.setTask(req.getTask());
-                    newUserProject.setDate(req.getDate());
+                if(userList.size() == 0 && projectList.size() == 0){
                     
-                    userProjectRepository.save(newUserProject);
-                    
-                    res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                    res.setMessage(EnumCodeResponse.SUCCESS.name());
+                }
 
-                } else {
-                res.setCode(EnumCodeResponse.DATA_DUPLICATE.getCode());
-                res.setMessage(EnumCodeResponse.DATA_DUPLICATE.name());
-            }
-
+                id.setUser(newUser);
+                id.setProject(newProject);
+                newUserProject.setId(id);
+                newUserProject.setTask(req.getTask());
+                newUserProject.setDate(req.getDate());
+                
+                userProjectRepository.save(newUserProject);
+                res.setCode(EnumCodeResponse.SUCCESS.getCode());
+                res.setMessage(EnumCodeResponse.SUCCESS.name());
 
      }catch (DataNotFoundException e){
         res.setCode(e.getCode());

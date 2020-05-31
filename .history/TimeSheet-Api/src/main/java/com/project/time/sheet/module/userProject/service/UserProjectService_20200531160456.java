@@ -102,7 +102,7 @@ public class UserProjectService {
                 Project newProject = projectRepository.getOne(req.getProjectCode());
                 User newUser = userRepository.getOne(req.getUserCode());
 
-                if(userProjectList.size() == 0){
+                if(userList.size() == 0 && projectList.size() == 0){
                     id.setUser(newUser);
                     id.setProject(newProject);
                     newUserProject.setId(id);
