@@ -1,3 +1,4 @@
+import { ExportService } from './../../service/export.service';
 import { UserService } from './../../service/user.service';
 import { RequestInquiryUser } from './../../shared/model/request-user-project';
 import { RequestInquiryAttendace } from './../../shared/model/requestAttendance';
@@ -26,13 +27,18 @@ export class AttendanceComponent implements OnInit {
 
   dataProfile: any;
   dataStaff: any;
-  isSup: boolean = true;
+  isSup: boolean = true;  
+  arraydataSource: any = [];
+  groupData: any;
 
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private exportService: ExportService,
+  ) { 
+    this.groupData = this.organise(this.arraydataSource);
+  }
 
   ngOnInit() {
     this.dataStaff = history.state;
@@ -48,6 +54,33 @@ export class AttendanceComponent implements OnInit {
     }
   }
 
+  exportAsXLSX():void {
+    this.exportService.exportExcel(this.arraydataSource, 'Attendance List')
+  }
+
+  organise(arr) {
+    var headers = [], // an Array to let us lookup indicies by group
+      objs = [],    // the Object we want to create
+      i, j;
+    for (i = 0; i < arr.length; ++i) {
+      j = headers.indexOf(arr[i].id); // lookup
+      if (j === -1) { // this entry does not exist yet, init
+        j = headers.length;
+        headers[j] = arr[i].id;
+        objs[j] = {};
+        objs[j].id = arr[i].id;
+        objs[j].data = [];
+      }
+      objs[j].data.push( // create clone
+        {
+          case_worked: arr[i].case_worked,
+          note: arr[i].note, id: arr[i].id
+        }
+      );
+    }
+    return objs;
+  }
+
   inquiryAttendance(data) {
     let request = new RequestInquiryAttendace();
     request.userCode = data.userCode;
@@ -55,7 +88,8 @@ export class AttendanceComponent implements OnInit {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;    
+
     },
       (error) => {
         console.log(error + "get Fail!!")
@@ -70,6 +104,9 @@ export class AttendanceComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.arraydataSource = this.dataSource.data;
+      
+      console.log('===arraydataSource', JSON.stringify(this.arraydataSource))
     },
       (error) => {
         console.log(error + "get Fail!!")

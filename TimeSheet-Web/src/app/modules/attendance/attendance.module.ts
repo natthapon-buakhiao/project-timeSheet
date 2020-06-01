@@ -1,3 +1,4 @@
+import { ExportDirective } from './../../_directive/export.service';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
 import { MaterialModule } from 'src/app/material.module';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
-  declarations: [AttendanceComponent],
+  declarations: [AttendanceComponent,ExportDirective],
   imports: [
     CommonModule,
     AttendanceRoutingModule,
@@ -21,12 +22,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forRoot(),    
     
   ],
   entryComponents:[],
   providers: [
-    RequestAttendanceService
+    RequestAttendanceService,
+    ExportDirective
   ],
 })
 export class AttendanceModule { }

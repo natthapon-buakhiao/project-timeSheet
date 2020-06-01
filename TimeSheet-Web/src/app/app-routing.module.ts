@@ -2,7 +2,6 @@ import { AppNevBarComponent } from './core/app-nev-bar/app-nev-bar.component';
 import { AppLayoutComponent } from './core/app-layout/app-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { AuthguardService } from './service/authguard.service';
 
 
@@ -26,7 +25,7 @@ const routes: Routes = [
   component: AppLayoutComponent,
   children: [
         { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) },
-      ],
+      ],  
     }
  ];
 
