@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
     this.dataUser = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataUser.userCode;
     this.userService.inquiryUser(request).subscribe((res) => {
-      console.log(res.data[0].userCode);
+      // console.log(res.data[0].userCode);
       data = res.data;
       this.inquiryUserProfile(data);
       this.setFromProfile(data);
@@ -97,7 +97,7 @@ export class UserProfileComponent implements OnInit {
 
 
   setFromProfile(dataUser) {
-    console.log(dataUser)
+    // console.log(dataUser)
     this.createProfile = this._FormBuild.group({
       userCode: [dataUser[0].userCode, Validators.required],
       firstName: [dataUser[0].firstName, Validators.required],
@@ -108,7 +108,7 @@ export class UserProfileComponent implements OnInit {
       address: [dataUser[0].address, Validators.required],
       site: [dataUser[0].site, Validators.required]
     });
-    console.log(this.createProfile)
+    // console.log(this.createProfile)
   }
 
   onSubmit() {
