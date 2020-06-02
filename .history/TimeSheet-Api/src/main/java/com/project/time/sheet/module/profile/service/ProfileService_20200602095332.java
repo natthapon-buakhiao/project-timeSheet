@@ -162,8 +162,7 @@ public class ProfileService {
                 newUserProfile.get().setLastName(req.getLastName());
                 newUserProfile.get().setAge(req.getAge());
                 newUserProfile.get().setAddress(req.getAddress());
-                newUserProfile.get().setPosition(req.getPosition());
-                newUserProfile.get().setSite(req.getSite());
+                newUserProfile.get().setPosition(req.P);
                 userProfileMsRepository.save(newUserProfile.get());
 
             }
