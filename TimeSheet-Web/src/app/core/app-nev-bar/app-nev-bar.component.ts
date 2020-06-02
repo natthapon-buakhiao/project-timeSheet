@@ -12,6 +12,8 @@ export class AppNevBarComponent implements OnInit {
   userCode = '';
   isSup: boolean = true;
   listMenu = [];
+  isHandset: any;
+  selectMenu: any;
 
   constructor(
     private router: Router,    

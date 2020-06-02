@@ -1,8 +1,7 @@
 import { ExportService } from './../../service/export.service';
 import { UserService } from './../../service/user.service';
 import { RequestInquiryUser } from './../../shared/model/request-user-project';
-import { RequestInquiryAttendace } from './../../shared/model/requestAttendance';
-import { Router } from '@angular/router';
+import { RequestInquiryAttendace,Excel } from './../../shared/model/requestAttendance';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
 import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -10,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+
 
 
 
@@ -30,6 +30,10 @@ export class AttendanceComponent implements OnInit {
   isSup: boolean = true;  
   arraydataSource: any = [];
   groupData: any;
+  private dataExcel: Array<any> = []; 
+  private excel: Excel = new Excel();
+
+
 
   constructor(
     public dialog: MatDialog,
@@ -37,7 +41,7 @@ export class AttendanceComponent implements OnInit {
     private userService: UserService,
     private exportService: ExportService,
   ) { 
-    this.groupData = this.organise(this.arraydataSource);
+    this.groupData = this.organise(this.dataExcel);
   }
 
   ngOnInit() {
@@ -55,7 +59,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    this.exportService.exportExcel(this.arraydataSource, 'Attendance List')
+    this.exportService.exportExcel(this.dataExcel, 'Attendance List')
   }
 
   organise(arr) {
@@ -105,8 +109,24 @@ export class AttendanceComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.arraydataSource = this.dataSource.data;
+
+      // SETTING OBJECT EXCEL
+      this.arraydataSource.forEach((data) => {
+
+        this.excel = new Excel();
+
+        this.excel.id = data.id
+        this.excel.date = data.date
+        this.excel.project = data.project.projectName
+        this.excel.site = data.site
+        this.excel.task = data.task
+        this.excel.timeIn = data.timeIn
+        this.excel.timeOut = data.timeOut
+        this.excel.user = data.user.userCode
+
+        this.dataExcel.push(this.excel);
       
-      console.log('===arraydataSource', JSON.stringify(this.arraydataSource))
+      })
     },
       (error) => {
         console.log(error + "get Fail!!")

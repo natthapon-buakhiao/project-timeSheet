@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="width: 200px;"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="!(isHandset$ | async)" style="width: 200px;">
+        [attr.role]="(isHandset | async) ? 'dialog' : 'navigation'" [mode]="(isHandset | async) ? 'over' : 'side'"
+        [opened]="!(isHandset | async)" style="width: 200px;">
         <mat-toolbar>
             <img src="./assets/img/timesheet.png" class="img-login2">
         </mat-toolbar>
