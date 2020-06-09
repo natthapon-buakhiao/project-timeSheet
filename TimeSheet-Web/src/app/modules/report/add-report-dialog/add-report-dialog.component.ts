@@ -69,21 +69,7 @@ export class AddReportDialogComponent implements OnInit {
       console.log(error);
     });
   }
-
-    // inquiryUser() {
-    //   let request = new RequestInquiryUser();
-    //   this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    //   request.userCode = this.dataProfile.userCode;
-    //   console.log(request)
-    //   this.userService.inquiryUser(request).subscribe((res) => {
-    //     console.log(res)
   
-    //   },
-    //     (error) => {
-    //       console.log(error + "get Fail!!")
-    //     })
-    // }
-
   setFormReport(dataUser){
     this.createReport = this._FormBuild.group({
       userCode:[dataUser.userCode,Validators.required],  

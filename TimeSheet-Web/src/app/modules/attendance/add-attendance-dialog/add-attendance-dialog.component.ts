@@ -1,4 +1,3 @@
-import { RequestProfileService } from './../../../service/request-profile.service';
 import { RequestAttendanceService } from './../../../service/request-attendance.service';
 import { ReqInsertAttendance, RequestInquiryAttendace } from './../../../shared/model/requestAttendance';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -9,11 +8,11 @@ import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/service/user.service';
-import { RequestProjectService } from 'src/app/service/request-project.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 import { RequestInquiryUser } from 'src/app/shared/model/request-user-project';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
+
 
 @Component({
   selector: 'app-add-attendance-dialog',
@@ -25,7 +24,7 @@ import { RequestUserProjectService } from 'src/app/service/request-user-project.
     },
     {
       provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
+    },
   ]
 })
 export class AddAttendanceDialogComponent implements OnInit {

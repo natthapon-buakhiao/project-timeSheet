@@ -6,14 +6,14 @@
     </div>
   </div>
 
-<div class="row" *ngIf="isSup" >
-  <div class="col-12" style="text-align: right;">
-    <button mat-raised-button class="btn-submit" (click)="onDialogAssign()">
-      <mat-icon>assignment_return</mat-icon>
-      Add Project 
-  </button>
+  <div class="row" *ngIf="isSup">
+    <div class="col-12" style="text-align: right;">
+      <button mat-raised-button class="btn-submit" (click)="onDialogAssign()">
+        <mat-icon>assignment_return</mat-icon>
+        Add Project
+      </button>
+    </div>
   </div>
-</div>  
 
   <div class="row" *ngIf="isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
@@ -21,8 +21,7 @@
         <mat-card-title class="example-card2">Code: {{project.projectCode}}</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
-          <!-- <img mat-card-avatar class="example-header-image" src="./assets/img/timesheet.png"> -->
-          <mat-card-title class="example-card" >{{project.projectName}}</mat-card-title>          
+          <mat-card-title class="example-card">{{project.projectName}}</mat-card-title>
         </mat-card-header>
         <mat-card-content style="text-align: center;">{{project.description}}</mat-card-content>
         <mat-divider></mat-divider>
@@ -36,27 +35,25 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div> 
+  </div>
 
   <div class="row" *ngIf="!isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
       <mat-card style="cursor: pointer;">
         <mat-card-title class="example-card2">Code: {{project.id.project.projectCode}}</mat-card-title>
         <mat-divider></mat-divider>
-        <mat-card-header style="place-content: center;" (click)="goUserProject(project)">          
-          <mat-card-title class="example-card" >{{project.id.project.projectName}}</mat-card-title>          
+        <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
+          <mat-card-title class="example-card">{{project.id.project.projectName}}</mat-card-title>
         </mat-card-header>
         <mat-card-content style="text-align: center;">{{project.id.project.description}}</mat-card-content>
       </mat-card>
     </div>
-  </div> 
+  </div>
 
 </div>
 
 <swal #deleteSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#ABEBC6"
-[showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onDelete()">
+  [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onDelete()">
 </swal>
 <swal #deletedSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="inquirySup()" [width]="480">
 </swal>
-
-

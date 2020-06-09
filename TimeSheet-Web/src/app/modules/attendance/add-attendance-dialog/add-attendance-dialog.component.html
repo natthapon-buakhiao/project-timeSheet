@@ -1,91 +1,137 @@
 <div class="row headTilteDialog">
-    <h2 mat-dialog-title>Add Attendance List</h2>
-  </div><br>
-  
-
-  <form [formGroup]="createAttendance" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>Add Attendance List</h2>
+</div><br>
 
 
-    <div class="row mt-3">
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label>Project Name</mat-label>
-      </div>
-      <div class="col-4">
-        <mat-select class="form-control" formControlName="projectCode" name="projectCode">
-          <mat-option *ngFor="let data of project " [value]="data.id.project.projectCode">
-              {{data.id.project.projectName}}
-          </mat-option>
+<form [formGroup]="createAttendance" (ngSubmit)="onSubmit()">
+
+
+  <div class="row mt-3">
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label>Project Name</mat-label>
+    </div>
+    <div class="col-4">
+      <mat-select class="form-control" formControlName="projectCode" name="projectCode"
+        [ngClass]="{'is-invalid': submitted && f.projectCode.errors}">
+        <mat-option *ngFor="let data of project " [value]="data.id.project.projectCode">
+          {{data.id.project.projectName}}
+        </mat-option>
       </mat-select>
-      </div>
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> Site </mat-label>
-      </div>
-      <div class="col-4">
-        <input class="form-control" formControlName="site">
-
-      </div>
-    </div>
-  
-
-    <div class="row mt-3">
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> Task </mat-label>
-      </div>
-      <div class="col-10">
-        <textarea class="form-control" formControlName="task" placeholder="List tasks you worked."></textarea>
-   
-      </div>
-    </div>
-    
-
-    <div class="row mt-3">
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> Time-In </mat-label>
-      </div>
-      <div class="col-4">
-        <input class="form-control" formControlName="timeIn" placeholder="Ex. 09:00">
-
-      </div>    
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> Time-Out </mat-label>
-      </div>
-      <div class="col-4">
-        <input class="form-control" formControlName="timeOut" placeholder="Ex. 17:00">
-
-      </div>    
-    </div>
-    <div class="row mt-3">
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> Date </mat-label>
-      </div>
-          <div class="input-group" class="col-4">
-            <input formControlName="date" class="form-control"  [matDatepicker]="pickerStart">
-            <div class="input-group-append">
-                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-                <mat-datepicker #pickerStart></mat-datepicker>
-            </div>
+      <div *ngIf="submitted && f.projectCode.errors" class="invalid-feedback">
+        <div *ngIf="f.projectCode.errors.required" class="text-danger help-block">
+          {{'Project Code' | mandatoryfield}}
         </div>
-
-      <div class="col-2 mt-2" style="text-align: right;">
-        <mat-label> User Code </mat-label>
       </div>
-      <div class="col-4">
-        <input class="form-control" formControlName="userCode" disabled>
+      <div *ngIf="submitted && f.projectCode.errors" class="invalid-feedback">
+        <div *ngIf="f.projectCode.errors.whitespace" class="text-danger help-block">
+          {{'Project Code' | mandatoryfield}}
+        </div>
       </div>
     </div>
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> Site </mat-label>
+    </div>
+    <div class="col-4">
+      <input class="form-control" formControlName="site" [ngClass]="{'is-invalid': submitted && f.site.errors}">
+      <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
+        <div *ngIf="f.site.errors.required" class="text-danger help-block">
+          {{'Site' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
+        <div *ngIf="f.site.errors.whitespace" class="text-danger help-block">
+          {{'Site' | mandatoryfield}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-3">
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> Task </mat-label>
+    </div>
+    <div class="col-10">
+      <textarea class="form-control" formControlName="task" placeholder="List tasks you worked."
+        [ngClass]="{'is-invalid': submitted && f.task.errors}"></textarea>
+      <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.required" class="text-danger help-block">
+          {{'Task' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.whitespace" class="text-danger help-block">
+          {{'Task' | mandatoryfield}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-3">
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> Time-In </mat-label>
+    </div>
+    <div class="col-4">
+      <input class="form-control" formControlName="timeIn" type="time"
+        [ngClass]="{'is-invalid': submitted && f.timeIn.errors}">
+      <div *ngIf="submitted && f.timeIn.errors" class="invalid-feedback">
+        <div *ngIf="f.timeIn.errors.required" class="text-danger help-block">
+          {{'Time In' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.timeIn.errors" class="invalid-feedback">
+        <div *ngIf="f.timeIn.errors.whitespace" class="text-danger help-block">
+          {{'Time In' | mandatoryfield}}
+        </div>
+      </div>
+    </div>
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> Time-Out </mat-label>
+    </div>
+    <div class="col-4">
+      <input class="form-control" formControlName="timeOut" type="time"
+        [ngClass]="{'is-invalid': submitted && f.timeOut.errors}">
+      <div *ngIf="submitted && f.timeOut.errors" class="invalid-feedback">
+        <div *ngIf="f.timeOut.errors.required" class="text-danger help-block">
+          {{'Time Out' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.timeOut.errors" class="invalid-feedback">
+        <div *ngIf="f.timeOut.errors.whitespace" class="text-danger help-block">
+          {{'Time Out' | mandatoryfield}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> Date </mat-label>
+    </div>
+    <div class="input-group" class="col-4">
+      <input formControlName="date" class="form-control" [matDatepicker]="pickerStart">
+      <div class="input-group-append">
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
+      </div>
+    </div>
+
+    <div class="col-2 mt-2" style="text-align: right;">
+      <mat-label> User Code </mat-label>
+    </div>
+    <div class="col-4">
+      <input class="form-control" formControlName="userCode" disabled>
+    </div>
+  </div>
 
   <div mat-dialog-actions class="mt-3" style="float: right;">
     <button mat-raised-button type="submit" class="btn-submit">Save</button>
-    <a mat-raised-button class="btn-cancle"(click)="canCle(false)">Cancel</a>
+    <a mat-raised-button class="btn-cancle" (click)="canCle(false)">Cancel</a>
   </div>
-  </form>
+</form>
 
-  <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="rgb(163, 236, 114)"
+<swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="rgb(163, 236, 114)"
   [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
 </swal>
 <swal #saveSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="canCle(true)" [width]="480">
 </swal>
-
-  
-
-  

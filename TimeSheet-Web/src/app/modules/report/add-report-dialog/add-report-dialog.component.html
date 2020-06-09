@@ -28,15 +28,26 @@
       </div>
     </div>
   </div>
-  
+
 
   <div class="row mt-3">
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Task </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="task" placeholder="List tasks you worked on this week."></textarea>
-
+      <textarea class="form-control" formControlName="task" placeholder="List tasks you worked on this week."
+        [ngClass]="{'is-invalid': submitted && f.task.errors}">
+        <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.required" class="text-danger help-block">
+          {{'Task' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.task.errors" class="invalid-feedback">
+        <div *ngIf="f.task.errors.whitespace" class="text-danger help-block">
+          {{'Task' | mandatoryfield}}
+        </div>
+      </div>
+    </textarea>
     </div>
   </div>
 
@@ -45,8 +56,20 @@
       <mat-label> FeedBack </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="feedBack" placeholder="List any needs you may have regarding tasks or projects (i.e. training, support, feedback, etc.)"></textarea>
-
+      <textarea class="form-control" formControlName="feedBack"
+        placeholder="List any needs you may have regarding tasks or projects (i.e. training, support, feedback, etc.)"
+        [ngClass]="{'is-invalid': submitted && f.feedBack.errors}">
+        <div *ngIf="submitted && f.feedBack.errors" class="invalid-feedback">
+          <div *ngIf="f.feedBack.errors.required" class="text-danger help-block">
+            {{'FeedBack' | mandatoryfield}}
+          </div>
+        </div>
+        <div *ngIf="submitted && f.feedBack.errors" class="invalid-feedback">
+          <div *ngIf="f.feedBack.errors.whitespace" class="text-danger help-block">
+            {{'FeedBack' | mandatoryfield}}
+          </div>
+        </div>
+      </textarea>
     </div>
   </div>
 
@@ -55,19 +78,40 @@
       <mat-label> Goal </mat-label>
     </div>
     <div class="col-10">
-      <textarea class="form-control" formControlName="goal" placeholder="List any upcoming tasks, goals, or projects for next week."></textarea>
-
+      <textarea class="form-control" formControlName="goal"
+        placeholder="List any upcoming tasks, goals, or projects for next week."
+        [ngClass]="{'is-invalid': submitted && f.goal.errors}">
+        <div *ngIf="submitted && f.goal.errors" class="invalid-feedback">
+          <div *ngIf="f.goal.errors.required" class="text-danger help-block">
+            {{'Goal' | mandatoryfield}}
+          </div>
+        </div>
+        <div *ngIf="submitted && f.goal.errors" class="invalid-feedback">
+          <div *ngIf="f.goal.errors.whitespace" class="text-danger help-block">
+            {{'Goal' | mandatoryfield}}
+          </div>
+        </div>
+      </textarea>
     </div>
   </div>
-
-
 
   <div class="row mt-3">
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Total Hours </mat-label>
     </div>
     <div class="col-4">
-      <input class="form-control" formControlName="totalHours" placeholder="Total hours this week.">
+      <input class="form-control" formControlName="totalHours" placeholder="Total hours this week."
+        [ngClass]="{'is-invalid': submitted && f.totalHours.errors}">
+      <div *ngIf="submitted && f.totalHours.errors" class="invalid-feedback">
+        <div *ngIf="f.totalHours.errors.required" class="text-danger help-block">
+          {{'Total Hours' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.totalHours.errors" class="invalid-feedback">
+        <div *ngIf="f.totalHours.errors.whitespace" class="text-danger help-block">
+          {{'Total Hours' | mandatoryfield}}
+        </div>
+      </div>
     </div>
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> User Code </mat-label>
