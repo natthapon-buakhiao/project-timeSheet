@@ -39,7 +39,7 @@
     "ngx-material-timepicker": "^5.5.3",
     "ngx-spinner": "^8.1.0",
     "rxjs": "~6.4.0",
-    "sweetalert2": "^9.14.0",
+    "sweetalert2": "^9.14.4",
     "tslib": "^1.10.0",
     "xlsx": "^0.16.1",
     "zone.js": "~0.9.1"
@@ -64,6 +64,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "3.5.3"
   }
 }
