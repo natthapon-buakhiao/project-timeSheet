@@ -59,7 +59,7 @@ export class AddAttendanceDialogComponent implements OnInit {
       task: new FormControl(),
       timeIn: new FormControl(),
       timeOut: new FormControl(),
-      siteCode: new FormControl(),
+      site: new FormControl(),
     });
   }
 
@@ -105,7 +105,7 @@ export class AddAttendanceDialogComponent implements OnInit {
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       timeIn: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       timeOut: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-      siteCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
+      site: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
     })
     console.log(this.createAttendance)
   }

@@ -16,7 +16,6 @@ import com.project.time.sheet.common.models.AttendanceBean;
 import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.entity.Attendance;
 import com.project.time.sheet.entity.Project;
-import com.project.time.sheet.entity.Site;
 import com.project.time.sheet.entity.User;
 import com.project.time.sheet.exception.DataNotFoundException;
 import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
@@ -89,7 +88,7 @@ public class AttendanceService {
             Attendance newAttendance = new Attendance();
             User user = userRepository.getOne(req.getUserCode());
             Project project = projectRepository.getOne(req.getProjectCode());
-            Site site = siteRepository.getOne(req.getSiteCode());
+            Site project = projectRepository.getOne(req.getProjectCode());
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
             Optional<Project> projectCode = projectRepository.findByProjectCode(req.getProjectCode());
 
@@ -98,7 +97,7 @@ public class AttendanceService {
                 newAttendance.setDate(req.getDate());
                 newAttendance.setProject(project);
                 newAttendance.setTask(req.getTask());
-                newAttendance.setSite(site);
+                newAttendance.setSite(site());
                 newAttendance.setTimeIn(req.getTimeIn());
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);

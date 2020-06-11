@@ -98,7 +98,7 @@ public class AttendanceService {
                 newAttendance.setDate(req.getDate());
                 newAttendance.setProject(project);
                 newAttendance.setTask(req.getTask());
-                newAttendance.setSite(site);
+                newAttendance.setSite(site());
                 newAttendance.setTimeIn(req.getTimeIn());
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);
