@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { AddAttendanceDialogComponent } from './modules/attendance/add-attendance-dialog/add-attendance-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -13,6 +14,7 @@ import { noWhitespaceValidator } from './shared/noWhitespaceValidator';
 import { InterceptorService } from './service/interceptor.service';
 import { DateAdapter, MAT_DATE_FORMATS } from "@angular/material";
 import { AppDateAdapter, APP_DATE_FORMATS} from './shared/common/date.adapter';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -33,6 +35,8 @@ import { AppDateAdapter, APP_DATE_FORMATS} from './shared/common/date.adapter';
     HttpClientModule,
     CoreModule,
     SweetAlert2Module.forRoot(),
+    CommonModule,
+    SharedModule
           
   ],
   providers: [

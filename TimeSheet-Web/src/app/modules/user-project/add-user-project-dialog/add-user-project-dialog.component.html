@@ -8,11 +8,22 @@
       <mat-label>User Code</mat-label>
     </div>
     <div class="col-4">
-      <mat-select class="form-control" formControlName="userCode" name="userCode">
+      <mat-select class="form-control" formControlName="userCode" name="userCode"
+      [ngClass]="{'is-invalid': submitted && f.userCode.errors}">
         <mat-option *ngFor="let data of dataUserProject " [value]="data.userCode">
           {{data.userCode}}
         </mat-option>
       </mat-select>
+      <div *ngIf="submitted && f.userCode.errors" class="invalid-feedback">
+        <div *ngIf="f.userCode.errors.required" class="text-danger help-block">
+          {{'User Code' | mandatoryfield}}
+        </div>
+      </div>
+      <div *ngIf="submitted && f.userCode.errors" class="invalid-feedback">
+        <div *ngIf="f.userCode.errors.whitespace" class="text-danger help-block">
+          {{'User Code' | mandatoryfield}}
+        </div>
+      </div>
     </div>
 
     <div class="col-2 mt-2" style="text-align: right;">

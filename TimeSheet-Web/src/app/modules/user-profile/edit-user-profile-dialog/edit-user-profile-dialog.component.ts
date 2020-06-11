@@ -6,7 +6,6 @@ import { UserProfileService } from 'src/app/service/user-profile.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
 import { RequestInquiryProfile, ReqEditUserProfile } from 'src/app/shared/model/req-user-profile';
-import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
@@ -37,7 +36,6 @@ export class EditUserProfileDialogComponent implements OnInit {
     private _FormBuild: FormBuilder,
     private userProfileService: UserProfileService,
     private loading: NgxSpinnerService,
-    private noWhitespaceValidator: noWhitespaceValidator,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
