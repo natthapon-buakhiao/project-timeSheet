@@ -10,6 +10,7 @@ export class ReqInsertAttendance{
 
 export class RequestInquiryAttendace {
     userCode: string;
+    date: Date;
 }
 
 export class Excel{

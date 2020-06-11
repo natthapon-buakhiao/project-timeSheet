@@ -9,14 +9,40 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE} from '@angular/material/core';
 
 
+import * as _moment from 'moment';
+import {default as _rollupMoment, Moment} from 'moment';
+import { FormControl } from '@angular/forms';
 
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'yyyy/MM',
+  },
+  display: {
+    dateInput: 'yyyy/MM',
+    monthYearLabel: 'yyyy/MM',
+    // dateA11yLabel: 'LL',
+    // monthYearA11yLabel: 'YYYY MMMM',
+  },
+};
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.scss']
+  styleUrls: ['./attendance.component.scss'],
+  providers: [
+    {
+        provide: DateAdapter, useClass: MomentDateAdapter,
+        // deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    ]
 })
 export class AttendanceComponent implements OnInit {
 
@@ -32,6 +58,8 @@ export class AttendanceComponent implements OnInit {
   groupData: any;
   private dataExcel: Array<any> = []; 
   private excel: Excel = new Excel();
+  dateIn: any;
+  dateTest = new FormControl(moment());
 
 
 
@@ -50,12 +78,25 @@ export class AttendanceComponent implements OnInit {
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
       this.isSup = true;
-      this.inquiryListStaff(this.dataStaff.data);
+      // this.inquiryListStaff(this.dataStaff.data);
 
     } else {
       this.isSup = false;
       this.getUser();
     }
+  }
+
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.dateTest.value;
+    ctrlValue.year(normalizedYear.year());
+    this.dateTest.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.dateTest.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.dateTest.setValue(ctrlValue);
+    datepicker.close();
   }
 
   exportAsXLSX():void {
@@ -100,9 +141,22 @@ export class AttendanceComponent implements OnInit {
       })
   }
 
-  inquiryListStaff(data) {
+  inquiryListStaff() {
+    this.dataStaff = history.state;
+    // console.log(this.dataStaff.data)
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+      this.isSup = true;
+      // this.inquiryListStaff(this.dataStaff.data);
+
+    } else {
+      this.isSup = false;
+      this.getUser();
+    }
     let request = new RequestInquiryAttendace();
-    request.userCode = data;
+    request.userCode = this.dataStaff.data;
+    request.date = this.dateTest.value._d;
+    console.log(request);
     this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
