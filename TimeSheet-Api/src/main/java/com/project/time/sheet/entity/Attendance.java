@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -35,6 +38,7 @@ public class Attendance {
     
     @Column(name = "DATE")
     @JsonFormat(pattern="yyyy-MM-dd")
+    // @Temporal(TemporalType.DATE)
     private Date date;
 
     @Column(name = "TIME_IN")

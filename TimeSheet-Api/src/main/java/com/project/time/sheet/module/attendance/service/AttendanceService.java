@@ -1,6 +1,11 @@
 package com.project.time.sheet.module.attendance.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,9 +42,23 @@ public class AttendanceService {
        
 		ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
 		try {
+                DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+                Date date = (Date)formatter.parse(req.getDate().toString());
+                String month ;
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                if(cal.get(Calendar.MONTH) + 1 < 10) {
+                     month = "0" + (cal.get(Calendar.MONTH) + 1);
+
+                } else {
+                    month = "" + (cal.get(Calendar.MONTH) + 1);
+                }
+
+                String formatedDate =    cal.get(Calendar.YEAR) +  "/" + month;
+                System.out.println(formatedDate);    
             List<AttendanceBean> data = new ArrayList<AttendanceBean>();
             User user = userRepository.getOne(req.getUserCode());
-            List<Attendance> attendanceList = attendanceRepository.findByUserList(user);
+            List<Attendance> attendanceList = attendanceRepository.findByUserANDDate(user, formatedDate);
 
             for(Attendance attendance : attendanceList) {
                 AttendanceBean bean = new AttendanceBean();
@@ -51,7 +70,10 @@ public class AttendanceService {
                 res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-		}catch (Exception e) {
+        }  catch (ParseException e) {
+            e.printStackTrace();
+            }
+        catch (Exception e) {
 			res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
 		}
