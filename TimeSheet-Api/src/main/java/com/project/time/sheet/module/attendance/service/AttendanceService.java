@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.TimeZone;
 
 import com.project.time.sheet.common.EnumCodeResponse;
 import com.project.time.sheet.common.models.AttendanceBean;
@@ -26,7 +28,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class AttendanceService {
 
@@ -37,58 +38,57 @@ public class AttendanceService {
     @Autowired
     UserRepository userRepository;
 
-
     public ResponseModel<List<AttendanceBean>> inquiryAttendance(ReqInquiryAttendance req) {
-       
-		ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
-		try {               
-                String month ;
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(req.getDate());
-                if(cal.get(Calendar.MONTH) + 1 < 10) {
-                     month = "0" + (cal.get(Calendar.MONTH) + 1);
 
-                } else {
-                    month = "" + (cal.get(Calendar.MONTH) + 1);
-                }
+        ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
+        try {
+            Locale locale = new Locale("cs", "CZ");
+            TimeZone tz = TimeZone.getTimeZone("Europe/Prague");
+            String month;
+            Calendar cal = Calendar.getInstance(tz, locale);
+            cal.setTime(req.getDate());
+            if (cal.get(Calendar.MONTH) + 1 < 10) {
+                month = "0" + (cal.get(Calendar.MONTH) + 1);
 
-                String formatedDate =    cal.get(Calendar.YEAR) - 543 +  "/" + month;
-                System.out.println(formatedDate);    
+            } else {
+                month = "" + (cal.get(Calendar.MONTH) + 1);
+            }
+
+            String formatedDate = cal.get(Calendar.YEAR) + "/" + month;
+            System.out.println(formatedDate);
             List<AttendanceBean> data = new ArrayList<AttendanceBean>();
             User user = userRepository.getOne(req.getUserCode());
             List<Attendance> attendanceList = attendanceRepository.findByUserANDDate(user, formatedDate);
 
-            for(Attendance attendance : attendanceList) {
+            for (Attendance attendance : attendanceList) {
                 AttendanceBean bean = new AttendanceBean();
-                    BeanUtils.copyProperties(attendance, bean);
-                    data.add(bean);
-			}
-				res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
+                BeanUtils.copyProperties(attendance, bean);
+                data.add(bean);
+            }
+            res.setData(data);
+            res.setCode(EnumCodeResponse.SUCCESS.getCode());
+            res.setMessage(EnumCodeResponse.SUCCESS.name());
 
-
-        }  
-        catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		return res;
+        } catch (Exception e) {
+            res.setCode(EnumCodeResponse.FAIL.getCode());
+            res.setMessage(e.getMessage());
+        }
+        return res;
     }
-    
+
     public ResponseModel insertAttendance(ReqInsertAttendance req) {
-		
-		ResponseModel res = new ResponseModel();
-		
-		try {
-			
+
+        ResponseModel res = new ResponseModel();
+
+        try {
+
             Attendance newAttendance = new Attendance();
             User user = userRepository.getOne(req.getUserCode());
             Project project = projectRepository.getOne(req.getProjectCode());
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
             Optional<Project> projectCode = projectRepository.findByProjectCode(req.getProjectCode());
 
-            if(userCode.isPresent() && projectCode.isPresent()){
+            if (userCode.isPresent() && projectCode.isPresent()) {
                 newAttendance.setUser(user);
                 newAttendance.setDate(req.getDate());
                 newAttendance.setProject(project);
@@ -97,27 +97,23 @@ public class AttendanceService {
                 newAttendance.setTimeIn(req.getTimeIn());
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);
-                
 
-            }
-            else {
+            } else {
                 throw new DataNotFoundException("Data not found, Method : insertAttendance");
             }
 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
             res.setMessage(EnumCodeResponse.SUCCESS.name());
-			
-			
-        }catch (DataNotFoundException e){
+
+        } catch (DataNotFoundException e) {
             res.setCode(e.getCode());
             res.setMessage(e.getMessage());
+        } catch (Exception e) {
+            res.setCode(EnumCodeResponse.FAIL.getCode());
+            res.setMessage(e.getMessage());
         }
-        catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		
-		return res;
-	}
+
+        return res;
+    }
 
 }

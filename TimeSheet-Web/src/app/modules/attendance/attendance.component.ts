@@ -77,7 +77,8 @@ export class AttendanceComponent implements OnInit {
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
       this.isSup = true;
-      // this.inquiryListStaff(this.dataStaff.data);
+      this.inquiryListStaff();
+      // console.log(this.inquiryListStaff());
 
     } else {
       this.isSup = false;
@@ -143,17 +144,6 @@ export class AttendanceComponent implements OnInit {
   }
 
   inquiryListStaff() {
-    this.dataStaff = history.state;
-    // console.log(this.dataStaff.data)
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
-      this.isSup = true;
-      // this.inquiryListStaff(this.dataStaff.data);
-
-    } else {
-      this.isSup = false;
-      this.getUser();
-    }
     let request = new RequestInquiryAttendace();
     request.userCode = this.dataStaff.data;
     request.date = this.dateTest.value._d;
