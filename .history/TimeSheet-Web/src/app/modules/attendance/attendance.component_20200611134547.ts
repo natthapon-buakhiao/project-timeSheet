@@ -129,7 +129,7 @@ export class AttendanceComponent implements OnInit {
   inquiryAttendance(data) {
     let request = new RequestInquiryAttendace();
     request.userCode = data.userCode;
-    request.date = this.dateTest.value._d;
+    re
     this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
