@@ -41,12 +41,10 @@ public class AttendanceService {
     public ResponseModel<List<AttendanceBean>> inquiryAttendance(ReqInquiryAttendance req) {
        
 		ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
-		try {
-                DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
-                Date date = (Date)formatter.parse(req.getDate().toString());
+		try {               
                 String month ;
                 Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
+                cal.setTime(req.getDate());
                 if(cal.get(Calendar.MONTH) + 1 < 10) {
                      month = "0" + (cal.get(Calendar.MONTH) + 1);
 
@@ -54,7 +52,7 @@ public class AttendanceService {
                     month = "" + (cal.get(Calendar.MONTH) + 1);
                 }
 
-                String formatedDate =    cal.get(Calendar.YEAR) +  "/" + month;
+                String formatedDate =    cal.get(Calendar.YEAR) - 543 +  "/" + month;
                 System.out.println(formatedDate);    
             List<AttendanceBean> data = new ArrayList<AttendanceBean>();
             User user = userRepository.getOne(req.getUserCode());
@@ -70,9 +68,7 @@ public class AttendanceService {
                 res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-        }  catch (ParseException e) {
-            e.printStackTrace();
-            }
+        }  
         catch (Exception e) {
 			res.setCode(EnumCodeResponse.FAIL.getCode());
 			res.setMessage(e.getMessage());
