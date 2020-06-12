@@ -4,7 +4,6 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.common.models.UserProfileMsBean;
 import com.project.time.sheet.entity.User;
 import com.project.time.sheet.entity.UserProfileMs;
-import com.project.time.sheet.entity.UserProfileMsPk;
 import com.project.time.sheet.exception.DataNotFoundException;
 
 import java.util.ArrayList;
@@ -31,20 +30,20 @@ public class ProfileService {
     @Autowired
     UserRepository userRepository;
 
-    // public ResponseModel<List<UserProfileMs>> getAllUserProfile() {
-	// 	ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
-	// 	try {
-	// 		List<UserProfileMs> userProfileList = new ArrayList<UserProfileMs>();
-	// 		userProfileList = userProfileMsRepository.findAll();
-    //         res.setData(userProfileList);
-    //         res.setCode(EnumCodeResponse.SUCCESS.getCode());
-	// 		res.setMessage(EnumCodeResponse.SUCCESS.name());
-	// 	}catch (Exception e) {
-	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
-	// 		res.setMessage(e.getMessage());
-	// 	}
-	// 	return res;
-    // }
+    public ResponseModel<List<UserProfileMs>> getAllUserProfile() {
+		ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
+		try {
+			List<UserProfileMs> userProfileList = new ArrayList<UserProfileMs>();
+			userProfileList = userProfileMsRepository.findAll();
+            res.setData(userProfileList);
+            res.setCode(EnumCodeResponse.SUCCESS.getCode());
+			res.setMessage(EnumCodeResponse.SUCCESS.name());
+		}catch (Exception e) {
+			res.setCode(EnumCodeResponse.FAIL.getCode());
+			res.setMessage(e.getMessage());
+		}
+		return res;
+    }
 
     public ResponseModel<List<UserProfileMsBean>> inquiryUserProfileStaff(ReqListProfile req) {
        
@@ -106,26 +105,24 @@ public class ProfileService {
 
         try {
             User user = userRepository.getOne(req.getUserCode());
-            List<UserProfileMs> userProfileList = userProfileMsRepository.findById_User(user);
+            List<UserProfileMs> userProfileList = userProfileMsRepository.findAllUserCode(user);
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
             List<UserProfileMs> userFnameLnameList = userProfileMsRepository.findByFnameAndLname(req.getFirstName(),req.getLastName());
             UserProfileMs profile = new UserProfileMs();
-            UserProfileMsPk id = new UserProfileMsPk();
-            id.setUser(user);
 
             if(!(userCode.isPresent())){
                 throw new DataNotFoundException("Data not found, Method : insertUserProfile");
 
             }
             else if(userProfileList.size() == 0 && userFnameLnameList.size() == 0){
-                // profile.setUser(user);
-                profile.setId(id);
+                profile.setUser(user);
                 profile.setFirstName(req.getFirstName());
                 profile.setLastName(req.getLastName());
                 profile.setBirthday(req.getBirthday());
                 profile.setAge(req.getAge());
                 profile.setAddress(req.getAddress());
                 profile.setPosition(req.getPosition());
+                profile.setSite(req.getSite());
                 userProfileMsRepository.save(profile);
 
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
@@ -166,6 +163,7 @@ public class ProfileService {
                 newUserProfile.get().setAge(req.getAge());
                 newUserProfile.get().setAddress(req.getAddress());
                 newUserProfile.get().setPosition(req.getPosition());
+                newUserProfile.get().setSite(req.getSite());
                 userProfileMsRepository.save(newUserProfile.get());
 
             }

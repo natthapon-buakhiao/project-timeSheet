@@ -23,6 +23,6 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, Us
     @Query("SELECT e FROM UserProfileMs e WHERE e.firstName = ?1 and e.lastName = ?2")
     List<UserProfileMs> findByFnameAndLname(String firstName, String lastName);
     
-    @Query( "SELECT n FROM UserProfileMs n WHERE n.id.user.lineManager = ?1")
-    List<UserProfileMs> findAllUserLineManager(String lineManager);
+    // @Query( "SELECT n FROM UserProfileMs n WHERE n.id.user.lineManager = ?1")
+    // List<UserProfileMs> findAllUserLineManager(String lineManager);
 }

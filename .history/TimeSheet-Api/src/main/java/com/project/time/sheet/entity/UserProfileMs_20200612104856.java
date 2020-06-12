@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +32,7 @@ public class UserProfileMs  implements Serializable {
     // private Long id;
 
     @EmbeddedId
-    private UserProfileMsPk id;
+    private UserProjectPk id;
 
     @Column(name = "FIRSTNAME")
     private String firstName;
@@ -54,6 +53,8 @@ public class UserProfileMs  implements Serializable {
     @Column(name = "POSITION")
     private String position;
 
+    @Column(name = "SITE")
+    private String site;
 
 
 }

@@ -63,11 +63,11 @@ public class UserProfileController {
 			// 	return ResponseEntity.ok(res);
 			// }
 
-			@RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
-				ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-				res = profileService.inquiryUserProfileStaff(req);
-				return ResponseEntity.ok(res);
-			}
+			// @RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
+			// public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
+			// 	ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+			// 	res = profileService.inquiryUserProfileStaff(req);
+			// 	return ResponseEntity.ok(res);
+			// }
     
 }

@@ -39,15 +39,15 @@ public class UserProfileController {
 				return ResponseEntity.ok(res);
 			}
 			
-            @RequestMapping(value = "/edit", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req){
+            // @RequestMapping(value = "/edit", method = RequestMethod.POST)
+			// public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req){
 				
-				ResponseModel res = new ResponseModel();
+			// 	ResponseModel res = new ResponseModel();
 				
-				res = profileService.editProfile(req);
+			// 	res = profileService.editProfile(req);
 				
-				return ResponseEntity.ok(res);
-			}
+			// 	return ResponseEntity.ok(res);
+			// }
 
 			@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 			public ResponseEntity<ResponseModel<List<UserProfileMs>>> inquiry(@RequestBody ReqInquiryProfile req){
@@ -63,11 +63,11 @@ public class UserProfileController {
 			// 	return ResponseEntity.ok(res);
 			// }
 
-			@RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
-				ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-				res = profileService.inquiryUserProfileStaff(req);
-				return ResponseEntity.ok(res);
-			}
+			// @RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
+			// public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
+			// 	ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+			// 	res = profileService.inquiryUserProfileStaff(req);
+			// 	return ResponseEntity.ok(res);
+			// }
     
 }
