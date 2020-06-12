@@ -5,8 +5,7 @@ export class ReqInsertUserProfile {
     birthday: Date;
     age: number;
     address: string;
-    position: string;
-    site: string;
+    position: string;    
 }
 
 export class ReqEditUserProfile {
@@ -16,8 +15,7 @@ export class ReqEditUserProfile {
     birthday: Date;
     age: number;
     address: string;
-    position: string;
-    site: string;
+    position: string;    
 }
 
 export class RequestInquiryProfile {

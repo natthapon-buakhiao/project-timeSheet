@@ -23,3 +23,7 @@ export class Excel{
     public timeIn:string
     public timeOut:string
 }
+
+export class DataSite {
+    siteCode:string
+}
