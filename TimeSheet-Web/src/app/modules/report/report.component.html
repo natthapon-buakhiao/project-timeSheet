@@ -7,10 +7,10 @@
     </div>
 
     <div class="row">
-      <div class="col-3 mt-3">
+      <div class="col-3 mt-3" *ngFor="let site of dataSite">
         <mat-card style="cursor: pointer;">         
           <mat-card-header style="place-content: center;" (click)="goViewStaff()">
-            <mat-card-title class="example-card">SiteName</mat-card-title>
+            <mat-card-title class="example-card">{{site.site}}</mat-card-title>
           </mat-card-header>         
         </mat-card>
       </div>
