@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.time.sheet.entity.Project;
-import com.project.time.sheet.entity.Site;
 import com.project.time.sheet.entity.User;
 import lombok.Data;
 

@@ -10,8 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
-import { MAT_DATE_LOCALE} from '@angular/material/core';
+import { MomentDateAdapter} from '@angular/material-moment-adapter';
+
 
 
 import * as _moment from 'moment';
@@ -37,9 +37,8 @@ export const MY_FORMATS = {
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.scss'],
   providers: [
-    {
-        provide: DateAdapter, useClass: MomentDateAdapter,
-        // deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    {provide: DateAdapter, useClass: MomentDateAdapter,
+        
     },
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
     ]
@@ -78,7 +77,8 @@ export class AttendanceComponent implements OnInit {
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
       this.isSup = true;
-      // this.inquiryListStaff(this.dataStaff.data);
+      this.inquiryListStaff();
+      // console.log(this.inquiryListStaff());
 
     } else {
       this.isSup = false;
@@ -130,6 +130,7 @@ export class AttendanceComponent implements OnInit {
     let request = new RequestInquiryAttendace();
     request.userCode = data.userCode;
     request.date = this.dateTest.value._d;
+    console.log(request)
     this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
@@ -143,17 +144,6 @@ export class AttendanceComponent implements OnInit {
   }
 
   inquiryListStaff() {
-    this.dataStaff = history.state;
-    // console.log(this.dataStaff.data)
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
-      this.isSup = true;
-      // this.inquiryListStaff(this.dataStaff.data);
-
-    } else {
-      this.isSup = false;
-      this.getUser();
-    }
     let request = new RequestInquiryAttendace();
     request.userCode = this.dataStaff.data;
     request.date = this.dateTest.value._d;

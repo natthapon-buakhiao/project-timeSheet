@@ -89,7 +89,7 @@ public class AttendanceService {
             Attendance newAttendance = new Attendance();
             User user = userRepository.getOne(req.getUserCode());
             Project project = projectRepository.getOne(req.getProjectCode());
-            Site site = siteRepository.getOne(req.getSiteCode());
+            Site site = projectRepository.getOne(req.getProjectCode());
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
             Optional<Project> projectCode = projectRepository.findByProjectCode(req.getProjectCode());
 
@@ -98,7 +98,7 @@ public class AttendanceService {
                 newAttendance.setDate(req.getDate());
                 newAttendance.setProject(project);
                 newAttendance.setTask(req.getTask());
-                newAttendance.setSite(site);
+                newAttendance.setSite(site());
                 newAttendance.setTimeIn(req.getTimeIn());
                 newAttendance.setTimeOut(req.getTimeOut());
                 newAttendance = attendanceRepository.save(newAttendance);

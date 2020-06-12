@@ -59,8 +59,8 @@ public class Attendance {
 
     @ManyToOne
     @JoinColumn(name = "SITE_CODE")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Site site;
+    @Column(name = "SITE")
+    private String site;
 
 
 

@@ -26,17 +26,17 @@ public class TimeSheetApplication {
 	ApplicationRunner init(SiteRepository siteRepository) {
 		return args -> {
 			
-			Site s1 = new Site();
-			s1.setSiteCode("BAY001");
-			s1.setSite("ธนาคารกรุงศรี");
-			// s1.setUserCodeSupervisor("Sup001");
-			siteRepository.save(s1);	
+			// Site s1 = new Site();
+			// s1.setSiteCode("BAY001");
+			// s1.setSite("ธนาคารกรุงศรี");
+			// // s1.setUserCodeSupervisor("Sup001");
+			// siteRepository.save(s1);	
 
-			Site s2 = new Site();
-			s2.setSiteCode("KTB001");
-			s2.setSite("ธนาคารกรุงไทย");
-			// s2.setUserCodeSupervisor("Sup001");
-			siteRepository.save(s2);	
+			// Site s2 = new Site();
+			// s2.setSiteCode("KTB001");
+			// s2.setSite("ธนาคารกรุงไทย");
+			// // s2.setUserCodeSupervisor("Sup001");
+			// siteRepository.save(s2);	
 
 
 			// Project p1 = new Project();

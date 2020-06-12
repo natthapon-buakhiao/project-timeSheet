@@ -35,7 +35,7 @@
       <input class="form-control" formControlName="siteCode" [ngClass]="{'is-invalid': submitted && f.siteCode.errors}">
       <div *ngIf="submitted && f.siteCode.errors" class="invalid-feedback">
         <div *ngIf="f.siteCode.errors.required" class="text-danger help-block">
-          {{'site' | mandatoryfield}}
+          {{'siteCode' | mandatoryfield}}
         </div>
       </div>
       <div *ngIf="submitted && f.siteCode.errors" class="invalid-feedback">

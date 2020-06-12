@@ -59,7 +59,7 @@ export class AddAttendanceDialogComponent implements OnInit {
       task: new FormControl(),
       timeIn: new FormControl(),
       timeOut: new FormControl(),
-      siteCode: new FormControl(),
+      site: new FormControl(),
     });
   }
 
