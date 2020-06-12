@@ -101,9 +101,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
       console.log(res)
       this.project = res.data;
-      console.log(this.project)
-
-
+      // console.log(this.project)
     },
       (error) => {
         console.log(error + "get Fail!!")

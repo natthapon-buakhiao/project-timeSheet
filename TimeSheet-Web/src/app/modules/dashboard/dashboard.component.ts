@@ -57,9 +57,9 @@ export class DashboardComponent implements OnInit {
   inquirySup() {
     let request = new RequestInquirySup();   
     request.userCodeSupervisor = this.dataProfile.userCode;
-    console.log(request)
+    // console.log(request)
     this.reqSupProject.inquirySup(request).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.dataUserProject = res.data;
       this.projectList = res.data;
     },
