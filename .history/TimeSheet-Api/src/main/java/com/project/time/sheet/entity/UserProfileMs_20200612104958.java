@@ -54,6 +54,8 @@ public class UserProfileMs  implements Serializable {
     @Column(name = "POSITION")
     private String position;
 
+    @Column(name = "SITE")
+    private String site;
 
 
 }

@@ -46,29 +46,29 @@ public class ProfileService {
 	// 	return res;
     // }
 
-    public ResponseModel<List<UserProfileMsBean>> inquiryUserProfileStaff(ReqListProfile req) {
+    // public ResponseModel<List<UserProfileMsBean>> inquiryUserProfileStaff(ReqListProfile req) {
        
-		ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-		try {
-            List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
-            List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
+	// 	ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+	// 	try {
+    //         List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
+    //         List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
 
-            for(UserProfileMs userProfile : userList) {
-                UserProfileMsBean bean = new UserProfileMsBean();
-                    BeanUtils.copyProperties(userProfile, bean);
-                    data.add(bean);
-			}
-				res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
+    //         for(UserProfileMs userProfile : userList) {
+    //             UserProfileMsBean bean = new UserProfileMsBean();
+    //                 BeanUtils.copyProperties(userProfile, bean);
+    //                 data.add(bean);
+	// 		}
+	// 			res.setData(data);
+    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
+    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-		}catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		return res;
-    }
+	// 	}catch (Exception e) {
+	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
+	// 		res.setMessage(e.getMessage());
+	// 	}
+	// 	return res;
+    // }
 
     public ResponseModel<List<UserProfileMs>> inquiryUserProfile(ReqInquiryProfile req) {
        
@@ -126,6 +126,7 @@ public class ProfileService {
                 profile.setAge(req.getAge());
                 profile.setAddress(req.getAddress());
                 profile.setPosition(req.getPosition());
+                profile.setSite(req.getSite());
                 userProfileMsRepository.save(profile);
 
                 res.setCode(EnumCodeResponse.SUCCESS.getCode());
@@ -151,42 +152,43 @@ public class ProfileService {
         
     }
 
-    public ResponseModel editProfile(ReqEditProfile req) {
+    // public ResponseModel editProfile(ReqEditProfile req) {
 
-        ResponseModel res = new ResponseModel();
+    //     ResponseModel res = new ResponseModel();
 
-        try {
-            User user = userRepository.getOne(req.getUserCode());
-            Optional<UserProfileMs> newUserProfile = userProfileMsRepository.findByUser(user);
+    //     try {
+    //         User user = userRepository.getOne(req.getUserCode());
+    //         Optional<UserProfileMs> newUserProfile = userProfileMsRepository.findByUser(user);
 
-            if (newUserProfile.isPresent()) {
-                // newUserProfile.get().setBirthday(req.getBirthday());
-                newUserProfile.get().setFirstName(req.getFirstName());
-                newUserProfile.get().setLastName(req.getLastName());
-                newUserProfile.get().setAge(req.getAge());
-                newUserProfile.get().setAddress(req.getAddress());
-                newUserProfile.get().setPosition(req.getPosition());
-                userProfileMsRepository.save(newUserProfile.get());
+    //         if (newUserProfile.isPresent()) {
+    //             // newUserProfile.get().setBirthday(req.getBirthday());
+    //             newUserProfile.get().setFirstName(req.getFirstName());
+    //             newUserProfile.get().setLastName(req.getLastName());
+    //             newUserProfile.get().setAge(req.getAge());
+    //             newUserProfile.get().setAddress(req.getAddress());
+    //             newUserProfile.get().setPosition(req.getPosition());
+    //             newUserProfile.get().setSite(req.getSite());
+    //             userProfileMsRepository.save(newUserProfile.get());
 
-            }
-            else {
-                throw new DataNotFoundException("Data not found, Method : editUserProfile");
-            }
-            res.setCode(EnumCodeResponse.SUCCESS.getCode());
-			res.setMessage(EnumCodeResponse.SUCCESS.name());
+    //         }
+    //         else {
+    //             throw new DataNotFoundException("Data not found, Method : editUserProfile");
+    //         }
+    //         res.setCode(EnumCodeResponse.SUCCESS.getCode());
+	// 		res.setMessage(EnumCodeResponse.SUCCESS.name());
 
-        }catch (DataNotFoundException e){
-            res.setCode(e.getCode());
-            res.setMessage(e.getMessage());
+    //     }catch (DataNotFoundException e){
+    //         res.setCode(e.getCode());
+    //         res.setMessage(e.getMessage());
             
-        }catch (Exception e){
-            res.setCode(EnumCodeResponse.FAIL.getCode());
-            res.setMessage(e.getMessage());
+    //     }catch (Exception e){
+    //         res.setCode(EnumCodeResponse.FAIL.getCode());
+    //         res.setMessage(e.getMessage());
             
-        }
-        return res;
+    //     }
+    //     return res;
 
-    }
+    // }
 
     
     

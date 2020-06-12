@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,15 +24,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table (name = "USER_PROFILE_MS")
-public class UserProfileMs  implements Serializable { 
-    private static final long serialVersionUID = 1L;   
+public class UserProfileMs  implements Serializable {    
     // @Id
 	// @Column(name="USER_PROFILE_ID", unique = true, nullable = false)
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     // private Long id;
 
-    @EmbeddedId
-    private UserProfileMsPk id;
+    @Id
 
     @Column(name = "FIRSTNAME")
     private String firstName;
@@ -54,6 +51,8 @@ public class UserProfileMs  implements Serializable {
     @Column(name = "POSITION")
     private String position;
 
+    @Column(name = "SITE")
+    private String site;
 
 
 }

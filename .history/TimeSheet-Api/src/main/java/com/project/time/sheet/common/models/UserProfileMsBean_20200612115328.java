@@ -5,7 +5,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.time.sheet.entity.User;
-import com.project.time.sheet.entity.UserProfileMsPk;
 
 import lombok.Data;
 
@@ -13,7 +12,8 @@ import lombok.Data;
 public class UserProfileMsBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UserProfileMsPk id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User user;
     private String firstName;
     private String lastName;
     private Date birthday;

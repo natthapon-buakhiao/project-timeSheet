@@ -49,12 +49,12 @@ public class UserProfileController {
 				return ResponseEntity.ok(res);
 			}
 
-			@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel<List<UserProfileMs>>> inquiry(@RequestBody ReqInquiryProfile req){
-				ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
-				res = profileService.inquiryUserProfile(req);
-				return ResponseEntity.ok(res);
-			}
+			// @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
+			// public ResponseEntity<ResponseModel<List<UserProfileMs>>> inquiry(@RequestBody ReqInquiryProfile req){
+			// 	ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
+			// 	res = profileService.inquiryUserProfile(req);
+			// 	return ResponseEntity.ok(res);
+			// }
 
 			// @RequestMapping(value = "/getdata", method = RequestMethod.GET)
 			// public ResponseEntity<ResponseModel<List<UserProfileMs>>> getAll(){
@@ -63,11 +63,11 @@ public class UserProfileController {
 			// 	return ResponseEntity.ok(res);
 			// }
 
-			@RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
-			public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
-				ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-				res = profileService.inquiryUserProfileStaff(req);
-				return ResponseEntity.ok(res);
-			}
+			// @RequestMapping(value = "/inquiry-staff", method = RequestMethod.POST)
+			// public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(@RequestBody ReqListProfile req){
+			// 	ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+			// 	res = profileService.inquiryUserProfileStaff(req);
+			// 	return ResponseEntity.ok(res);
+			// }
     
 }

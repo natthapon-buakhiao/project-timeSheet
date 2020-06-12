@@ -46,29 +46,29 @@ public class ProfileService {
 	// 	return res;
     // }
 
-    public ResponseModel<List<UserProfileMsBean>> inquiryUserProfileStaff(ReqListProfile req) {
+    // public ResponseModel<List<UserProfileMsBean>> inquiryUserProfileStaff(ReqListProfile req) {
        
-		ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
-		try {
-            List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
-            List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
+	// 	ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+	// 	try {
+    //         List<UserProfileMsBean> data = new ArrayList<UserProfileMsBean>();
+    //         List<UserProfileMs> userList = userProfileMsRepository.findAllUserLineManager(req.getLineManager());
 
-            for(UserProfileMs userProfile : userList) {
-                UserProfileMsBean bean = new UserProfileMsBean();
-                    BeanUtils.copyProperties(userProfile, bean);
-                    data.add(bean);
-			}
-				res.setData(data);
-                res.setCode(EnumCodeResponse.SUCCESS.getCode());
-                res.setMessage(EnumCodeResponse.SUCCESS.name());
+    //         for(UserProfileMs userProfile : userList) {
+    //             UserProfileMsBean bean = new UserProfileMsBean();
+    //                 BeanUtils.copyProperties(userProfile, bean);
+    //                 data.add(bean);
+	// 		}
+	// 			res.setData(data);
+    //             res.setCode(EnumCodeResponse.SUCCESS.getCode());
+    //             res.setMessage(EnumCodeResponse.SUCCESS.name());
 
 
-		}catch (Exception e) {
-			res.setCode(EnumCodeResponse.FAIL.getCode());
-			res.setMessage(e.getMessage());
-		}
-		return res;
-    }
+	// 	}catch (Exception e) {
+	// 		res.setCode(EnumCodeResponse.FAIL.getCode());
+	// 		res.setMessage(e.getMessage());
+	// 	}
+	// 	return res;
+    // }
 
     public ResponseModel<List<UserProfileMs>> inquiryUserProfile(ReqInquiryProfile req) {
        
