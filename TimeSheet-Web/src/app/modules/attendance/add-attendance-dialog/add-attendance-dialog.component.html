@@ -32,7 +32,12 @@
       <mat-label> Site </mat-label>
     </div>
     <div class="col-4">
-      <input class="form-control" formControlName="siteCode" [ngClass]="{'is-invalid': submitted && f.siteCode.errors}">
+      <mat-select class="form-control" formControlName="siteCode" name="siteCode"
+        [ngClass]="{'is-invalid': submitted && f.siteCode.errors}">
+        <mat-option *ngFor="let data of dataSite " [value]="data.siteCode">
+          {{data.site}}
+        </mat-option>
+      </mat-select>
       <div *ngIf="submitted && f.siteCode.errors" class="invalid-feedback">
         <div *ngIf="f.siteCode.errors.required" class="text-danger help-block">
           {{'site' | mandatoryfield}}
