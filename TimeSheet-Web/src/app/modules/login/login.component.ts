@@ -1,3 +1,4 @@
+import { UserProfileService } from './../../service/user-profile.service';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/service/login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { Login, ReqProfile } from 'src/app/shared/model/reqLogin';
 import { RequestProfileService } from 'src/app/service/request-profile.service';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/shared/model/user';
+import { ReqInsertUserProfile } from 'src/app/shared/model/req-user-profile';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
   createUser: FormGroup;
   setToken: any;
   dataProfile: any;
+  createProfile: FormGroup;
  
  
 
@@ -31,7 +34,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private reqProfileService: RequestProfileService,    
     private _FormBuild: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private userProfileService: UserProfileService
+
   ) { }
 
   ngOnInit() {
@@ -77,13 +82,14 @@ export class LoginComponent implements OnInit {
       // console.log( this.dataProfile);
       sessionStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
       this.router.navigate(['/']);
-      this.setFromProfile(this.dataProfile);
+      this.setFromUser(this.dataProfile);
+      this.setFromUserProfile(this.dataProfile)
     }, (error) => {
       console.log(error);
      });
     }
 
-    setFromProfile(dataUser) {
+    setFromUser(dataUser) {
       this.createUser = this._FormBuild.group({
         userCode: [dataUser.userCode,Validators.required],
         lineManager:[dataUser.lineManager.userCode]
@@ -92,6 +98,23 @@ export class LoginComponent implements OnInit {
       this.onSaveUser();
 
     }
+
+    setFromUserProfile(dataUser) {
+      this.createProfile = this._FormBuild.group({
+        userCode: [dataUser.userCode,Validators.required],          
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        position: ['', Validators.required],
+        birthday: ['', Validators.required],
+        age: ['', Validators.required],
+        address: ['', Validators.required],     
+      });
+      console.log( this.createUser);
+      this.onSaveProfile();
+
+    }
+
+
 
     onSaveUser() {
       let request = new User();
@@ -102,6 +125,26 @@ export class LoginComponent implements OnInit {
         console.log(res);
       },
         (error) => {
+          console.log(error);
+        });
+    }
+
+    onSaveProfile() {      
+      let request = new ReqInsertUserProfile;
+      request.userCode = this.createProfile.controls['userCode'].value;
+      request.firstName = this.createProfile.controls['firstName'].value;
+      request.lastName = this.createProfile.controls['lastName'].value;
+      request.birthday = this.createProfile.controls['birthday'].value;
+      request.age = this.createProfile.controls['age'].value;
+      request.address = this.createProfile.controls['address'].value;
+      request.position = this.createProfile.controls['position'].value;
+      console.log(request)
+      this.userProfileService.insertProfile(request).subscribe((res) => {
+        console.log("Insert UserProfile Success");
+        console.log(res);
+      },
+        (error) => {
+         
           console.log(error);
         });
     }

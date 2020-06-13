@@ -9,13 +9,13 @@
             <mat-label> First Name </mat-label>
           </div>
           <div class="col-4">
-            <input class="form-control"  formControlName="firstName" disabled>
+            <input class="form-control"  formControlName="firstName">
           </div>
           <div class="col-2 mt-2" style="text-align: right;">
             <mat-label> Last Name </mat-label>
           </div>
           <div class="col-4">
-            <input class="form-control"  formControlName="lastName" disabled>
+            <input class="form-control"  formControlName="lastName">
             
           </div>
         </div>
@@ -26,7 +26,7 @@
             <mat-label> Birth Of Date </mat-label>
           </div>
           <div class="input-group" class="col-4">
-            <input formControlName="birthday" class="form-control" [matDatepicker]="pickerStart" disabled>
+            <input formControlName="birthday" class="form-control" [matDatepicker]="pickerStart">
             <div class="input-group-append">
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>

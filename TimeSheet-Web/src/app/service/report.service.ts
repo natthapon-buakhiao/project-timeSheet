@@ -19,15 +19,8 @@ export class ReportService {
     private http: HttpClient
   ) { }
 
-  insetReport(request:RequestInsertReport):Observable<any>{
-    let url = 'http://localhost:8091/report/insert';
-    return this.http.post(url,request,httpOptions).pipe(
-      tap(_ => console.log("insetReport success"))
-    )
-  }
-
   inquiryReport(request: RequestInquiryReport): Observable<any> {
-    let url = 'http://localhost:8091/report/inquiry';
+    let url = 'http://localhost:8091/report/list-staff';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('Inquiry Report success'))
     );

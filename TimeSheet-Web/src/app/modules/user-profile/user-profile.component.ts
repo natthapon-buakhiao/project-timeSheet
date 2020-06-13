@@ -71,8 +71,8 @@ export class UserProfileComponent implements OnInit {
     this.dataUser = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataUser.userCode;
     this.userService.inquiryUser(request).subscribe((res) => {
-      // console.log(res.data[0].userCode);
-      data = res.data;
+      console.log(res.data[0].userCode);
+      data = res.data[0];
       this.inquiryUserProfile(data);
       this.setFromProfile(data);
     }, (error) => { 
@@ -82,9 +82,9 @@ export class UserProfileComponent implements OnInit {
 
   get f() { return this.createProfile.controls; }
 
-  inquiryUserProfile(data){
+  inquiryUserProfile(data){   
     let request = new RequestInquiryProfile();    
-    request.userCode = data[0].userCode;
+    request.userCode = data.userCode;
     console.log(request)
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
@@ -97,9 +97,9 @@ export class UserProfileComponent implements OnInit {
 
 
   setFromProfile(dataUser) {
-    // console.log(dataUser)
+    console.log(dataUser)
     this.createProfile = this._FormBuild.group({
-      userCode: [dataUser[0].userCode, Validators.required],
+      userCode: [dataUser.userCode, Validators.required],
       firstName: [dataUser[0].firstName, Validators.required],
       lastName: [dataUser[0].lastName, Validators.required],
       position: [dataUser[0].position, Validators.required],
@@ -107,43 +107,43 @@ export class UserProfileComponent implements OnInit {
       age: [dataUser[0].age, Validators.required],
       address: [dataUser[0].address, Validators.required],     
     });
-    // console.log(this.createProfile)
-  }
-
-  onSubmit() {
-    this.submitted = true;
     console.log(this.createProfile)
-    if (this.createProfile.invalid) {
-      return;
-    } else {
-      this.saveSwal.title = Message.MESSAGE_SAVE;
-      this.saveSwal.fire();
-    }
   }
 
-  onSave() {
-    this.loading.show();
-    let request = new ReqInsertUserProfile;
-    request.userCode = this.createProfile.controls['userCode'].value;
-    request.firstName = this.createProfile.controls['firstName'].value;
-    request.lastName = this.createProfile.controls['lastName'].value;
-    request.birthday = this.createProfile.controls['birthday'].value;
-    request.age = this.createProfile.controls['age'].value;
-    request.address = this.createProfile.controls['address'].value;
-    request.position = this.createProfile.controls['position'].value;
+  // onSubmit() {
+  //   this.submitted = true;
+  //   console.log(this.createProfile)
+  //   if (this.createProfile.invalid) {
+  //     return;
+  //   } else {
+  //     this.saveSwal.title = Message.MESSAGE_SAVE;
+  //     this.saveSwal.fire();
+  //   }
+  // }
+
+  // onSave() {
+  //   this.loading.show();
+  //   let request = new ReqInsertUserProfile;
+  //   request.userCode = this.createProfile.controls['userCode'].value;
+  //   request.firstName = this.createProfile.controls['firstName'].value;
+  //   request.lastName = this.createProfile.controls['lastName'].value;
+  //   request.birthday = this.createProfile.controls['birthday'].value;
+  //   request.age = this.createProfile.controls['age'].value;
+  //   request.address = this.createProfile.controls['address'].value;
+  //   request.position = this.createProfile.controls['position'].value;
     
-    this.userProfileService.insertProfile(request).subscribe((res) => {
-      console.log("Insert UserProfile Success");
-      console.log(res);
-      this.loading.hide();
-      this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
-      this.saveSucessSwal.fire();
-    },
-      (error) => {
-        this.loading.hide();
-        console.log(error);
-      });
-  }
+  //   this.userProfileService.insertProfile(request).subscribe((res) => {
+  //     console.log("Insert UserProfile Success");
+  //     console.log(res);
+  //     this.loading.hide();
+  //     this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
+  //     this.saveSucessSwal.fire();
+  //   },
+  //     (error) => {
+  //       this.loading.hide();
+  //       console.log(error);
+  //     });
+  // }
 
   openDialogEdit(dataProfile) {
     console.log('The dialog was open add');

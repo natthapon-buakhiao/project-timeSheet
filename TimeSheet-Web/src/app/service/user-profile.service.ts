@@ -46,11 +46,4 @@ export class UserProfileService {
     );
   }
 
-  inquiryStaffProfile(request: RequestInquiryStaffProfile): Observable<any> {
-    let url = 'http://localhost:8091/profile/inquiry-staff';
-    return this.http.post<any>(url, request, httpOptions).pipe(
-      tap(_ => console.log('inquiry Staff Profile success'))
-    );
-  }
-
 }

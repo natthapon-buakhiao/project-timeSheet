@@ -9,5 +9,7 @@ export class RequestInsertReport {
 }
 
 export class RequestInquiryReport {
-    userCode: string;
+    lineManager: string;
+    siteCode: string;
+    
 }

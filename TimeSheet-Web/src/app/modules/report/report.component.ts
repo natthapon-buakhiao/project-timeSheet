@@ -1,6 +1,5 @@
 import { UserService } from './../../service/user.service';
 import { ReportService } from './../../service/report.service';
-import { AddReportDialogComponent } from './add-report-dialog/add-report-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
@@ -34,9 +33,7 @@ export class ReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllSite();
-    this.inquiryReport();
-    
+    this.getAllSite();    
   }
 
   getAllSite(){
@@ -50,43 +47,8 @@ export class ReportComponent implements OnInit {
       });
   }
 
-
-  inquiryReport() {
-    let request = new RequestInquiryReport();
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    this.reqReport.inquiryReport(request).subscribe((res) => {
-      console.log(res);
-      this.dataSource = new MatTableDataSource(res.data); 
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    },
-      (error) => {
-        console.log(error + "get Fail!!")
-      }
-    )
-
-  }
-
-  openDialogAdd(): void {
-    console.log('The dialog was open add');
-    const dialogRef = this.dialog.open(AddReportDialogComponent, {
-      width: '850px',
-      position: {
-        top: '10%',
-      },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.inquiryReport();
-        console.log("Add Success!")
-      }
-    });
-
-  }
-
-  goViewStaff() {
-    this.router.navigateByUrl('/list-staff');
+  goViewStaff(data: any) {
+    this.router.navigateByUrl('/list-staff', { state: { data } });    
   }
 
 }
