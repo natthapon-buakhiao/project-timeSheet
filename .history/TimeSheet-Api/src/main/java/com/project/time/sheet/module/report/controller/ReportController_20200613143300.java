@@ -1,0 +1,33 @@
+package com.project.time.sheet.module.report.controller;
+
+import com.project.time.sheet.module.report.service.ReportService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RestController
+@RequestMapping(path = "/report")
+@CrossOrigin(origins = "*")
+public class ReportController {
+
+    @Autowired
+    ReportService reportService;
+
+    
+    @RequestMapping(value = "/list-staff", method = RequestMethod.POST)
+    public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(ReqListStaff req){
+        ResponseModel<List<UserProfileMsBean>> res = new ResponseModel<List<UserProfileMsBean>>();
+        res = profileService.inquiryUserProfileStaff(req);
+        return ResponseEntity.ok(res);
+    }
+	
+	
+
+    
+}
