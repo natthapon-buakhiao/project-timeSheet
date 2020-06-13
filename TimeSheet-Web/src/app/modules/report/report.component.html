@@ -7,10 +7,12 @@
     </div>
 
     <div class="row">
-      <div class="col-3 mt-3">
-        <mat-card style="cursor: pointer;">         
+      <div class="col-3 mt-3" *ngFor="let site of dataSite">
+        <mat-card style="cursor: pointer;">     
+          <mat-card-title class="example-card2">Site Code: {{site.siteCode}}</mat-card-title>
+          <mat-divider></mat-divider>    
           <mat-card-header style="place-content: center;" (click)="goViewStaff()">
-            <mat-card-title class="example-card">SiteName</mat-card-title>
+            <mat-card-title class="example-card">{{site.site}}</mat-card-title>
           </mat-card-header>         
         </mat-card>
       </div>

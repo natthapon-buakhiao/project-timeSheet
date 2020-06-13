@@ -21,13 +21,6 @@ export class RequestAttendanceService {
     
   }
 
-  // getAttendance():Observable<any>{
-  //   let url = 'http://localhost:8091/attendance/inquiry';
-  //   return this.http.get(url,httpOptions).pipe(
-  //     tap(_ => console.log("getAttendance success"))
-  //   )
-  // }
-
   insetAttendance(request:ReqInsertAttendance):Observable<any>{
     let url = 'http://localhost:8091/attendance/insert';
     return this.http.post(url,request,httpOptions).pipe(
@@ -39,6 +32,13 @@ export class RequestAttendanceService {
     let url = 'http://localhost:8091/attendance/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('getAttendance success'))
+    );
+  }
+
+  getAllSite(): Observable<any> {
+    let url = 'http://localhost:8091/site/getdata';
+    return this.http.get<any>(url, httpOptions).pipe(
+      tap(_ => console.log('getAll Site success'))
     );
   }
 

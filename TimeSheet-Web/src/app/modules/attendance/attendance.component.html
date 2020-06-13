@@ -10,33 +10,31 @@
     <div class="col-12" style="text-align: right;">
       <button mat-raised-button class="btn-submit" *ngIf="isSup" (click)="exportAsXLSX()">
         <mat-icon>library_books</mat-icon>
-        View History
+        Export
       </button>&nbsp;
       <button mat-raised-button class="btn-submit" *ngIf="!isSup" (click)="openDialogAdd()">
-        <mat-icon>assessment</mat-icon>
+        <mat-icon>add_alarm</mat-icon>
         Add Attendance List
-      </button> &nbsp;
-      <!-- <input   [(ngModel)]="dateIn" class="form-control" [matDatepicker]="pickerStart">
-        <div class="input-group-append">
-          <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-          <mat-datepicker #pickerStart></mat-datepicker>
-        </div> -->
+      </button><br>
 
-      <input matInput [matDatepicker]="dp" [formControl]="dateTest">
-      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-      <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
-        (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
-      </mat-datepicker>
+      <mat-form-field style="text-align: center;">
+        <input matInput [matDatepicker]="dp" [formControl]="dateTest">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+          (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field><br>
+
+      <button mat-raised-button class="btn-submit" *ngIf="isSup" (click)="inquiryListStaff()">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+      <button mat-raised-button class="btn-submit" *ngIf="!isSup" (click)="getUser()">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
     </div>&nbsp;
-    <button mat-raised-button class="btn-submit" *ngIf="isSup" (click)="inquiryListStaff()">
-      <mat-icon>assessment</mat-icon>
-      Search
-    </button>
-    <button mat-raised-button class="btn-submit" *ngIf="!isSup" (click)="getUser()">
-      <mat-icon>assessment</mat-icon>
-      Search
-    </button>
-  </div>&nbsp;
+  </div>
 
 
   <div class="row mt-3" style="text-align: center;">

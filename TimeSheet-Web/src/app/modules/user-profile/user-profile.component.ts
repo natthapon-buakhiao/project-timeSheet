@@ -105,8 +105,7 @@ export class UserProfileComponent implements OnInit {
       position: [dataUser[0].position, Validators.required],
       birthday: [dataUser[0].birthday, Validators.required],
       age: [dataUser[0].age, Validators.required],
-      address: [dataUser[0].address, Validators.required],
-      site: [dataUser[0].site, Validators.required]
+      address: [dataUser[0].address, Validators.required],     
     });
     // console.log(this.createProfile)
   }
@@ -132,7 +131,7 @@ export class UserProfileComponent implements OnInit {
     request.age = this.createProfile.controls['age'].value;
     request.address = this.createProfile.controls['address'].value;
     request.position = this.createProfile.controls['position'].value;
-    request.site = this.createProfile.controls['site'].value;
+    
     this.userProfileService.insertProfile(request).subscribe((res) => {
       console.log("Insert UserProfile Success");
       console.log(res);

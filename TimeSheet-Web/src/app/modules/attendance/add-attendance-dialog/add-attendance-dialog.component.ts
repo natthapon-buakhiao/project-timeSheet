@@ -37,6 +37,7 @@ export class AddAttendanceDialogComponent implements OnInit {
   setToken: any;
   dataProfile: any;
   project: any;
+  dataSite: any;
 
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
@@ -61,6 +62,7 @@ export class AddAttendanceDialogComponent implements OnInit {
       timeOut: new FormControl(),
       siteCode: new FormControl(),
     });
+    this.getAllSite()
   }
 
 
@@ -80,6 +82,17 @@ export class AddAttendanceDialogComponent implements OnInit {
     });
   }
 
+  getAllSite(){
+    this.requestAttendance.getAllSite().subscribe((res) => {
+      console.log(res)
+      this.dataSite = res.data;     
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      });
+  }
+
+
   inquiryUserProject() {
     let request = new RequestInquiryUser();
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
@@ -88,9 +101,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
       console.log(res)
       this.project = res.data;
-      console.log(this.project)
-
-
+      // console.log(this.project)
     },
       (error) => {
         console.log(error + "get Fail!!")
@@ -98,6 +109,7 @@ export class AddAttendanceDialogComponent implements OnInit {
   }
 
   setFormAttendance(dataUser) {
+    console.log(dataUser)
     this.createAttendance = this._FormBuild.group({
       userCode: [dataUser.userCode, Validators.required],
       date: ['', Validators.required],

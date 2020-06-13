@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       console.log(success);
       if (success === true) {
         this.getUser();
-        console.log('accessToken = ' + this._login.getTokens());
+        // console.log('accessToken = ' + this._login.getTokens());
         
       }
 
@@ -70,11 +70,11 @@ export class LoginComponent implements OnInit {
     let request = new ReqProfile();
     this.setToken = JSON.parse(sessionStorage.getItem('accessToken'));
     request.token = this.setToken;
-    console.log(request);
+    // console.log(request);
 
     this.reqProfileService.getProfileIAM(request).subscribe((res)  => {
       this.dataProfile = res;
-      console.log( this.dataProfile);
+      // console.log( this.dataProfile);
       sessionStorage.setItem('userProfileIam', JSON.stringify(this.dataProfile));
       this.router.navigate(['/']);
       this.setFromProfile(this.dataProfile);
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
         userCode: [dataUser.userCode,Validators.required],
         lineManager:[dataUser.lineManager.userCode]
       });
-      console.log( this.createUser);
+      // console.log( this.createUser);
       this.onSaveUser();
 
     }
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
       let request = new User();
       request.userCode = this.createUser.controls['userCode'].value;
       request.lineManager = this.createUser.controls['lineManager'].value
-      console.log(request)
+      // console.log(request)
       this.userService.insertUser(request).subscribe((res) => {     
         console.log(res);
       },
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
 
   showAccessToken(){
     var data = JSON.parse(sessionStorage.getItem('token'));
-    console.log("accessToken", data.accessToken)    
+    // console.log("accessToken", data.accessToken)    
   }
 
 }

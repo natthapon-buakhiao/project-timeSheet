@@ -49,8 +49,7 @@ export class EditUserProfileDialogComponent implements OnInit {
       position: new FormControl(),
       birthday: new FormControl(),
       age: new FormControl(),
-      address: new FormControl(),
-      site: new FormControl()
+      address: new FormControl(),      
     });
   }
 
@@ -80,8 +79,7 @@ export class EditUserProfileDialogComponent implements OnInit {
       position: [dataProfile.position, Validators.required],
       birthday: [dataProfile.birthday, Validators.required],
       age: [dataProfile.age, Validators.required],
-      address: [dataProfile.address, Validators.required],
-      site: [dataProfile.site, Validators.required]
+      address: [dataProfile.address, Validators.required],      
     });
     console.log(this.editProfile);
 
@@ -106,8 +104,7 @@ export class EditUserProfileDialogComponent implements OnInit {
     request.birthday = this.editProfile.controls['birthday'].value;
     request.age = this.editProfile.controls['age'].value;
     request.address = this.editProfile.controls['address'].value;
-    request.position = this.editProfile.controls['position'].value;
-    request.site = this.editProfile.controls['site'].value;
+    request.position = this.editProfile.controls['position'].value;   
     this.userProfileService.editProfile(request).subscribe((res) => {
       console.log("edit UserProfile Success");
       console.log(res);

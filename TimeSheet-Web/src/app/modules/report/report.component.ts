@@ -6,6 +6,8 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { Router } from '@angular/router';
 import { RequestInquiryReport } from 'src/app/shared/model/report';
 import { RequestInquiryUser } from 'src/app/shared/model/user';
+import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
+import { DataSite } from 'src/app/shared/model/requestAttendance';
 
 
 @Component({
@@ -21,16 +23,31 @@ export class ReportComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   dataProfile: any;
+  dataSite: DataSite[];
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private reqReport: ReportService,
-    private userService: UserService
+    private requestAttendance: RequestAttendanceService
+
   ) { }
 
   ngOnInit() {
+    this.getAllSite();
     this.inquiryReport();
+    
+  }
+
+  getAllSite(){
+    this.requestAttendance.getAllSite().subscribe((res) => {
+      console.log(res)
+      this.dataSite = res.data;     
+      console.log(this.dataSite)
+    },
+      (error) => {
+        console.log(error + "get Fail!!")
+      });
   }
 
 

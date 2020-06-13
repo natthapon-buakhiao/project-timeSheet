@@ -60,12 +60,12 @@
     </div>
   
     <div mat-dialog-actions class="mt-3" style="float: right;">
-      <button mat-raised-button type="submit" class="btn-submit">Save</button>
-      <a mat-raised-button class="btn-cancle" (click)="canCle(false)">Cancel</a>
+      <button mat-raised-button type="submit" class="btn-submit"><mat-icon>save_alt</mat-icon> Save </button>
+      <a mat-raised-button class="btn-cancle" (click)="canCle(false)"><mat-icon>cancel</mat-icon> Cancel </a>
     </div>
   </form>
   
-  <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="#ABEBC6"
+  <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="rgb(163, 236, 114)"
     [showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
   </swal>
   <swal #saveSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="canCle(true)" [width]="480">
