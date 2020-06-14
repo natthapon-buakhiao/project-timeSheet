@@ -24,8 +24,8 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, Us
     
 
     @Query(value =  "SELECT USER_PROFILE_MS.*  FROM USER_MS " + 
-    "INNER JOIN USER_PROFILE_MS ON USER_MS.USER_CODE = USER_PROFILE_MS.USER_CODE AND USER_MS.LINE_MANAGER = :LINE_MANAGER " + 
-    "INNER JOIN ATTENDANCE ON USER_MS.USER_CODE = ATTENDANCE.USER_CODE AND ATTENDANCE.SITE_CODE = :SITE_CODE " + 
+    "INNER JOIN USER_PROFILE_MS ON USER_MS.USER_CODE = USER_PROFILE_MS.USER_CODE AND USER_MS.LINE_MANAGER = :lineManager " + 
+    "INNER JOIN ATTENDANCE ON USER_MS.USER_CODE = ATTENDANCE.USER_CODE AND ATTENDANCE.SITE_CODE = :siteCode " + 
     "GROUP BY USER_PROFILE_MS.USER_CODE HAVING COUNT(USER_PROFILE_MS.USER_CODE) > 0 "  , nativeQuery = true )
-    List<UserProfileMs> findByAllStaff(@Param("LINE_MANAGER")  String lineManager, @Param("SITE_CODE")  String siteCode);
+    List<UserProfileMs> findByAllStaff(@Param("lineManager")  String lineManager, @Param("siteCode")  String siteCode);
 }

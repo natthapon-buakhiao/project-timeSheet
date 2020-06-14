@@ -12,7 +12,7 @@
 
         <ng-container matColumnDef="userCode">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> User Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.user.userCode}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.id.user.userCode}} </td>
         </ng-container>
 
         <ng-container matColumnDef="firstName">
@@ -28,7 +28,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="goAttendance(element.user.userCode)">
+            <button mat-button (click)="goAttendance(element.id.user.userCode)">
               <mat-icon>account_box</mat-icon>
             </button>
           </td>

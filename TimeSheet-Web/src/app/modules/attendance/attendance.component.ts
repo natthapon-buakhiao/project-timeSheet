@@ -72,6 +72,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.dataStaff = history.state;
     // console.log(this.dataStaff.data)
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
@@ -144,6 +145,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   inquiryListStaff() {
+    this.dataExcel = []; 
     let request = new RequestInquiryAttendace();
     request.userCode = this.dataStaff.data;
     request.date = this.dateTest.value._d;
@@ -154,6 +156,7 @@ export class AttendanceComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.arraydataSource = this.dataSource.data;
+      // console.log(this.arraydataSource)
 
       // SETTING OBJECT EXCEL
       this.arraydataSource.forEach((data) => {
