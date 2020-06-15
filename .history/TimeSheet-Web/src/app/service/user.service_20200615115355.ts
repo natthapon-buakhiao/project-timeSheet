@@ -34,7 +34,7 @@ export class UserService {
   }
 
   inquiryUser(request: RequestInquiryUser): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/user/inquiry';
+    let url = 'http://localhost:8091/user/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiryUser success'))
     );

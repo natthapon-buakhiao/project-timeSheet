@@ -23,7 +23,7 @@ export class LoginService {
       "password": password,
       "userCode": userCode
     };
-    return this.http.post<any>('http://localhost:8091/time-sheet/iam/login', objLogin)
+    return this.http.post<any>('http://localhost:8091/iam/login', objLogin)
       .pipe(
         tap(tokens => this.doLoginUser(userCode, tokens.accessToken)),
         mapTo(true),

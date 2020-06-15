@@ -32,7 +32,7 @@ export class RequestUserProjectService {
   }
 
   insetUserProject(request: ReqInsertUserProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/userproject/insert';
+    let url = 'http://localhost:8091/userproject/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert UserProject success"))
     );

@@ -112,7 +112,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     console.log(dataUser)
     this.createAttendance = this._FormBuild.group({
       userCode: [dataUser.userCode, Validators.required],
-      date: [new Date(), Validators.required],
+      date: ['', Validators.required],
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       timeIn: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],

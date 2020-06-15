@@ -32,21 +32,21 @@ export class RequestProjectService {
   }
 
   insetProject(request: ReqInsertProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/project/insert';
+    let url = 'http://localhost:8091/project/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert Project success"))
     );
   }
 
   editProject(request: ReqEditProject):Observable<any>{
-    let url = 'http://localhost:8091/time-sheet/project/edit';
+    let url = 'http://localhost:8091/project/edit';
     return this.http.post(url,request,httpOptions).pipe(
       tap(_ => console.log("editCustomer success"))
     )
   }
 
   deleteProject(request: ReqRemoveProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/project/remove';
+    let url = 'http://localhost:8091/project/remove';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert Project success"))
     );

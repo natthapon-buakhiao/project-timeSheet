@@ -46,7 +46,7 @@ export class RequestProjectService {
   }
 
   deleteProject(request: ReqRemoveProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/project/remove';
+    let url = 'http://localhost:8091/project/remove';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert Project success"))
     );

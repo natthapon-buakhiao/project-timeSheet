@@ -20,7 +20,7 @@ export class ReportService {
   ) { }
 
   inquiryReport(request: RequestInquiryReport): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/report/list-staff';
+    let url = 'http://localhost:8091/report/list-staff';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('Inquiry Report success'))
     );

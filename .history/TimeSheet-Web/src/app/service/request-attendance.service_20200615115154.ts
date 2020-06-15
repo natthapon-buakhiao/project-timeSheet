@@ -36,7 +36,7 @@ export class RequestAttendanceService {
   }
 
   getAllSite(): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/site/getdata';
+    let url = 'http://localhost:8091/site/getdata';
     return this.http.get<any>(url, httpOptions).pipe(
       tap(_ => console.log('getAll Site success'))
     );

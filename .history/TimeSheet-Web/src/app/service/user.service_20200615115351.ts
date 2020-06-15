@@ -27,14 +27,14 @@ export class UserService {
 
 
   insertUser(request: User): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/user/insert';
+    let url = 'http://localhost:8091/user/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insertUser success"))
     );
   }
 
   inquiryUser(request: RequestInquiryUser): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/user/inquiry';
+    let url = 'http://localhost:8091/user/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiryUser success'))
     );

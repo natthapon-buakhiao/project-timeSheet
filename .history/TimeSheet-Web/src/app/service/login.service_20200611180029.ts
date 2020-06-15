@@ -10,7 +10,7 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
 })
 export class LoginService {
 
-  public API: string = "http://localhost:8091/time-sheet";
+  public API: string = "http://localhost:8091";
   private loggedUser: string;
   allowed: any;
   constructor(
@@ -23,7 +23,7 @@ export class LoginService {
       "password": password,
       "userCode": userCode
     };
-    return this.http.post<any>('http://localhost:8091/time-sheet/iam/login', objLogin)
+    return this.http.post<any>('http://localhost:8091/iam/login', objLogin)
       .pipe(
         tap(tokens => this.doLoginUser(userCode, tokens.accessToken)),
         mapTo(true),

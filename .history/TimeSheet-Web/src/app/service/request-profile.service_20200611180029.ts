@@ -22,7 +22,7 @@ export class RequestProfileService {
 
 
   getProfileIAM(request: ReqProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/iam/inquiryProfile';
+    let url = 'http://localhost:8091/iam/inquiryProfile';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('getProfile success'))
     );

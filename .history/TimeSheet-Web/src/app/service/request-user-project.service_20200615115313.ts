@@ -25,14 +25,14 @@ export class RequestUserProjectService {
   }
 
   inquiryUserProjectName(request: RequestInquiryProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/userproject/inquiry-userproject';
+    let url = 'http://localhost:8091/userproject/inquiry-userproject';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiry UserProject success'))
     );
   }
 
   insetUserProject(request: ReqInsertUserProject): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/userproject/insert';
+    let url = 'http://localhost:8091/userproject/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insert UserProject success"))
     );

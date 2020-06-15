@@ -33,14 +33,14 @@ export class UserProfileService {
   }
 
   insertProfile(request: ReqInsertUserProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/insert';
+    let url = 'http://localhost:8091/profile/insert';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insetUserPrpfile success"))
     );
   }
 
   editProfile(request: ReqEditUserProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/edit';
+    let url = 'http://localhost:8091/profile/edit';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("editUserPrpfile success"))
     );
