@@ -20,23 +20,23 @@ export class RequestUserProjectService {
   constructor(private http: HttpClient) { }
 
   inquiryUserProject(request: RequestInquiryUser): Observable<any> {
-    let url = endpoint + "/inquiry-project";
+    const url = endpoint + '/inquiry-project';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiry Project success'))
     );
   }
 
   inquiryUserProjectName(request: RequestInquiryProject): Observable<any> {
-    let url = endpoint + "/inquiry-userproject";
+    const url = endpoint + '/inquiry-userproject';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiry UserProject success'))
     );
   }
 
   insetUserProject(request: ReqInsertUserProject): Observable<any> {
-    let url = endpoint + "/insert";
+    const url = endpoint + '/insert';
     return this.http.post(url, request, httpOptions).pipe(
-      tap(_ => console.log("insert UserProject success"))
+      tap(_ => console.log('insert UserProject success'))
     );
   }
 

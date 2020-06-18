@@ -1,8 +1,8 @@
 export class User {
-    userCode: string
-    lineManager: string
+    userCode: string;
+    lineManager: string;
 }
 
-export class RequestInquiryUser{
-    userCode: string
+export class RequestInquiryUser {
+    userCode: string;
 }

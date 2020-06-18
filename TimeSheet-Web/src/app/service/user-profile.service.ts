@@ -20,30 +20,30 @@ export class UserProfileService {
   constructor(private http: HttpClient) { }
 
   getAllUserProfile(): Observable<any> {
-    let url = endpoint + "/getdata";
+    const url = endpoint + '/getdata';
     return this.http.get<any>(url, httpOptions).pipe(
       tap(_ => console.log('getAllUser success'))
     );
   }
 
   inquiryUserProfile(request: RequestInquiryProfile): Observable<any> {
-    let url = endpoint + "/inquiry";
+    const url = endpoint + '/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiryUserProfile success'))
     );
   }
 
   insertProfile(request: ReqInsertUserProfile): Observable<any> {
-    let url = endpoint + "/insert";
+    const url = endpoint + '/insert';
     return this.http.post(url, request, httpOptions).pipe(
-      tap(_ => console.log("insetUserPrpfile success"))
+      tap(_ => console.log('insetUserPrpfile success'))
     );
   }
 
   editProfile(request: ReqEditUserProfile): Observable<any> {
-    let url = endpoint + "/edit";
+    const url = endpoint + '/edit';
     return this.http.post(url, request, httpOptions).pipe(
-      tap(_ => console.log("editUserPrpfile success"))
+      tap(_ => console.log('editUserPrpfile success'))
     );
   }
 

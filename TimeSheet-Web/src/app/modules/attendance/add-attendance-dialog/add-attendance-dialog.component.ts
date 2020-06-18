@@ -28,10 +28,10 @@ import { RequestUserProjectService } from 'src/app/service/request-user-project.
   ]
 })
 export class AddAttendanceDialogComponent implements OnInit {
-  @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
-  @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
+  @ViewChild('saveSwal', { static: false }) saveSwal: SwalComponent;
+  @ViewChild('saveSucessSwal', { static: false }) saveSucessSwal: SwalComponent;
 
-  createAttendance: FormGroup
+  createAttendance: FormGroup;
   submitted = false;
   dataUser: any;
   setToken: any;
@@ -42,10 +42,10 @@ export class AddAttendanceDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
     private _FormBuild: FormBuilder,
-    private requestAttendance: RequestAttendanceService,    
+    private requestAttendance: RequestAttendanceService,
     private userService: UserService,
     private loading: NgxSpinnerService,
-    private noWhitespaceValidator: noWhitespaceValidator,    
+    private noWhitespaceValidator: noWhitespaceValidator,
     private reqUserProject: RequestUserProjectService
   ) { }
 
@@ -62,14 +62,14 @@ export class AddAttendanceDialogComponent implements OnInit {
       timeOut: new FormControl(),
       siteCode: new FormControl(),
     });
-    this.getAllSite()
+    this.getAllSite();
   }
 
 
   get f() { return this.createAttendance.controls; }
 
   getUser() {
-    let request = new RequestInquiryAttendace();
+    const request = new RequestInquiryAttendace();
     let data: any;
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
@@ -82,34 +82,34 @@ export class AddAttendanceDialogComponent implements OnInit {
     });
   }
 
-  getAllSite(){
+  getAllSite() {
     this.requestAttendance.getAllSite().subscribe((res) => {
-      console.log(res)
-      this.dataSite = res.data;     
+      console.log(res);
+      this.dataSite = res.data;
     },
       (error) => {
-        console.log(error + "get Fail!!")
+        console.log(error + 'get Fail!!');
       });
   }
 
 
   inquiryUserProject() {
-    let request = new RequestInquiryUser();
+    const request = new RequestInquiryUser();
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
-    console.log(request)
+    console.log(request);
     this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
-      console.log(res)
+      console.log(res);
       this.project = res.data;
       // console.log(this.project)
     },
       (error) => {
-        console.log(error + "get Fail!!")
-      })
+        console.log(error + 'get Fail!!');
+      });
   }
 
   setFormAttendance(dataUser) {
-    console.log(dataUser)
+    console.log(dataUser);
     this.createAttendance = this._FormBuild.group({
       userCode: [dataUser.userCode, Validators.required],
       date: [new Date(), Validators.required],
@@ -118,8 +118,8 @@ export class AddAttendanceDialogComponent implements OnInit {
       timeIn: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       timeOut: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       siteCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-    })
-    console.log(this.createAttendance)
+    });
+    console.log(this.createAttendance);
   }
 
   onSubmit() {
@@ -134,20 +134,20 @@ export class AddAttendanceDialogComponent implements OnInit {
 
   onSave() {
     console.log(this.createAttendance);
-    let requestInsert = new ReqInsertAttendance();
-    requestInsert.userCode = this.createAttendance.controls['userCode'].value;
-    requestInsert.date = this.createAttendance.controls['date'].value;
-    requestInsert.projectCode = this.createAttendance.controls['projectCode'].value;
-    requestInsert.task = this.createAttendance.controls['task'].value;
-    requestInsert.timeIn = this.createAttendance.controls['timeIn'].value;
-    requestInsert.timeOut = this.createAttendance.controls['timeOut'].value;
-    requestInsert.siteCode = this.createAttendance.controls['siteCode'].value;
+    const requestInsert = new ReqInsertAttendance();
+    requestInsert.userCode = this.createAttendance.controls.userCode.value;
+    requestInsert.date = this.createAttendance.controls.date.value;
+    requestInsert.projectCode = this.createAttendance.controls.projectCode.value;
+    requestInsert.task = this.createAttendance.controls.task.value;
+    requestInsert.timeIn = this.createAttendance.controls.timeIn.value;
+    requestInsert.timeOut = this.createAttendance.controls.timeOut.value;
+    requestInsert.siteCode = this.createAttendance.controls.siteCode.value;
 
     this.requestAttendance.insetAttendance(requestInsert).subscribe((res) => {
       this.loading.hide();
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
-      console.log(res)
+      console.log(res);
     }, (error) => {
       this.loading.hide();
       console.log(error);

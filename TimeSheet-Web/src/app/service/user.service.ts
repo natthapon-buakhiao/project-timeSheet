@@ -21,7 +21,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllUser(): Observable<any> {
-    let url = endpoint + "/getdata";
+    const url = endpoint + '/getdata';
     return this.http.get<any>(url, httpOptions).pipe(
       tap(_ => console.log('getAllUser success'))
     );
@@ -29,14 +29,14 @@ export class UserService {
 
 
   insertUser(request: User): Observable<any> {
-    let url = endpoint + "/insert";
+    const url = endpoint + '/insert';
     return this.http.post(url, request, httpOptions).pipe(
-      tap(_ => console.log("insertUser success"))
+      tap(_ => console.log('insertUser success'))
     );
   }
 
   inquiryUser(request: RequestInquiryUser): Observable<any> {
-    let url = endpoint + "/inquiry";
+    const url = endpoint + '/inquiry';
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiryUser success'))
     );

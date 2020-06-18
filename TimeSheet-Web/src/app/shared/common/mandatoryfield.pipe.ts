@@ -7,7 +7,7 @@ export class MandatoryfieldPipe implements PipeTransform {
 
   transform(value: string): any {
     console.log(value);
-    let str = "Please enter a " + value + ".";
+    const str = 'Please enter a ' + value + '.';
     return str;
   }
 
