@@ -1,5 +1,6 @@
 
 npm install
+ng build --prod
 ng build --prod --base-href /time-sheet/
 
 

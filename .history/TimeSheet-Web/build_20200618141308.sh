@@ -1,6 +1,6 @@
 
 npm install
-ng build --prod --base-href /time-sheet/
+ng build --prod
 
 
 docker stop time-sheet-web
