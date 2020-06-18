@@ -13,5 +13,5 @@ ADD ${JAR_FILE} /home/app.jar
 
 WORKDIR /home
 
-EXPOSE 8091
+EXPOSE 80
 ENTRYPOINT exec java -jar -Xms128m -Xmx256m -Dlogback.timezone=Asia/Bangkok  /home/app.jar

@@ -124,6 +124,7 @@ public class AttendanceService {
 
         try {
             Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
+            // Optional<Attendance> newAttendance = attendanceRepository.findByUser(user);
             Project project = projectRepository.getOne(req.getProjectCode());
             Site site = siteRepository.getOne(req.getSiteCode());
 

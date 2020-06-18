@@ -123,22 +123,21 @@ public class AttendanceService {
         ResponseModel res = new ResponseModel();
 
         try {
-            Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
-            Project project = projectRepository.getOne(req.getProjectCode());
-            Site site = siteRepository.getOne(req.getSiteCode());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<Attendance> newAttendance = attendanceRepository.findByUser(user);
 
             if (newAttendance.isPresent()) {
-                newAttendance.get().setDate(req.getDate());
-                newAttendance.get().setTask(req.getTask());
-                newAttendance.get().setProject(project);
-                newAttendance.get().setSite(site);
-                newAttendance.get().setTimeIn(req.getTimeIn());
-                newAttendance.get().setTimeOut(req.getTimeOut());
-                attendanceRepository.save(newAttendance.get());
+                newAttendance.get().setDate(req.getDate()));
+                newUserProfile.get().setLastName(req.getLastName());
+                newUserProfile.get().setAge(req.getAge());
+                newUserProfile.get().setAddress(req.getAddress());
+                newUserProfile.get().setPosition(req.getPosition());
+                newUserProfile.get().setBirthday(req.getBirthday());
+                userProfileMsRepository.save(newUserProfile.get());
 
             }
             else {
-                throw new DataNotFoundException("Data not found, Method : editAttendance");
+                throw new DataNotFoundException("Data not found, Method : editUserProfile");
             }
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());

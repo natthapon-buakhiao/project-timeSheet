@@ -53,7 +53,7 @@ public class AttendanceController {
 		
 		ResponseModel res = new ResponseModel();
 		
-		res = attendanceService.editAttendance(req);
+		res = attendanceService.editProfile(req);
 		
 		return ResponseEntity.ok(res);
 	}

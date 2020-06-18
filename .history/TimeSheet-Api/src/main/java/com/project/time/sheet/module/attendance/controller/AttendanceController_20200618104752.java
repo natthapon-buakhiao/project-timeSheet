@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.time.sheet.common.models.AttendanceBean;
 import com.project.time.sheet.common.models.ResponseModel;
-import com.project.time.sheet.module.attendance.models.request.ReqEditAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
 import com.project.time.sheet.module.attendance.service.AttendanceService;
@@ -53,7 +52,7 @@ public class AttendanceController {
 		
 		ResponseModel res = new ResponseModel();
 		
-		res = attendanceService.editAttendance(req);
+		res = profileService.editProfile(req);
 		
 		return ResponseEntity.ok(res);
 	}

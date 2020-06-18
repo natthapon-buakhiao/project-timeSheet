@@ -123,7 +123,9 @@ public class AttendanceService {
         ResponseModel res = new ResponseModel();
 
         try {
-            Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<Attendance> newAttendance = coopMsProductRepository.findById(req.getProductCode());
+            // Optional<Attendance> newAttendance = attendanceRepository.findByUser(user);
             Project project = projectRepository.getOne(req.getProjectCode());
             Site site = siteRepository.getOne(req.getSiteCode());
 
