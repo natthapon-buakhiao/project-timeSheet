@@ -211,10 +211,11 @@ export class AttendanceComponent implements OnInit {
 
   }
 
-  openDialogEdit(): void {
+  openDialogEdit(dataAttendance) {
     console.log('The dialog was open edit');
     const dialogRef = this.dialog.open(EditAttendanceDialogComponent, {
       width: '750px',
+      data: dataAttendance,
       position: {
         top: '10%',
       },

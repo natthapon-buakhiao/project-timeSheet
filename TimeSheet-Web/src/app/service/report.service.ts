@@ -1,4 +1,4 @@
-import { RequestInsertReport, RequestInquiryReport } from './../shared/model/report';
+import { RequestInquiryReport } from './../shared/model/report';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
