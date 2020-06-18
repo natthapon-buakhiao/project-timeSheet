@@ -3,8 +3,9 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { RequestInquiryProfile, ReqEditUserProfile, ReqInsertUserProfile, RequestInquiryStaffProfile } from '../shared/model/req-user-profile';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-
+const endpoint = environment.service.profile.endPoint;
 const httpOptions = {
   headers: new HttpHeaders({
     'content-type' : 'application/json'
@@ -19,28 +20,28 @@ export class UserProfileService {
   constructor(private http: HttpClient) { }
 
   getAllUserProfile(): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/getdata';
+    let url = endpoint + "/getdata";
     return this.http.get<any>(url, httpOptions).pipe(
       tap(_ => console.log('getAllUser success'))
     );
   }
 
   inquiryUserProfile(request: RequestInquiryProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/inquiry';
+    let url = endpoint + "/inquiry";
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('inquiryUserProfile success'))
     );
   }
 
   insertProfile(request: ReqInsertUserProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/insert';
+    let url = endpoint + "/insert";
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("insetUserPrpfile success"))
     );
   }
 
   editProfile(request: ReqEditUserProfile): Observable<any> {
-    let url = 'http://localhost:8091/time-sheet/profile/edit';
+    let url = endpoint + "/edit";
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log("editUserPrpfile success"))
     );

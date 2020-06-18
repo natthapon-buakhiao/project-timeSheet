@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, mapTo, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
+const endpoint = environment.service.auth.endPoint;
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  public API: string = "http://localhost:8091/time-sheet";
+  // public API: string = "http://localhost:8091/time-sheet";
   private loggedUser: string;
   allowed: any;
   constructor(
@@ -23,7 +25,7 @@ export class LoginService {
       "password": password,
       "userCode": userCode
     };
-    return this.http.post<any>('http://localhost:8091/time-sheet/iam/login', objLogin)
+    return this.http.post<any>(endpoint, objLogin)
       .pipe(
         tap(tokens => this.doLoginUser(userCode, tokens.accessToken)),
         mapTo(true),

@@ -121,17 +121,17 @@
       </div>
     </div>
 
-    <div class="col-2 mt-2" style="text-align: right;">
+    <!-- <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> User Code </mat-label>
     </div>
     <div class="col-4">
       <input class="form-control" formControlName="userCode" disabled>
-    </div>
+    </div> -->
   </div>
 
   <div mat-dialog-actions class="mt-3" style="float: right;">
-    <button mat-raised-button type="submit" class="btn-submit">Save</button>
-    <a mat-raised-button class="btn-cancle" (click)="canCle(false)">Cancel</a>
+    <button mat-raised-button type="submit" class="btn-submit"><mat-icon>save_alt</mat-icon> Save</button>
+    <a mat-raised-button class="btn-cancle" (click)="canCle(false)"><mat-icon>cancel</mat-icon> Cancel</a>
   </div>
 </form>
 

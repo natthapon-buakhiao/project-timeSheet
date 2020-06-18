@@ -8,13 +8,14 @@ import { AttendanceComponent } from './attendance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
 
 
 
 
 
 @NgModule({
-  declarations: [AttendanceComponent,ExportDirective],
+  declarations: [AttendanceComponent,ExportDirective, EditAttendanceDialogComponent],
   imports: [
     CommonModule,
     AttendanceRoutingModule,
@@ -25,7 +26,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SweetAlert2Module.forRoot(),    
     
   ],
-  entryComponents:[],
+  entryComponents:[EditAttendanceDialogComponent],
   providers: [
     RequestAttendanceService,
     ExportDirective

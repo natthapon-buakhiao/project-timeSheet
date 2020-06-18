@@ -11,12 +11,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
 import { MomentDateAdapter} from '@angular/material-moment-adapter';
-
-
-
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
 import { FormControl } from '@angular/forms';
+import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -45,7 +43,7 @@ export const MY_FORMATS = {
 })
 export class AttendanceComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'project', 'task', 'site', 'timeIn', 'timeOut'];
+  displayedColumns: string[] = ['date', 'project', 'task', 'site', 'timeIn', 'timeOut', 'action'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -208,6 +206,24 @@ export class AttendanceComponent implements OnInit {
       if (result) {
         this.getUser();
         console.log("Add Success!")
+      }
+    });
+
+  }
+
+  openDialogEdit(dataAttendance) {
+    console.log('The dialog was open edit');
+    const dialogRef = this.dialog.open(EditAttendanceDialogComponent, {
+      width: '750px',
+      data: dataAttendance,
+      position: {
+        top: '10%',
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getUser();
+        console.log("Edit Success!")
       }
     });
 

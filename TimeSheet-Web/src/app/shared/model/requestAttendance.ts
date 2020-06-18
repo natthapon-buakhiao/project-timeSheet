@@ -8,6 +8,16 @@ export class ReqInsertAttendance{
     timeOut:string
 }
 
+export class ReqEditAttendance{
+    id:number
+    date:Date
+    projectCode:string
+    task:string
+    siteCode:string
+    timeIn:string
+    timeOut:string
+}
+
 export class RequestInquiryAttendace {
     userCode: string;
     date: Date;
