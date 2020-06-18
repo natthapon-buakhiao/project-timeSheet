@@ -3,7 +3,9 @@ import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReqProfile } from '../shared/model/reqLogin';
+import { environment } from 'src/environments/environment';
 
+const endpoint = environment.service.profileIam.endPoint;
 const httpOptions = {
   headers: new HttpHeaders({
     'content-type': 'application/json'
@@ -22,7 +24,7 @@ export class RequestProfileService {
 
 
   getProfileIAM(request: ReqProfile): Observable<any> {
-    let url = 'http://localhost:8091/iam/inquiryProfile';
+    let url = endpoint + "/inquiryProfile";
     return this.http.post<any>(url, request, httpOptions).pipe(
       tap(_ => console.log('getProfile success'))
     );

@@ -8,17 +8,17 @@ export class noWhitespaceValidator {
     noWhitespaceValidator() {}
 
     noWhitespace(control: FormControl) {
-        const isWhitespace = (control.value || "").trim().length === 0;
+        const isWhitespace = (control.value || '').trim().length === 0;
         const isValid = !isWhitespace;
-        return of(isValid ? null : { "whitespace": true });
+        return of(isValid ? null : { whitespace: true });
     }
 
     noAndRemoveWhitespace(control: FormControl) {
-      const isWhitespace = (control.value || "").trim().length === 0;
+      const isWhitespace = (control.value || '').trim().length === 0;
       const isValid = !isWhitespace;
-      let removedSpaces = control.value.split(' ').join('');
+      const removedSpaces = control.value.split(' ').join('');
       control.value !== removedSpaces && control.setValue(removedSpaces);
-      return of(isValid ? null : { "whitespace": true });
+      return of(isValid ? null : { whitespace: true });
   }
 
 }

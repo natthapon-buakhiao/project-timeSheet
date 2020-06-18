@@ -23,8 +23,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.ada
     ]
 })
 export class EditUserProfileDialogComponent implements OnInit {
-  @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
-  @ViewChild("saveSucessSwal", { static: false }) saveSucessSwal: SwalComponent;
+  @ViewChild('saveSwal', { static: false }) saveSwal: SwalComponent;
+  @ViewChild('saveSucessSwal', { static: false }) saveSucessSwal: SwalComponent;
   editProfile: FormGroup;
   submitted = false;
   dataProfile: any;
@@ -49,12 +49,12 @@ export class EditUserProfileDialogComponent implements OnInit {
       position: new FormControl(),
       birthday: new FormControl(),
       age: new FormControl(),
-      address: new FormControl(),      
+      address: new FormControl(),
     });
   }
 
   getUserProfile(userCode) {
-    let request = new RequestInquiryProfile();
+    const request = new RequestInquiryProfile();
     let data: any;
     this.userCode = userCode;
     request.userCode = this.userCode;
@@ -71,7 +71,7 @@ export class EditUserProfileDialogComponent implements OnInit {
 
 
   setFromProfile(dataProfile) {
-    console.log(dataProfile)
+    console.log(dataProfile);
     this.editProfile = this._FormBuild.group({
       userCode: [dataProfile.id.user.userCode, Validators.required],
       firstName: [dataProfile.firstName, Validators.required],
@@ -79,7 +79,7 @@ export class EditUserProfileDialogComponent implements OnInit {
       position: [dataProfile.position, Validators.required],
       birthday: [dataProfile.birthday, Validators.required],
       age: [dataProfile.age, Validators.required],
-      address: [dataProfile.address, Validators.required],      
+      address: [dataProfile.address, Validators.required],
     });
     console.log(this.editProfile);
 
@@ -97,16 +97,16 @@ export class EditUserProfileDialogComponent implements OnInit {
 
   onSave() {
     this.loading.show();
-    let request = new ReqEditUserProfile();
-    request.userCode = this.editProfile.controls['userCode'].value;
-    request.firstName = this.editProfile.controls['firstName'].value;
-    request.lastName = this.editProfile.controls['lastName'].value;
-    request.birthday = this.editProfile.controls['birthday'].value;
-    request.age = this.editProfile.controls['age'].value;
-    request.address = this.editProfile.controls['address'].value;
-    request.position = this.editProfile.controls['position'].value;   
+    const request = new ReqEditUserProfile();
+    request.userCode = this.editProfile.controls.userCode.value;
+    request.firstName = this.editProfile.controls.firstName.value;
+    request.lastName = this.editProfile.controls.lastName.value;
+    request.birthday = this.editProfile.controls.birthday.value;
+    request.age = this.editProfile.controls.age.value;
+    request.address = this.editProfile.controls.address.value;
+    request.position = this.editProfile.controls.position.value;
     this.userProfileService.editProfile(request).subscribe((res) => {
-      console.log("edit UserProfile Success");
+      console.log('edit UserProfile Success');
       console.log(res);
       this.loading.hide();
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;

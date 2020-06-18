@@ -7,7 +7,7 @@ export class RequestInquiryProject {
 }
 
 export class ReqInsertUserProject {
-    projectCode: string
+    projectCode: string;
     task: string;
     userCode: string;
     date: Date;
