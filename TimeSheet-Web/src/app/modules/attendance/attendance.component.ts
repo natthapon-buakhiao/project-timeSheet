@@ -156,7 +156,7 @@ export class AttendanceComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.arraydataSource = this.dataSource.data;
-      // console.log(this.arraydataSource)
+      console.log(this.arraydataSource)
 
       // SETTING OBJECT EXCEL
       this.arraydataSource.forEach((data) => {
@@ -166,7 +166,7 @@ export class AttendanceComponent implements OnInit {
         this.excel.id = data.id
         this.excel.date = data.date
         this.excel.project = data.project.projectName
-        this.excel.site = data.site
+        this.excel.site = data.site.site
         this.excel.task = data.task
         this.excel.timeIn = data.timeIn
         this.excel.timeOut = data.timeOut
