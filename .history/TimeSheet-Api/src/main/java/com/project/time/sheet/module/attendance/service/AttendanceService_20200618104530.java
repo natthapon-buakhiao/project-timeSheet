@@ -123,7 +123,8 @@ public class AttendanceService {
         ResponseModel res = new ResponseModel();
 
         try {
-            Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
+            User user = userRepository.getOne(req.getUserCode());
+            Optional<Attendance> newAttendance = attendanceRepository.findByUser(user);
             Project project = projectRepository.getOne(req.getProjectCode());
             Site site = siteRepository.getOne(req.getSiteCode());
 
@@ -132,13 +133,13 @@ public class AttendanceService {
                 newAttendance.get().setTask(req.getTask());
                 newAttendance.get().setProject(project);
                 newAttendance.get().setSite(site);
-                newAttendance.get().setTimeIn(req.getTimeIn());
-                newAttendance.get().setTimeOut(req.getTimeOut());
-                attendanceRepository.save(newAttendance.get());
+                newAttendance.get().setTimeIn(req.getT());
+                newUserProfile.get().setBirthday(req.getBirthday());
+                userProfileMsRepository.save(newUserProfile.get());
 
             }
             else {
-                throw new DataNotFoundException("Data not found, Method : editAttendance");
+                throw new DataNotFoundException("Data not found, Method : editUserProfile");
             }
             res.setCode(EnumCodeResponse.SUCCESS.getCode());
 			res.setMessage(EnumCodeResponse.SUCCESS.name());

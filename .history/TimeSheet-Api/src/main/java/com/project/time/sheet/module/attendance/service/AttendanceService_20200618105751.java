@@ -123,7 +123,9 @@ public class AttendanceService {
         ResponseModel res = new ResponseModel();
 
         try {
+            User user = userRepository.getOne(req.getUserCode());
             Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
+            // Optional<Attendance> newAttendance = attendanceRepository.findByUser(user);
             Project project = projectRepository.getOne(req.getProjectCode());
             Site site = siteRepository.getOne(req.getSiteCode());
 
