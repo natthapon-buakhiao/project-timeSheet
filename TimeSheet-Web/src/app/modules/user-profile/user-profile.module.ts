@@ -9,6 +9,8 @@ import { UserProfileComponent } from './user-profile.component';
 import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-user-profile-dialog.component';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 import { RequestProfileService } from 'src/app/service/request-profile.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 
 @NgModule({
@@ -26,7 +28,14 @@ import { RequestProfileService } from 'src/app/service/request-profile.service';
   entryComponents:[EditUserProfileDialogComponent],
   providers: [
     RequestProfileService,
-    UserProfileService
+    UserProfileService,
+    {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+    
   ],
 })
 export class UserProfileModule { }
