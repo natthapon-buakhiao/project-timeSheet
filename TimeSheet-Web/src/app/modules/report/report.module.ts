@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ReportService } from './../../service/report.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,6 +22,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ReactiveFormsModule,
     SharedModule,
     SweetAlert2Module.forRoot(),
+    NgxSpinnerModule
   ],
   entryComponents: [
     
