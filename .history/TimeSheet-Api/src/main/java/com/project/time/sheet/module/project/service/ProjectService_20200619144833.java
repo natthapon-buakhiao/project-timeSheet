@@ -64,7 +64,7 @@ public class ProjectService {
         try {
             Project newProject = new Project();
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCodeSupervisor());
-            List<Project> projectNameList = projectRepository.findByProjectName(req.getProjectName());
+            List<Project> projectNameList = projectRepository.findAllProjectName(req.getProjectName());
             List<Project> projectList = projectRepository.findByProjectList(req.getProjectCode());
 
             if (!(userCode.isPresent())) {

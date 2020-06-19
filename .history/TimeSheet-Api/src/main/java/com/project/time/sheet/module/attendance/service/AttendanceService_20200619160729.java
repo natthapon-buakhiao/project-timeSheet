@@ -42,7 +42,7 @@ public class AttendanceService {
         ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
 
         try {
-            Locale locale = new Locale("Asia", "Bangkok");
+            Locale locale = new Locale("cs", "CZ");
             TimeZone tz = TimeZone.getTimeZone("UTC+7");
             String month;
             Calendar cal = Calendar.getInstance(tz, locale);

@@ -42,8 +42,8 @@ public class AttendanceService {
         ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
 
         try {
-            Locale locale = new Locale("Asia", "Bangkok");
-            TimeZone tz = TimeZone.getTimeZone("UTC+7");
+            Locale locale = new Locale("cs", "CZ");
+            TimeZone tz = TimeZone.getTimeZone("Europe/Prague");
             String month;
             Calendar cal = Calendar.getInstance(tz, locale);
             cal.setTime(req.getDate());
@@ -89,7 +89,7 @@ public class AttendanceService {
             Project project = projectRepository.getOne(req.getProjectCode());
             Site site = siteRepository.getOne(req.getSiteCode());
             Optional<User> userCode = userRepository.findByUserCode(req.getUserCode());
-            Optional<Project> projectCode = projectRepository.findByProjectCode(req.getProjectCode());
+            Optional<Project> projectCode = projectRepository.findByProje   ctCode(req.getProjectCode());
 
             if (userCode.isPresent() && projectCode.isPresent()) {
                 newAttendance.setUser(user);

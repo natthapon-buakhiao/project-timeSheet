@@ -14,7 +14,8 @@ public interface UserProjectRepository extends JpaRepository<UserProject, UserPr
     List<UserProject> findById_User(User user);
 
     List<UserProject> findById_Project(Project project);
-    
+
+    // @Query("SELECT e FROM UserProject e WHERE e.id.user.userCode = ?1 and e.id.project.projectCode = ?2")
     List<UserProject> findById_UserAndId_Project(User user, Project project);
 
 }

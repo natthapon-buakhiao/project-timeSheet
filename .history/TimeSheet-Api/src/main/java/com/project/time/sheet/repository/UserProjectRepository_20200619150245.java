@@ -8,13 +8,14 @@ import com.project.time.sheet.entity.UserProject;
 import com.project.time.sheet.entity.UserProjectPk;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface UserProjectRepository extends JpaRepository<UserProject, UserProjectPk> {
 
     List<UserProject> findById_User(User user);
 
     List<UserProject> findById_Project(Project project);
-    
-    List<UserProject> findById_UserAndId_Project(User user, Project project);
+
+    List<UserProject> findByUserCodeANDProjectCode(String userCode, String projectCode);
 
 }

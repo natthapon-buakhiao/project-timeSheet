@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     Optional<User> findByUserCode(String userCode);
 
-    @Query("SELECT n FROM User n WHERE n.userCode = ?1")
-    List<User> findAllUserCode(String userCode);
+    // @Query("SELECT n FROM User n WHERE n.userCode = ?1")
+    // List<User> findAllUserCode(String userCode);
 
 }

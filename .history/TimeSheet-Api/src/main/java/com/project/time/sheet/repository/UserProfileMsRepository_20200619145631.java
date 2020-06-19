@@ -16,6 +16,7 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, Us
 
     List<UserProfileMs> findById_User(User user);
 
+
     List<UserProfileMs> findByFirstNameAndLastName(String firstName, String lastName);
 
     @Query(value = "SELECT USER_PROFILE_MS.*  FROM USER_MS "

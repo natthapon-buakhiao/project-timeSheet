@@ -16,7 +16,8 @@ public interface UserProfileMsRepository extends JpaRepository<UserProfileMs, Us
 
     List<UserProfileMs> findById_User(User user);
 
-    List<UserProfileMs> findByFirstNameAndLastName(String firstName, String lastName);
+    @Query("SELECT e FROM UserProfileMs e WHERE e.firstName = ?1 and e.lastName = ?2")
+    List<UserProfileMs> findByFirstNameAndlastName(String firstName, String lastName);
 
     @Query(value = "SELECT USER_PROFILE_MS.*  FROM USER_MS "
             + "INNER JOIN USER_PROFILE_MS ON USER_MS.USER_CODE = USER_PROFILE_MS.USER_CODE AND USER_MS.LINE_MANAGER = :lineManager "

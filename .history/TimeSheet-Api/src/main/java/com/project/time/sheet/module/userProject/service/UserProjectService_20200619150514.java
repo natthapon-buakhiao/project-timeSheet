@@ -91,9 +91,8 @@ public class UserProjectService {
         try {
             UserProject newUserProject = new UserProject();
             UserProjectPk id = new UserProjectPk();
-            User user = userRepository.getOne(req.getUserCode());
-            Project project = projectRepository.getOne(req.getProjectCode());
-            List<UserProject> userProjectList = userProjectRepository.findById_UserAndId_Project(user, project);
+            List<UserProject> userProjectList = userProjectRepository.findById_UserAndId_Project(req.getUserCode(),req.getProjectCode());
+
             Project newProject = projectRepository.getOne(req.getProjectCode());
             User newUser = userRepository.getOne(req.getUserCode());
 

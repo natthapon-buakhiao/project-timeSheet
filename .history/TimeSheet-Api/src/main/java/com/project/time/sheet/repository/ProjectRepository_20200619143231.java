@@ -10,11 +10,13 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
 
     List<Project> findByUserCodeSupervisor(String userCodeSupervisor);
 
-    Optional<Project> findByProjectCode(String projectCode);
+    // @Query("SELECT n FROM Project n WHERE n.projectCode =?1")
+    // Optional<Project> findByProjectCode(String projectCode);
 
     @Query("SELECT n FROM Project n WHERE n.projectCode =?1")
     List<Project> findByProjectList(String projectCode);
 
-    List<Project> findByProjectName(String projectName);
+    @Query("SELECT n FROM Project n WHERE n.projectName =?1")
+    List<Project> findAllProjectName(String projectName);
 
 }
