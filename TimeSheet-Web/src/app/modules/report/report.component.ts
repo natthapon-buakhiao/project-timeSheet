@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { Router } from '@angular/router';
 import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
 import { DataSite } from 'src/app/shared/model/requestAttendance';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -24,12 +25,16 @@ export class ReportComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private reqReport: ReportService,
-    private requestAttendance: RequestAttendanceService
+    private requestAttendance: RequestAttendanceService,
+    private loading: NgxSpinnerService
 
   ) { }
 
   ngOnInit() {
+    this.loading.show();
+    setTimeout(() => {
+      this.loading.hide();
+    }, 500);
     this.getAllSite();    
   }
 

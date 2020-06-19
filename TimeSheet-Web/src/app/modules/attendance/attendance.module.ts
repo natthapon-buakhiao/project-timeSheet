@@ -12,7 +12,8 @@ import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-att
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { APP_DATE_FORMATS, AppDateAdapter } from 'src/app/shared/common/date.adapter';
+import { APP_DATE_FORMATS, AppDateAdapter, MY_FORMATS } from 'src/app/shared/common/date.adapter';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -26,15 +27,16 @@ import { APP_DATE_FORMATS, AppDateAdapter } from 'src/app/shared/common/date.ada
     ReactiveFormsModule,
     SharedModule,
     SweetAlert2Module.forRoot(),  
-    NgxSpinnerModule  
+    NgxSpinnerModule,
+    BsDatepickerModule.forRoot()
     
   ],
   entryComponents:[EditAttendanceDialogComponent],
   providers: [
     RequestAttendanceService,
     ExportDirective,   
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }  
+    { provide: DateAdapter, useClass: MomentDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },  
   ],
 })
 export class AttendanceModule { }

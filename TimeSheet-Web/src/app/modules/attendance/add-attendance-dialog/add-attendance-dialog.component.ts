@@ -6,10 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Message } from 'src/app/shared/model/message';
 import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/service/user.service';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 import { RequestInquiryUser } from 'src/app/shared/model/request-user-project';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 
@@ -35,8 +32,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
     private _FormBuild: FormBuilder,
     private requestAttendance: RequestAttendanceService,
-    private userService: UserService,
-    private loading: NgxSpinnerService,
+    private userService: UserService,    
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqUserProject: RequestUserProjectService
   ) { }
@@ -138,8 +134,7 @@ export class AddAttendanceDialogComponent implements OnInit {
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
       console.log(res);
-    }, (error) => {
-      this.loading.hide();
+    }, (error) => {      
       console.log(error);
     });
   }

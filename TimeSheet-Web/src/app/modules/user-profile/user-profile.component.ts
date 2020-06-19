@@ -33,10 +33,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private router: Router,
     private _FormBuild: FormBuilder,
     private userService: UserService,
-    private noWhitespaceValidator: noWhitespaceValidator,
     private loading: NgxSpinnerService,
     private userProfileService: UserProfileService,
 
@@ -44,6 +42,11 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
+
     this.getUser();
     this.createProfile = new FormGroup({
       userCode: new FormControl(),

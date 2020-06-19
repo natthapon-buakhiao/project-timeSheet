@@ -1,5 +1,5 @@
 <div class="row headTilteDialog">
-  <h2 mat-dialog-title>Assign Project</h2>
+  <h2 mat-dialog-title>Add Project</h2>
 </div><br>
 
 <form [formGroup]="createAssignProject" (ngSubmit)="onSubmit()">
@@ -65,12 +65,9 @@
     <div class="col-2 mt-2" style="text-align: right;">
       <mat-label> Date </mat-label>
     </div>
-    <div class="input-group" class="col-4" id='datetimepicker1'>
-      <input type="text" formControlName="date" class="form-control" [matDatepicker]="pickerStart">
-      <div class="input-group-append">
-        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-        <mat-datepicker #pickerStart></mat-datepicker>
-      </div>
+    <div class="input-group" class="col-4">
+      <input type="text" formControlName="date" placeholder="Datepicker" class="form-control" placement="top"
+        bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" readonly>
     </div>
   </div>
 

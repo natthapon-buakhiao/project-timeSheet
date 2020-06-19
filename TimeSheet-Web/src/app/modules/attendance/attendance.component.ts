@@ -15,28 +15,13 @@ import { default as _rollupMoment, Moment } from 'moment';
 import { FormControl } from '@angular/forms';
 import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'yyyy/MM',
-  },
-  display: {
-    dateInput: 'yyyy/MM',
-    monthYearLabel: 'yyyy/MM',
-    // dateA11yLabel: 'LL',
-    // monthYearA11yLabel: 'YYYY MMMM',
-  },
-};
+
 const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: MomentDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ],
+  styleUrls: ['./attendance.component.scss']
 })
 export class AttendanceComponent implements OnInit {
 
@@ -71,7 +56,7 @@ export class AttendanceComponent implements OnInit {
     this.loading.show();
     setTimeout(() => {      
       this.loading.hide();
-    }, 1000);
+    }, 500);
 
     this.dataStaff = history.state;  
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
@@ -145,7 +130,7 @@ export class AttendanceComponent implements OnInit {
     this.loading.show();
       setTimeout(() => {      
         this.loading.hide();
-      }, 1000);
+      }, 500);
     this.dataExcel = []; 
     let request = new RequestInquiryAttendace();
     request.userCode = this.dataStaff.data;
@@ -157,7 +142,7 @@ export class AttendanceComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.arraydataSource = this.dataSource.data;
-      // console.log(this.arraydataSource)
+      console.log(this.arraydataSource)
 
       // SETTING OBJECT EXCEL
       this.arraydataSource.forEach((data) => {
@@ -186,7 +171,7 @@ export class AttendanceComponent implements OnInit {
     this.loading.show();
       setTimeout(() => {      
         this.loading.hide();
-      }, 1000);
+      }, 500);
     let request = new RequestInquiryUser();
     let data: any;
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));

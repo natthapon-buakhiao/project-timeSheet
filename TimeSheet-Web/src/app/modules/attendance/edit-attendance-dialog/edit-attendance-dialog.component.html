@@ -57,11 +57,8 @@
       <mat-label> Date </mat-label>
     </div>
     <div class="input-group" class="col-4">
-      <input formControlName="date" class="form-control" [matDatepicker]="pickerStart">
-      <div class="input-group-append">
-        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-        <mat-datepicker #pickerStart></mat-datepicker>
-      </div>
+      <input type="text" formControlName="date" placeholder="Datepicker" class="form-control" placement="top"
+        bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" readonly>
     </div>
   </div>
 

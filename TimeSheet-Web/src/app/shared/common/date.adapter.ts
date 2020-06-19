@@ -47,3 +47,15 @@ export const APP_DATE_FORMATS = {
        monthYearA11yLabel: {year: 'numeric', month: 'long'},
    }
 };
+
+export const MY_FORMATS = {
+    parse: {
+      dateInput: 'yyyy/MM',
+    },
+    display: {
+      dateInput: 'yyyy/MM',
+      monthYearLabel: 'yyyy/MM',
+      // dateA11yLabel: 'LL',
+      // monthYearA11yLabel: 'YYYY MMMM',
+    },
+  };
