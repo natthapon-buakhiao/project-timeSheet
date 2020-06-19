@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RequestInquiryProject } from 'src/app/shared/model/request-user-project';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-project',
@@ -26,10 +27,16 @@ export class UserProjectComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private reqUserProject: RequestUserProjectService,   
+    private reqUserProject: RequestUserProjectService, 
+    private loading: NgxSpinnerService,  
   ) { }
 
   ngOnInit() {
+
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
 
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));    
     if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {

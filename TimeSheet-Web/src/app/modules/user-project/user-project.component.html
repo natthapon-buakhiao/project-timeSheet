@@ -42,7 +42,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table><br>
+      </table>
       <div *ngIf="dataSource.data.length === 0"><br>No records found.</div> 
       <mat-paginator [pageSizeOptions]="[10,20,100]" [pageSize]="10"></mat-paginator>
     </div>

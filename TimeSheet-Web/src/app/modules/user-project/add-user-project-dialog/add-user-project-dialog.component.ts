@@ -71,7 +71,7 @@ export class AddUserProjectDialogComponent implements OnInit {
   setFormUserProject(dataProject) {
     this.createUserProject = this._FormBuild.group({
       userCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-      date: ['', Validators.required],
+      date: [new Date(), Validators.required],
       projectCode: [dataProject.data.projectCode, Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
 
@@ -98,13 +98,11 @@ export class AddUserProjectDialogComponent implements OnInit {
     requestInsert.task = this.createUserProject.controls['task'].value;
 
 
-    this.reqInsertUserProject.insetUserProject(requestInsert).subscribe((res) => {
-      this.loading.hide();
+    this.reqInsertUserProject.insetUserProject(requestInsert).subscribe((res) => {      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
       console.log(res)
-    }, (error) => {
-      this.loading.hide();
+    }, (error) => {     
       console.log(error);
     });
   }
@@ -112,6 +110,10 @@ export class AddUserProjectDialogComponent implements OnInit {
 
   closeDialog(status) {
     this.dialogRef.close(status);
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
   }
 
 }
