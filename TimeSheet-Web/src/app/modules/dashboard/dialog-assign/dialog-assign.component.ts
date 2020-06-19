@@ -68,7 +68,7 @@ export class DialogAssignComponent implements OnInit {
     this.createAssignProject = this._FormBuild.group({
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       userCodeSupervisor: [dataSup.userCode, Validators.required],
-      date: ['', Validators.required],
+      date: [new Date(), Validators.required],
       projectName: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       description: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
 
@@ -98,10 +98,6 @@ export class DialogAssignComponent implements OnInit {
     this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
-      this.loading.show();
-      setTimeout(() => {      
-        this.loading.hide();
-      }, 1000);
       console.log(res)
     }, (error) => {  
       console.log(error);
@@ -111,6 +107,10 @@ export class DialogAssignComponent implements OnInit {
 
   canCle(status) {
     this.dialogRef.close(status);
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
   }
 
 

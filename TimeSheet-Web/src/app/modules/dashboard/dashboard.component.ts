@@ -32,24 +32,25 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public dialog: MatDialog,   
-    private reqUserProject: RequestUserProjectService,  
+    public dialog: MatDialog,
+    private reqUserProject: RequestUserProjectService,
     private loading: NgxSpinnerService,
     private removeProject: RequestProjectService,
     private reqSupProject: RequestProjectService
 
   ) { }
 
-  ngOnInit() {   
+  ngOnInit() {
     this.loading.show();
-    setTimeout(() => {      
+    setTimeout(() => {
       this.loading.hide();
-    }, 1000);
+    }, 500);
 
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {
       this.isSup = true;
       this.inquirySup();
+
 
     } else {
       this.isSup = false;
@@ -59,7 +60,7 @@ export class DashboardComponent implements OnInit {
   }
 
   inquirySup() {
-    let request = new RequestInquirySup();   
+    let request = new RequestInquirySup();
     request.userCodeSupervisor = this.dataProfile.userCode;
     // console.log(request)
     this.reqSupProject.inquirySup(request).subscribe((res) => {
@@ -127,24 +128,25 @@ export class DashboardComponent implements OnInit {
     this.deleteSwal.fire();
   }
 
-  onDelete() {    
+  onDelete() {
     let request = new ReqRemoveProject();
     request.projectCode = this.dataUserProject.projectCode;
     request.userCodeSupervisor = this.dataUserProject.userCodeSupervisor;
-    this.removeProject.deleteProject(request).subscribe((res) => {      
+    this.removeProject.deleteProject(request).subscribe((res) => {
       this.deletedSucessSwal.title = Message.MESSAGE_DELETE_SUCCESS;
       this.deletedSucessSwal.fire();
-      this.loading.show();
-      setTimeout(() => {      
-        this.loading.hide();
-      }, 1000);
     }, (error) => {
-      this.loading.show();
-      setTimeout(() => {      
-        this.loading.hide();
-      }, 1000);
+      console.log(error)
     })
 
+  }
+
+  deletedSucess() {
+    this.loading.show();
+    setTimeout(() => {
+      this.loading.hide();
+    }, 500);
+    this.inquirySup();
   }
 
   goUserProject(data: any) {

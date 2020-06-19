@@ -65,19 +65,18 @@ export class EditProjectDialogComponent implements OnInit {
       console.log("edit Project Success");      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
-      this.loading.show();
-      setTimeout(() => {      
-        this.loading.hide();
-      }, 1000);
     },
-      (error) => {
-       this.loading.hide();
+      (error) => {       
         console.log(error); 
       });   
   }
 
   canCle(status){
     this.dialogRef.close(status);    
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
   }
 
 }

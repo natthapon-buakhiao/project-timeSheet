@@ -12,6 +12,7 @@ import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-d
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     SharedModule,
     SweetAlert2Module.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BsDatepickerModule.forRoot()
   ],
   entryComponents: [    
     DialogAssignComponent, EditProjectDialogComponent
