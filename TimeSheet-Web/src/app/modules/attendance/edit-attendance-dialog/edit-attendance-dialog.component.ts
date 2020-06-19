@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { DateAdapter, MAT_DATE_FORMATS, MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
 import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
 import { ReqEditAttendance } from 'src/app/shared/model/requestAttendance';
@@ -27,8 +25,7 @@ export class EditAttendanceDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditAttendanceDialogComponent>,
-    public dialog: MatDialog,
-    private loading: NgxSpinnerService,
+    public dialog: MatDialog,   
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _FormBuild: FormBuilder,
     private  requestAttendance: RequestAttendanceService,
