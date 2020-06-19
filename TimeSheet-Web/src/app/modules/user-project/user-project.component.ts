@@ -1,12 +1,9 @@
-import { UserService } from './../../service/user.service';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 import { AddUserProjectDialogComponent } from './add-user-project-dialog/add-user-project-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestInquiryProject } from 'src/app/shared/model/request-user-project';
-import { RequestInquiryProfile } from 'src/app/shared/model/req-user-profile';
-import { UserProfileService } from 'src/app/service/user-profile.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
@@ -29,14 +26,13 @@ export class UserProjectComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private reqUserProject: RequestUserProjectService,
-    private userService: UserService
+    private reqUserProject: RequestUserProjectService,   
   ) { }
 
   ngOnInit() {
 
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));    
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+    if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {
       this.isSup = true;
     } else {
       this.isSup = false;
@@ -56,7 +52,7 @@ export class UserProjectComponent implements OnInit {
   inquiryUserProject() {
     let request = new RequestInquiryProject();
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam')); 
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+    if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {
       this.isSup = true;
        request.projectCode = this.dataUserProject.data.projectCode;  
     } else {

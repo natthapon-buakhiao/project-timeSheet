@@ -3,28 +3,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserProfileService } from 'src/app/service/user-profile.service';
 import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 import { ReqInsertUserProject } from 'src/app/shared/model/request-user-project';
 import { UserService } from 'src/app/service/user.service';
 import { RequestProjectService } from 'src/app/service/request-project.service';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
+
 
 @Component({
   selector: 'app-add-user-project-dialog',
   templateUrl: './add-user-project-dialog.component.html',
-  styleUrls: ['./add-user-project-dialog.component.scss'],
-  providers: [
-    {
-        provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
-    ]
+  styleUrls: ['./add-user-project-dialog.component.scss']
 })
 export class AddUserProjectDialogComponent implements OnInit {
 
@@ -46,7 +36,7 @@ export class AddUserProjectDialogComponent implements OnInit {
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqInsertUserProject: RequestUserProjectService,
     private userService: UserService,
-    private projectService: RequestProjectService ) { 
+     ) { 
 
     }
 
@@ -54,8 +44,7 @@ export class AddUserProjectDialogComponent implements OnInit {
  
     this.dataProject = history.state;
     console.log(this.dataProject)
-    this.getAllUser(this.dataProject);
-    this.getAllProject();
+    this.getAllUser(this.dataProject); 
 
     this.createUserProject = new FormGroup({
       userCode: new FormControl(),
@@ -75,16 +64,6 @@ export class AddUserProjectDialogComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
-  }
-
-  getAllProject(){
-    this.projectService.getAllProject().subscribe((res) => {
-      console.log(res)
-      this.dataUserProjectCode = res.data;
-    },
-      (error) => {
-        console.log(error + "get Fail!!")
-      });
   }
 
   get f() { return this.createUserProject.controls; }
