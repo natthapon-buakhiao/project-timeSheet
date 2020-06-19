@@ -13,15 +13,7 @@ import { RequestUserProjectService } from 'src/app/service/request-user-project.
 @Component({
   selector: 'app-edit-attendance-dialog',
   templateUrl: './edit-attendance-dialog.component.html',
-  styleUrls: ['./edit-attendance-dialog.component.scss'],
-  providers: [
-    {
-        provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
-    ]
+  styleUrls: ['./edit-attendance-dialog.component.scss']
 })
 export class EditAttendanceDialogComponent implements OnInit {
   @ViewChild("saveSwal", { static: false }) saveSwal: SwalComponent;
@@ -111,8 +103,7 @@ export class EditAttendanceDialogComponent implements OnInit {
     }
   }
 
-  onSave() {
-    this.loading.show();
+  onSave() {    
     let requestEdit = new ReqEditAttendance();
     requestEdit.id = this.createEditAttendance.controls['id'].value;
     requestEdit.date = this.createEditAttendance.controls['date'].value;
@@ -123,13 +114,11 @@ export class EditAttendanceDialogComponent implements OnInit {
     requestEdit.siteCode = this.createEditAttendance.controls['siteCode'].value;
     this.requestAttendance.editAttendance(requestEdit).subscribe((res) => {
       console.log("edit Attendance Success");
-      console.log(res);
-      this.loading.hide();
+      console.log(res);      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
     },
-      (error) => {
-        this.loading.hide();
+      (error) => {       
         console.log(error);
       });
   }

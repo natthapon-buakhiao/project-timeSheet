@@ -17,15 +17,7 @@ import { RequestUserProjectService } from 'src/app/service/request-user-project.
 @Component({
   selector: 'app-add-attendance-dialog',
   templateUrl: './add-attendance-dialog.component.html',
-  styleUrls: ['./add-attendance-dialog.component.scss'],
-  providers: [
-    {
-      provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-      provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    },
-  ]
+  styleUrls: ['./add-attendance-dialog.component.scss']
 })
 export class AddAttendanceDialogComponent implements OnInit {
   @ViewChild('saveSwal', { static: false }) saveSwal: SwalComponent;
@@ -142,9 +134,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     requestInsert.timeIn = this.createAttendance.controls.timeIn.value;
     requestInsert.timeOut = this.createAttendance.controls.timeOut.value;
     requestInsert.siteCode = this.createAttendance.controls.siteCode.value;
-
-    this.requestAttendance.insetAttendance(requestInsert).subscribe((res) => {
-      this.loading.hide();
+    this.requestAttendance.insetAttendance(requestInsert).subscribe((res) => {      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
       console.log(res);

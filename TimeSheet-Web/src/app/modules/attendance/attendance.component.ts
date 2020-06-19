@@ -9,15 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
-import { MomentDateAdapter} from '@angular/material-moment-adapter';
+import { MatDatepicker, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import * as _moment from 'moment';
-import {default as _rollupMoment, Moment} from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
 import { FormControl } from '@angular/forms';
 import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
-
-const moment = _rollupMoment || _moment;
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'yyyy/MM',
@@ -29,17 +27,16 @@ export const MY_FORMATS = {
     // monthYearA11yLabel: 'YYYY MMMM',
   },
 };
+const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.scss'],
   providers: [
-    {provide: DateAdapter, useClass: MomentDateAdapter,
-        
-    },
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-    ]
+    { provide: DateAdapter, useClass: MomentDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
 })
 export class AttendanceComponent implements OnInit {
 
@@ -59,26 +56,28 @@ export class AttendanceComponent implements OnInit {
   dateTest = new FormControl(moment());
 
 
-
   constructor(
     public dialog: MatDialog,
     private reqAttendance: RequestAttendanceService,
     private userService: UserService,
     private exportService: ExportService,
+    private loading: NgxSpinnerService,
   ) { 
     this.groupData = this.organise(this.dataExcel);
   }
 
   ngOnInit() {
 
-    this.dataStaff = history.state;
-    // console.log(this.dataStaff.data)
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 1000);
+
+    this.dataStaff = history.state;  
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+    if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {
       this.isSup = true;
       this.inquiryListStaff();
-      // console.log(this.inquiryListStaff());
-
     } else {
       this.isSup = false;
       this.getUser();
@@ -143,6 +142,10 @@ export class AttendanceComponent implements OnInit {
   }
 
   inquiryListStaff() {
+    this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
     this.dataExcel = []; 
     let request = new RequestInquiryAttendace();
     request.userCode = this.dataStaff.data;
@@ -180,6 +183,10 @@ export class AttendanceComponent implements OnInit {
   }
 
   getUser() {
+    this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
     let request = new RequestInquiryUser();
     let data: any;
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
