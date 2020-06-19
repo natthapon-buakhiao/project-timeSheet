@@ -16,6 +16,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from "@angular/material";
 import { AppDateAdapter, APP_DATE_FORMATS} from './shared/common/date.adapter';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -38,7 +39,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SweetAlert2Module.forRoot(),
     CommonModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BsDatepickerModule
           
   ],
   providers: [
