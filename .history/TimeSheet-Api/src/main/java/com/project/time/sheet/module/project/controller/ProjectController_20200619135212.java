@@ -11,9 +11,9 @@ import com.project.time.sheet.module.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -24,6 +24,7 @@ public class ProjectController {
     @Autowired
     ProjectService projectService;
 
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @PostMapping(value = "/insert")
     public ResponseEntity<ResponseModel> insert(@RequestBody ReqInsertProject req) {
 
@@ -32,14 +33,14 @@ public class ProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/inquiry")
+    @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req) {
         ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
         res = projectService.inquiryProject(req);
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/edit")
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req) {
 
         ResponseModel res = new ResponseModel();
@@ -47,7 +48,7 @@ public class ProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/remove")
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveProject req) {
 
         ResponseModel res = new ResponseModel();

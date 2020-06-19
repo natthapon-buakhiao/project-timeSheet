@@ -8,9 +8,9 @@ import com.project.time.sheet.module.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,6 +21,7 @@ public class ReportController {
     @Autowired
     ReportService reportService;
 
+    @RequestMapping(value = "/list-staff", method = RequestMethod.POST)
     @PostMapping(value = "/list-staff")
     public ResponseEntity<ResponseModel<List<UserProfileMsBean>>> inquiryUserProfileStaff(
             @RequestBody ReqListStaff req) {

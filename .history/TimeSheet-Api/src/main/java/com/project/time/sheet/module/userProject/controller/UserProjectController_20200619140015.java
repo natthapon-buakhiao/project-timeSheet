@@ -10,9 +10,9 @@ import com.project.time.sheet.module.userProject.service.UserProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -23,7 +23,8 @@ public class UserProjectController {
     @Autowired
     UserProjectService userProjectService;
 
-    @PostMapping(value = "/inquiry-project")
+    @RequestMapping(value = "/inquiry-project", method = RequestMethod.POST)
+    @PostMapping(value = "/inquiry")
     public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUserProject(
             @RequestBody ReqInquiryUserProject req) {
 
@@ -32,7 +33,7 @@ public class UserProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/inquiry-userproject")
+    @RequestMapping(value = "/inquiry-userproject", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUserProject_ProjectCode(
             @RequestBody ReqInquiryUserProjectCode req) {
 
@@ -41,7 +42,7 @@ public class UserProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/insert")
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> insertUserProject(@RequestBody ReqInsertUserProject req) {
 
         ResponseModel res = new ResponseModel();

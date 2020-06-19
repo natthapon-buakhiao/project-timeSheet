@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -32,6 +33,7 @@ public class UserProjectController {
         return ResponseEntity.ok(res);
     }
 
+    @RequestMapping(value = "/inquiry-userproject", method = RequestMethod.POST)
     @PostMapping(value = "/inquiry-userproject")
     public ResponseEntity<ResponseModel<List<UserProjectBean>>> inquiryUserProject_ProjectCode(
             @RequestBody ReqInquiryUserProjectCode req) {
@@ -41,7 +43,7 @@ public class UserProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/insert")
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> insertUserProject(@RequestBody ReqInsertUserProject req) {
 
         ResponseModel res = new ResponseModel();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -31,7 +32,8 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping(value = "/getdata")
+    @RequestMapping(value = "/getdata", method = RequestMethod.GET)
+    @GetMapping(value = "/inquiry")
     public ResponseEntity<ResponseModel<List<User>>> getAll() {
 
         ResponseModel<List<User>> res = new ResponseModel<List<User>>();

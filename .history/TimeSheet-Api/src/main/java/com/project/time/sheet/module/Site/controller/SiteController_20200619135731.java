@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/site")
 public class SiteController {
-
 	@Autowired
 	SiteService siteService;
 

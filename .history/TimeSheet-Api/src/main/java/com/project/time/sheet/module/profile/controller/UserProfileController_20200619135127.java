@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -33,7 +34,8 @@ public class UserProfileController {
 		return ResponseEntity.ok(res);
 	}
 
-	@PostMapping(value = "/edit")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@PostMapping(value = "/insert")
 	public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProfile req) {
 
 		ResponseModel res = new ResponseModel();
@@ -43,7 +45,7 @@ public class UserProfileController {
 		return ResponseEntity.ok(res);
 	}
 
-	@PostMapping(value = "/inquiry")
+	@RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel<List<UserProfileMs>>> inquiry(@RequestBody ReqInquiryProfile req) {
 		ResponseModel<List<UserProfileMs>> res = new ResponseModel<List<UserProfileMs>>();
 		res = profileService.inquiryUserProfile(req);

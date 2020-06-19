@@ -9,10 +9,10 @@ import com.project.time.sheet.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @PostMapping(value = "/insert")
     public ResponseEntity<ResponseModel> insertUser(@RequestBody ReqInsertUser req) {
 
@@ -31,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping(value = "/getdata")
+    @RequestMapping(value = "/getdata", method = RequestMethod.GET)
     public ResponseEntity<ResponseModel<List<User>>> getAll() {
 
         ResponseModel<List<User>> res = new ResponseModel<List<User>>();
@@ -39,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/inquiry")
+    @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel<List<User>>> inquiry(@RequestBody ReqInquiryUser req) {
 
         ResponseModel<List<User>> res = new ResponseModel<List<User>>();

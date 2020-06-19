@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -32,6 +33,7 @@ public class ProjectController {
         return ResponseEntity.ok(res);
     }
 
+    @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
     @PostMapping(value = "/inquiry")
     public ResponseEntity<ResponseModel<List<Project>>> inquiryProject(@RequestBody ReqInquiryProject req) {
         ResponseModel<List<Project>> res = new ResponseModel<List<Project>>();
@@ -39,7 +41,7 @@ public class ProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/edit")
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditProject req) {
 
         ResponseModel res = new ResponseModel();
@@ -47,7 +49,7 @@ public class ProjectController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping(value = "/remove")
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveProject req) {
 
         ResponseModel res = new ResponseModel();

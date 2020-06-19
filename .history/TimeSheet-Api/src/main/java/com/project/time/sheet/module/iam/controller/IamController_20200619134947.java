@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -30,7 +31,7 @@ public class IamController {
                 .getBody();
     }
 
-    @PostMapping(value = "/inquiryProfile")
+    @RequestMapping(value = "/inquiryProfile", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public String inquiryProfile(@RequestBody final ReqProfile req) {
         final RestTemplate restTemplate = new RestTemplate();
         final HttpHeaders headers = new HttpHeaders();

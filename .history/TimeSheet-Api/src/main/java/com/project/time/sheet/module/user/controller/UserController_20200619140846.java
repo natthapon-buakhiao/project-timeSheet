@@ -31,7 +31,7 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping(value = "/getdata")
+    @GetMapping(value = "/get")
     public ResponseEntity<ResponseModel<List<User>>> getAll() {
 
         ResponseModel<List<User>> res = new ResponseModel<List<User>>();

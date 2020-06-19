@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.time.sheet.common.models.AttendanceBean;
 import com.project.time.sheet.common.models.ResponseModel;
@@ -40,6 +41,7 @@ public class AttendanceController {
 	}
 
 	@PostMapping(value = "/edit")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditAttendance req) {
 		ResponseModel res = new ResponseModel();
 		res = attendanceService.editAttendance(req);

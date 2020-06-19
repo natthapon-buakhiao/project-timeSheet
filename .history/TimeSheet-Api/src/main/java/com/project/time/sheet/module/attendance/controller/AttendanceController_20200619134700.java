@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.time.sheet.common.models.AttendanceBean;
 import com.project.time.sheet.common.models.ResponseModel;
@@ -24,14 +25,15 @@ public class AttendanceController {
 	@Autowired
 	AttendanceService attendanceService;
 
-	@PostMapping(value = "/inquiry")
+	@PostMapping(value = /inquiry)
+	// @RequestMapping(value = "/inquiry", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel<List<AttendanceBean>>> inquiry(@RequestBody ReqInquiryAttendance req) {
 		ResponseModel<List<AttendanceBean>> res = new ResponseModel<List<AttendanceBean>>();
 		res = attendanceService.inquiryAttendance(req);
 		return ResponseEntity.ok(res);
 	}
 
-	@PostMapping(value = "/insert")
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel> insert(@RequestBody ReqInsertAttendance req) {
 
 		ResponseModel res = new ResponseModel();
@@ -39,7 +41,7 @@ public class AttendanceController {
 		return ResponseEntity.ok(res);
 	}
 
-	@PostMapping(value = "/edit")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ResponseEntity<ResponseModel> edit(@RequestBody ReqEditAttendance req) {
 		ResponseModel res = new ResponseModel();
 		res = attendanceService.editAttendance(req);
