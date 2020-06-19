@@ -1,0 +1,47 @@
+
+
+server:
+  port: 8091
+  servlet:
+    contextPath: /time-sheet
+
+spring:
+  application:
+    name: time-sheet
+  datasource:
+    url: jdbc:postgresql://maoz-developer.com:5444/timesheet
+    username: timesheetapp
+    password: timesheetapppassword2020
+    driver-class-name: org.postgresql.Driver
+    platform: postgresql
+    validation-query: select 1 from dual
+    test-on-borrow: true
+    removeAbandoned: true
+    removeAbandonedTimeout: 10
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non-contextual-creation: true
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQL94Dialect
+
+# server.servlet.contextPath=/time-sheet
+# server.port=8091
+# spring.h2.console.enabled=true
+
+# spring.jpa.database=POSTGRESQL
+# spring.datasource.platform=postgres
+# spring.datasource.url=jdbc:postgresql://maoz-developer.com:5444/timesheet
+# spring.datasource.username=timesheetapp
+# spring.datasource.password=timesheetapppassword2020
+# spring.jpa.show-sql=true
+# spring.jpa.generate-ddl=true
+
+# spring.jpa.hibernate.ddl-auto=update
+# spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
