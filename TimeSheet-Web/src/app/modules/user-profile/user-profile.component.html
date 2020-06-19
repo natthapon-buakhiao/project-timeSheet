@@ -1,128 +1,120 @@
 <div class="page-main2">
-
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
 
   <div class="col-12">
     <div> <a style="font-size: 1.75rem;">User Profile</a></div>
   </div>
   <form [formGroup]="createProfile">
-  
-      <div class="row mt-3">
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> First Name </mat-label>
-        </div>
-        <div class="col-4">
-          <input class="form-control"  formControlName="firstName" disabled
+
+    <div class="row mt-3">
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> First Name </mat-label>
+      </div>
+      <div class="col-4">
+        <input class="form-control" formControlName="firstName" disabled
           [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required" class="text-danger help-block">
-              {{'First Name' | mandatoryfield}}
-            </div>
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required" class="text-danger help-block">
+            {{'First Name' | mandatoryfield}}
           </div>
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.whitespace" class="text-danger help-block">
-              {{'First Name' | mandatoryfield}}
-            </div>
-          </div>  
         </div>
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.whitespace" class="text-danger help-block">
+            {{'First Name' | mandatoryfield}}
+          </div>
+        </div>
+      </div>
 
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Last Name </mat-label>
-        </div>
-        <div class="col-4">
-          <input class="form-control"  formControlName="lastName" disabled
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> Last Name </mat-label>
+      </div>
+      <div class="col-4">
+        <input class="form-control" formControlName="lastName" disabled
           [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required" class="text-danger help-block">
-              {{'Last Name' | mandatoryfield}}
-            </div>
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required" class="text-danger help-block">
+            {{'Last Name' | mandatoryfield}}
           </div>
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.whitespace" class="text-danger help-block">
-              {{'Last Name' | mandatoryfield}}
-            </div>
-          </div>  
+        </div>
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.whitespace" class="text-danger help-block">
+            {{'Last Name' | mandatoryfield}}
+          </div>
         </div>
       </div>
-      
-      <div class="row mt-3">
-        
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Birth Of Date </mat-label>
-        </div>
-        <div class="input-group" class="col-4">
-          <input formControlName="birthday" class="form-control" [matDatepicker]="pickerStart" disabled>
-          <div class="input-group-append">
-              <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-              <mat-datepicker #pickerStart></mat-datepicker>
-          </div>
+    </div>
+
+    <div class="row mt-3">
+
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> Birth Of Date </mat-label>
+      </div>
+      <div class="input-group" class="col-4">
+        <input formControlName="birthday" class="form-control" disabled>
       </div>
 
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Age </mat-label>
-        </div>
-        <div class="col-4">
-          <input class="form-control" formControlName="age" disabled
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> Age </mat-label>
+      </div>
+      <div class="col-4">
+        <input class="form-control" formControlName="age" disabled
           [ngClass]="{'is-invalid': submitted && f.age.errors}">
-          <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
-            <div *ngIf="f.age.errors.required" class="text-danger help-block">
-              {{'Age' | mandatoryfield}}
-            </div>
+        <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+          <div *ngIf="f.age.errors.required" class="text-danger help-block">
+            {{'Age' | mandatoryfield}}
           </div>
-          <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
-            <div *ngIf="f.age.errors.whitespace" class="text-danger help-block">
-              {{'Age' | mandatoryfield}}
-            </div>
-          </div> 
+        </div>
+        <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+          <div *ngIf="f.age.errors.whitespace" class="text-danger help-block">
+            {{'Age' | mandatoryfield}}
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="row mt-3">
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Address </mat-label>
-        </div>
-        <div class="col-4">
-          <textarea class="form-control" formControlName="address" disabled
+    <div class="row mt-3">
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> Address </mat-label>
+      </div>
+      <div class="col-4">
+        <textarea class="form-control" formControlName="address" disabled
           [ngClass]="{'is-invalid': submitted && f.address.errors}"></textarea>
-          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-            <div *ngIf="f.address.errors.required" class="text-danger help-block">
-              {{'Address' | mandatoryfield}}
-            </div>
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required" class="text-danger help-block">
+            {{'Address' | mandatoryfield}}
           </div>
-          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-            <div *ngIf="f.address.errors.whitespace" class="text-danger help-block">
-              {{'Address' | mandatoryfield}}
-            </div>
-          </div> 
         </div>
-        <div class="col-2 mt-2" style="text-align: right;">
-          <mat-label> Position </mat-label>
-        </div>
-        <div class="col-4">
-          <input class="form-control" formControlName="position" disabled
-          [ngClass]="{'is-invalid': submitted && f.position.errors}">
-          <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
-            <div *ngIf="f.position.errors.required" class="text-danger help-block">
-              {{'Position' | mandatoryfield}}
-            </div>
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.whitespace" class="text-danger help-block">
+            {{'Address' | mandatoryfield}}
           </div>
-          <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
-            <div *ngIf="f.position.errors.whitespace" class="text-danger help-block">
-              {{'Position' | mandatoryfield}}
-            </div>
-          </div>          
         </div>
       </div>
+      <div class="col-2 mt-2" style="text-align: right;">
+        <mat-label> Position </mat-label>
+      </div>
+      <div class="col-4">
+        <input class="form-control" formControlName="position" disabled
+          [ngClass]="{'is-invalid': submitted && f.position.errors}">
+        <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+          <div *ngIf="f.position.errors.required" class="text-danger help-block">
+            {{'Position' | mandatoryfield}}
+          </div>
+        </div>
+        <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+          <div *ngIf="f.position.errors.whitespace" class="text-danger help-block">
+            {{'Position' | mandatoryfield}}
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div mat-dialog-actions  class="mt-3" style="float: right;">
-      <!-- <button mat-raised-button class="btn-submit" type="submit"><mat-icon>save_alt</mat-icon> Save </button>&nbsp;     -->
-      <a mat-raised-button type="submit" class="btn-submit" (click)="openDialogEdit(dataUser)"><mat-icon>edit</mat-icon> Edit </a>      
-    </div>    
+    <div mat-dialog-actions class="mt-3" style="float: right;">
+      <a mat-raised-button type="submit" class="btn-submit" (click)="openDialogEdit(dataUser)">
+        <mat-icon>edit</mat-icon> Edit
+      </a>
+    </div>
   </form>
 </div>
-
-<!-- <swal #saveSwal title="" icon="warning" [width]="480" confirmButtonText="Save" confirmButtonColor="rgb(163, 236, 114)"
-[showCancelButton]="true" [allowOutsideClick]="false" (confirm)="onSave()">
-</swal>
-<swal #saveSucessSwal title="" icon="success" [allowOutsideClick]="false" (confirm)="getUser()" [width]="480">
-</swal> -->
-

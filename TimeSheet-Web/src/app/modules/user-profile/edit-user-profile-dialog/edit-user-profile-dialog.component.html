@@ -1,4 +1,11 @@
 <div class="page-main2">
+  <ngx-spinner 
+  bdColor = "rgba(0, 0, 0, 0.8)" 
+  size = "medium" color = "#fff" 
+  type = "timer" 
+  [fullScreen] = "true"><p 
+  style="color: white" > Loading... </p>
+</ngx-spinner>
   <div class="row headTilteDialog">
       <h3 mat-dialog-title>Edit UserProfile</h3>
     </div>
@@ -26,11 +33,8 @@
             <mat-label> Birth Of Date </mat-label>
           </div>
           <div class="input-group" class="col-4">
-            <input formControlName="birthday" class="form-control" [matDatepicker]="pickerStart">
-            <div class="input-group-append">
-                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-                <mat-datepicker #pickerStart></mat-datepicker>
-            </div>
+            <input type="text" formControlName="birthday" class="form-control" placement="right"
+            bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" readonly>
         </div>
   
           <div class="col-2 mt-2" style="text-align: right;">

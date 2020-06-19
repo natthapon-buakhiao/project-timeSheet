@@ -87,8 +87,7 @@ export class EditUserProfileDialogComponent implements OnInit {
     }
   }
 
-  onSave() {
-    this.loading.show();
+  onSave() {    
     const request = new ReqEditUserProfile();
     request.userCode = this.editProfile.controls.userCode.value;
     request.firstName = this.editProfile.controls.firstName.value;
@@ -99,13 +98,11 @@ export class EditUserProfileDialogComponent implements OnInit {
     request.position = this.editProfile.controls.position.value;
     this.userProfileService.editProfile(request).subscribe((res) => {
       console.log('edit UserProfile Success');
-      console.log(res);
-      this.loading.hide();
+      console.log(res);     
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
     },
-      (error) => {
-        this.loading.hide();
+      (error) => {      
         console.log(error);
       });
   }
@@ -113,5 +110,9 @@ export class EditUserProfileDialogComponent implements OnInit {
 
   canCle(status) {
     this.dialogRef.close(status);
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
   }
 }

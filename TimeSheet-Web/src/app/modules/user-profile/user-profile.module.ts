@@ -1,3 +1,5 @@
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,7 +24,9 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.ada
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    NgxSpinnerModule,
+    BsDatepickerModule.forRoot()
     
   ],
   entryComponents:[EditUserProfileDialogComponent],
