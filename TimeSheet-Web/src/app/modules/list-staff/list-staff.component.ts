@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { RequestInquiryReport } from 'src/app/shared/model/report';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-staff',
@@ -21,11 +22,16 @@ export class ListStaffComponent implements OnInit {
   constructor(
     private reqStaff: ReportService,
     private router: Router,
+    private loading: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.report = history.state;
     console.log(this.report.data.siteCode)
+    this.loading.show();
+    setTimeout(() => {
+      this.loading.hide();
+    }, 500);
     this.inquiryStaff()
   }
 

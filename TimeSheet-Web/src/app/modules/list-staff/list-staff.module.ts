@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListStaffRoutingModule } from './list-staff-routing.module';
@@ -19,6 +20,7 @@ import { UserProfileService } from 'src/app/service/user-profile.service';
     ReactiveFormsModule,
     SharedModule,
     SweetAlert2Module.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [
     UserProfileService
