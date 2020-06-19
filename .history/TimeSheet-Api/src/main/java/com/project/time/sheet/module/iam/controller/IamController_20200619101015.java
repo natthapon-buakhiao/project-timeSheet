@@ -27,7 +27,8 @@ public class IamController {
        final HttpHeaders headers = new HttpHeaders();
        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
        final HttpEntity<ReqAuthentication> entity = new HttpEntity<ReqAuthentication>(req,headers);
-       return restTemplate.exchange("https://dev.priorsolution.co.th/iam/v2/auth/sign-in", HttpMethod.POST, entity, String.class).getBody();
+       return restTemplate.exchange(
+          "https://dev.priorsolution.co.th/iam/v2/auth/sign-in", HttpMethod.POST, entity, String.class).getBody();
     }
 
     @RequestMapping(value  = "/inquiryProfile", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)

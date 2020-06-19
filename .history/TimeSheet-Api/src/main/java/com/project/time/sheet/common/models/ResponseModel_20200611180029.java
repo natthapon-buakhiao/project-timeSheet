@@ -1,5 +1,7 @@
 package com.project.time.sheet.common.models;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
