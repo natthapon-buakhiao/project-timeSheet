@@ -22,7 +22,9 @@ public class IamController {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public String Authen(@RequestBody final ReqAuthentication req) {
         final RestTemplate restTemplate = new RestTemplate();
-        final HttpEntity<ReqAuthentication> entity = new HttpEntity<ReqAuthentication>(req);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        final HttpEntity<ReqAuthentication> entity = new HttpEntity<ReqAuthentication>(req, headers);
         return restTemplate
                 .exchange("https://dev.priorsolution.co.th/iam/v2/auth/sign-in", HttpMethod.POST, entity, String.class)
                 .getBody();
@@ -33,6 +35,7 @@ public class IamController {
         final RestTemplate restTemplate = new RestTemplate();
         final HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + req.getToken());
+        // headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         final HttpEntity<String> entity = new HttpEntity<String>(headers);
         return restTemplate
                 .exchange("https://dev.priorsolution.co.th/iam/v2/api/user/me", HttpMethod.GET, entity, String.class)

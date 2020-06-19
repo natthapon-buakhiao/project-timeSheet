@@ -33,6 +33,7 @@ public class IamController {
         final RestTemplate restTemplate = new RestTemplate();
         final HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + req.getToken());
+        // headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         final HttpEntity<String> entity = new HttpEntity<String>(headers);
         return restTemplate
                 .exchange("https://dev.priorsolution.co.th/iam/v2/api/user/me", HttpMethod.GET, entity, String.class)
