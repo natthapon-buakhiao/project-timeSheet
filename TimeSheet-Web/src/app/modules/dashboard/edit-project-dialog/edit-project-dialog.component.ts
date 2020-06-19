@@ -6,21 +6,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Message } from 'src/app/shared/model/message';
 import { ReqEditProject } from 'src/app/shared/model/req-project';
 import { RequestProjectService } from 'src/app/service/request-project.service';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 @Component({
   selector: 'app-edit-project-dialog',
   templateUrl: './edit-project-dialog.component.html',
-  styleUrls: ['./edit-project-dialog.component.scss'],
-  providers: [
-    {
-        provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
-    ]
+  styleUrls: ['./edit-project-dialog.component.scss']
 })
 export class EditProjectDialogComponent implements OnInit {
 
@@ -65,18 +55,20 @@ export class EditProjectDialogComponent implements OnInit {
     }
   }
 
-  onSave() {
-    this.loading.show();
+  onSave() {    
     let reqEditProject = new ReqEditProject();
     reqEditProject.projectCode = this.editProject.controls['projectCode'].value;
     reqEditProject.projectName = this.editProject.controls['projectName'].value;    
     reqEditProject.description = this.editProject.controls['description'].value;
     reqEditProject.userCodeSupervisor = this.editProject.controls['userCodeSupervisor'].value;
     this.requestProject.editProject(reqEditProject).subscribe((res) => {
-      console.log("edit Project Success");
-      this.loading.hide();
+      console.log("edit Project Success");      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
+      this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
     },
       (error) => {
        this.loading.hide();

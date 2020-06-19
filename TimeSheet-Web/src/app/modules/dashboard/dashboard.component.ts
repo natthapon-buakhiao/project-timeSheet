@@ -41,9 +41,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {   
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 1000);
 
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    if (this.dataProfile.userRoleObjects[0].roleCode && 'SUPERVISOR' == this.dataProfile.userRoleObjects[0].roleCode) {
+    if (this.dataProfile.userRoleObjects[0].roleCode == 'SUPERVISOR') {
       this.isSup = true;
       this.inquirySup();
 
@@ -123,17 +127,22 @@ export class DashboardComponent implements OnInit {
     this.deleteSwal.fire();
   }
 
-  onDelete() {
-    this.loading.show();
+  onDelete() {    
     let request = new ReqRemoveProject();
     request.projectCode = this.dataUserProject.projectCode;
     request.userCodeSupervisor = this.dataUserProject.userCodeSupervisor;
-    this.removeProject.deleteProject(request).subscribe((res) => {
-      this.loading.hide();
+    this.removeProject.deleteProject(request).subscribe((res) => {      
       this.deletedSucessSwal.title = Message.MESSAGE_DELETE_SUCCESS;
       this.deletedSucessSwal.fire();
+      this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
     }, (error) => {
-      this.loading.hide();
+      this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
     })
 
   }

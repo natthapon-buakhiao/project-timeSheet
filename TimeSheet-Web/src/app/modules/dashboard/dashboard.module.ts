@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DialogAssignComponent } from './dialog-assign/dialog-assign.component';
 import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-dialog.component';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -20,10 +23,19 @@ import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-d
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    NgxSpinnerModule
   ],
   entryComponents: [    
     DialogAssignComponent, EditProjectDialogComponent
+    ],  
+    providers: [
+      {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
     ],
 })
 export class DashboardModule { }
