@@ -1,10 +1,7 @@
-import { UserService } from './../../service/user.service';
 import { ReportService } from './../../service/report.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { RequestInquiryReport } from 'src/app/shared/model/report';
-import { RequestInquiryUser } from 'src/app/shared/model/user';
 import { RequestAttendanceService } from 'src/app/service/request-attendance.service';
 import { DataSite } from 'src/app/shared/model/requestAttendance';
 

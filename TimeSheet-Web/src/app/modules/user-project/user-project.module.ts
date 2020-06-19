@@ -9,6 +9,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { AddUserProjectDialogComponent } from './add-user-project-dialog/add-user-project-dialog.component';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
 
 
 @NgModule({
@@ -27,7 +29,13 @@ import { RequestUserProjectService } from 'src/app/service/request-user-project.
         AddUserProjectDialogComponent
     ],
     providers: [
-      RequestUserProjectService
+      RequestUserProjectService,
+      {
+        provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
     ],
 })
 export class UserProjectModule { }

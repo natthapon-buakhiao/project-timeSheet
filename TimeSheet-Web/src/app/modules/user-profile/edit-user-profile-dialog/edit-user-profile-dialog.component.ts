@@ -12,15 +12,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.ada
 @Component({
   selector: 'app-edit-user-profile-dialog',
   templateUrl: './edit-user-profile-dialog.component.html',
-  styleUrls: ['./edit-user-profile-dialog.component.scss'],
-  providers: [
-    {
-        provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
-    ]
+  styleUrls: ['./edit-user-profile-dialog.component.scss']
 })
 export class EditUserProfileDialogComponent implements OnInit {
   @ViewChild('saveSwal', { static: false }) saveSwal: SwalComponent;

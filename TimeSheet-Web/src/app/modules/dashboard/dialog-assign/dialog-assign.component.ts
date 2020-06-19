@@ -8,26 +8,12 @@ import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 import { RequestProjectService } from 'src/app/service/request-project.service';
-import { UserProfileService } from 'src/app/service/user-profile.service';
 import { UserService } from 'src/app/service/user.service';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-
-
-
 
 @Component({
   selector: 'app-dialog-assign',
   templateUrl: './dialog-assign.component.html',
   styleUrls: ['./dialog-assign.component.scss'],
-  providers: [
-    {
-        provide: DateAdapter, useClass: AppDateAdapter
-    },
-    {
-        provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
-    }
-    ]
 })
 export class DialogAssignComponent implements OnInit {
 
@@ -48,7 +34,6 @@ export class DialogAssignComponent implements OnInit {
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqInsertProject: RequestProjectService,
-    private userProfileService: UserProfileService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -110,15 +95,15 @@ export class DialogAssignComponent implements OnInit {
     requestInsert.projectName = this.createAssignProject.controls['projectName'].value;
     requestInsert.description = this.createAssignProject.controls['description'].value;
     requestInsert.projectCode = this.createAssignProject.controls['projectCode'].value;
-
-
-    this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {
-      this.loading.hide();
+    this.reqInsertProject.insetProject(requestInsert).subscribe((res) => {      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
+      this.loading.show();
+      setTimeout(() => {      
+        this.loading.hide();
+      }, 1000);
       console.log(res)
-    }, (error) => {
-      this.loading.hide();
+    }, (error) => {  
       console.log(error);
     });
   }

@@ -9,8 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
-
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { APP_DATE_FORMATS, AppDateAdapter } from 'src/app/shared/common/date.adapter';
 
 
 
@@ -23,13 +25,16 @@ import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-att
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    SweetAlert2Module.forRoot(),    
+    SweetAlert2Module.forRoot(),  
+    NgxSpinnerModule  
     
   ],
   entryComponents:[EditAttendanceDialogComponent],
   providers: [
     RequestAttendanceService,
-    ExportDirective
+    ExportDirective,   
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }  
   ],
 })
 export class AttendanceModule { }
