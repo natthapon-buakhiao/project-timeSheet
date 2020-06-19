@@ -19,13 +19,6 @@ export class RequestProjectService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProject(): Observable<any> {
-    let url = endpoint + "/getdata";
-    return this.http.get<any>(url, httpOptions).pipe(
-      tap(_ => console.log('getAllProject success'))
-    );
-  }
-
   inquirySup(request: RequestInquirySup): Observable<any> {
     let url = endpoint + "/inquiry";
     return this.http.post<any>(url, request, httpOptions).pipe(

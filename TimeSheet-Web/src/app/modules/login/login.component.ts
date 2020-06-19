@@ -53,8 +53,9 @@ export class LoginComponent implements OnInit {
       console.log(success);
       if (success === true) {
         this.getUser();
-        // console.log('accessToken = ' + this._login.getTokens());
-        
+        // console.log('accessToken = ' + this._login.getTokens());        
+      }else {
+        this.errorMessage = "Username or Password is invalid.";
       }
 
     });

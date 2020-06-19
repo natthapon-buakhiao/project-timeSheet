@@ -1,8 +1,6 @@
 import { ReportService } from './../../service/report.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RequestInquiryStaffProfile } from 'src/app/shared/model/req-user-profile';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { UserProfileService } from 'src/app/service/user-profile.service';
 import { Router } from '@angular/router';
 import { RequestInquiryReport } from 'src/app/shared/model/report';
 
