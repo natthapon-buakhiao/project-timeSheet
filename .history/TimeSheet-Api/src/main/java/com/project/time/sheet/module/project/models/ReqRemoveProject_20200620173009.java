@@ -6,5 +6,6 @@ import lombok.Data;
 public class ReqRemoveProject {
 
     private String projectCode;
+    private String userCodeSupervisor;
 
 }

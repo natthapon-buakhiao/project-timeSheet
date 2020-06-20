@@ -8,6 +8,7 @@ export class ReqInsertProject {
 
 export class ReqRemoveProject {
     projectCode: string;
+    userCodeSupervisor: string;
 }
 
 export class ReqEditProject {

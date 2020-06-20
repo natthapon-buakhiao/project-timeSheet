@@ -131,6 +131,7 @@ export class DashboardComponent implements OnInit {
   onDelete() {
     let request = new ReqRemoveProject();
     request.projectCode = this.dataUserProject.projectCode;
+    request.userCodeSupervisor = this.dataUserProject.userCodeSupervisor;
     this.removeProject.deleteProject(request).subscribe((res) => {
       this.deletedSucessSwal.title = Message.MESSAGE_DELETE_SUCCESS;
       this.deletedSucessSwal.fire();
