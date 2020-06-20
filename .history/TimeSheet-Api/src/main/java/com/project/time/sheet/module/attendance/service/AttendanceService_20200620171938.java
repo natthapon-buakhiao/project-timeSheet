@@ -17,7 +17,6 @@ import com.project.time.sheet.exception.DataNotFoundException;
 import com.project.time.sheet.module.attendance.models.request.ReqEditAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
-import com.project.time.sheet.module.attendance.models.request.ReqRemoveAttendance;
 import com.project.time.sheet.repository.AttendanceRepository;
 import com.project.time.sheet.repository.ProjectRepository;
 import com.project.time.sheet.repository.SiteRepository;
@@ -157,19 +156,18 @@ public class AttendanceService {
 
     }
 
-    public ResponseModel deleteAttendance(ReqRemoveAttendance req) {
+    public ResponseModel deleteProject(ReqRemoveProject req) {
 
         ResponseModel res = new ResponseModel();
 
         try {
+            Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
 
-            Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
+            if (newProject.isPresent()) {
 
-            if (newAttendance.isPresent()) {
-
-                attendanceRepository.delete(newAttendance.get());
+                projectRepository.delete(newProject.get());
             } else {
-                throw new DataNotFoundException("Data not found, Method : deleteAttendance");
+                throw new DataNotFoundException("Data not found, Method : removeCustomer");
             }
 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());

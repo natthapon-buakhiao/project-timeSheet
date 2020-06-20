@@ -162,14 +162,14 @@ public class AttendanceService {
         ResponseModel res = new ResponseModel();
 
         try {
-
+            Optional<Project> newProject = projectRepository.findByProjectCode(req.getProjectCode());
             Optional<Attendance> newAttendance = attendanceRepository.findById(req.getId());
 
             if (newAttendance.isPresent()) {
 
                 attendanceRepository.delete(newAttendance.get());
             } else {
-                throw new DataNotFoundException("Data not found, Method : deleteAttendance");
+                throw new DataNotFoundException("Data not found, Method : removeCustomer");
             }
 
             res.setCode(EnumCodeResponse.SUCCESS.getCode());

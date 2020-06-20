@@ -51,7 +51,7 @@ public class AttendanceController {
     public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveAttendance req) {
 
         ResponseModel res = new ResponseModel();
-        res = attendanceService.deleteAttendance(req);
+        res = projectService.deleteProject(req);
         return ResponseEntity.ok(res);
     }
 

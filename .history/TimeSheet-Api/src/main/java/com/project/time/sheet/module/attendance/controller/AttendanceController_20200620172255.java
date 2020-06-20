@@ -13,7 +13,6 @@ import com.project.time.sheet.common.models.ResponseModel;
 import com.project.time.sheet.module.attendance.models.request.ReqEditAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInquiryAttendance;
 import com.project.time.sheet.module.attendance.models.request.ReqInsertAttendance;
-import com.project.time.sheet.module.attendance.models.request.ReqRemoveAttendance;
 import com.project.time.sheet.module.attendance.service.AttendanceService;
 
 @RestController
@@ -48,10 +47,10 @@ public class AttendanceController {
 	}
 
 	@PostMapping(value = "/remove")
-    public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveAttendance req) {
+    public ResponseEntity<ResponseModel> remove(@RequestBody ReqRemoveProject req) {
 
         ResponseModel res = new ResponseModel();
-        res = attendanceService.deleteAttendance(req);
+        res = projectService.deleteProject(req);
         return ResponseEntity.ok(res);
     }
 
