@@ -1,7 +1,7 @@
 import { ExportService } from './../../service/export.service';
 import { UserService } from './../../service/user.service';
 import { RequestInquiryUser } from './../../shared/model/request-user-project';
-import { RequestInquiryAttendace,Excel } from './../../shared/model/requestAttendance';
+import { RequestInquiryAttendace,Excel, ReqRemoveAttendance } from './../../shared/model/requestAttendance';
 import { RequestAttendanceService } from './../../service/request-attendance.service';
 import { AddAttendanceDialogComponent } from './add-attendance-dialog/add-attendance-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -15,6 +15,8 @@ import { default as _rollupMoment, Moment } from 'moment';
 import { FormControl } from '@angular/forms';
 import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-attendance-dialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { Message } from 'src/app/shared/model/message';
 
 const moment = _rollupMoment || _moment;
 
@@ -29,6 +31,8 @@ export class AttendanceComponent implements OnInit {
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild("deleteSwal", { static: false }) deleteSwal: SwalComponent;
+  @ViewChild("deletedSucessSwal", { static: false }) deletedSucessSwal: SwalComponent;
 
   dataProfile: any;
   dataStaff: any;
@@ -36,9 +40,9 @@ export class AttendanceComponent implements OnInit {
   arraydataSource: any = [];
   groupData: any;
   private dataExcel: Array<any> = []; 
-  private excel: Excel = new Excel();
-  dateIn: any;
+  private excel: Excel = new Excel(); 
   dateTest = new FormControl(moment());
+  idAttendance: any;
 
 
   constructor(
@@ -47,12 +51,12 @@ export class AttendanceComponent implements OnInit {
     private userService: UserService,
     private exportService: ExportService,
     private loading: NgxSpinnerService,
+    private removeAttendances: RequestAttendanceService
   ) { 
     this.groupData = this.organise(this.dataExcel);
   }
 
   ngOnInit() {
-
     this.loading.show();
     setTimeout(() => {      
       this.loading.hide();
@@ -183,6 +187,33 @@ export class AttendanceComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  onDeleteSwal(idAttendance) {    
+    this.idAttendance = idAttendance;
+    this.deleteSwal.title = Message.MESSAGE_DELETE;
+    this.deleteSwal.fire();
+  }
+
+  onDelete() {
+    let request = new ReqRemoveAttendance();
+    request.id = this.idAttendance.id;
+    console.log(request)
+    this.removeAttendances.removeAttendance(request).subscribe((res) => {
+      this.deletedSucessSwal.title = Message.MESSAGE_DELETE_SUCCESS;
+      this.deletedSucessSwal.fire();
+    }, (error) => {
+      console.log(error)
+    })
+
+  }
+
+  deletedSucess() {
+    this.loading.show();
+    setTimeout(() => {
+      this.loading.hide();
+    }, 500);
+    this.getUser();
   }
 
 

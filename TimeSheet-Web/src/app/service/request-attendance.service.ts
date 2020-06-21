@@ -1,4 +1,4 @@
-import { ReqInsertAttendance, RequestInquiryAttendace, ReqEditAttendance } from './../shared/model/requestAttendance';
+import { ReqInsertAttendance, RequestInquiryAttendace, ReqEditAttendance, ReqRemoveAttendance } from './../shared/model/requestAttendance';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -33,6 +33,13 @@ export class RequestAttendanceService {
     const url = endpoint + '/edit';
     return this.http.post(url, request, httpOptions).pipe(
       tap(_ => console.log('EditAttendance success'))
+    );
+  }
+
+  removeAttendance(request: ReqRemoveAttendance): Observable<any> {
+    const url = endpoint + '/remove';
+    return this.http.post(url, request, httpOptions).pipe(
+      tap(_ => console.log('RemoveAttendance success'))
     );
   }
 

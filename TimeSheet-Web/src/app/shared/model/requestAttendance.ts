@@ -18,6 +18,10 @@ export class ReqEditAttendance {
     timeOut: string;
 }
 
+export class ReqRemoveAttendance {
+    id: number;
+}
+
 export class RequestInquiryAttendace {
     userCode: string;
     date: Date;
