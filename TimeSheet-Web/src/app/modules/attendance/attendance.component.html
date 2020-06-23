@@ -3,8 +3,10 @@
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
   <div class="row">
-    <div class="col-12">
-      <div> <a style="font-size: 1.75rem;">Attendance List</a></div>
+    <div class="col-6" style="color: #737373;">
+      <mat-icon style="vertical-align: middle;">home</mat-icon>
+      <mat-icon style="vertical-align: middle;">chevron_right</mat-icon>
+      <span style="font-size: 1.2rem;"> Attendance List </span>
     </div>
   </div>
 
@@ -14,7 +16,7 @@
         <mat-icon>library_books</mat-icon>
         Export
       </button>&nbsp;
-      <button mat-raised-button class="btn-submit" *ngIf="!isSup" (click)="openDialogAdd(dataSite,project)">
+      <button mat-raised-button class="btn-submit" *ngIf="!isSup" (click)="openDialogAdd()">
         <mat-icon>add_alarm</mat-icon>
         Add Attendance List
       </button><br>
@@ -76,10 +78,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let element">
-            <button *ngIf="!isSup" mat-button (click)="openDialogEdit(element)">
+            <button *ngIf="!isSup" mat-button  class="card-button" (click)="openDialogEdit(element)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button *ngIf="!isSup" mat-button (click)="onDeleteSwal(element)">
+            <button *ngIf="!isSup" mat-button  class="card-button" (click)="onDeleteSwal(element)">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>
