@@ -46,8 +46,7 @@ export class UserProfileComponent implements OnInit {
     setTimeout(() => {      
       this.loading.hide();
     }, 500);
-
-    this.getUser();
+   
     this.createProfile = new FormGroup({
       userCode: new FormControl(),
       firstName: new FormControl(),
@@ -58,28 +57,18 @@ export class UserProfileComponent implements OnInit {
       address: new FormControl(),
       site: new FormControl()
     });
+    this.inquiryUserProfile();
   }
 
-  getUser() {
-    const request = new RequestInquiryUser();
-    let data: any;
-    this.dataUser = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataUser.userCode;
-    this.userService.inquiryUser(request).subscribe((res) => {
-      console.log(res.data[0].userCode);
-      data = res.data[0];
-      this.inquiryUserProfile(data);
-      this.setFromProfile(data);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+
 
   get f() { return this.createProfile.controls; }
 
-  inquiryUserProfile(data) {
+  inquiryUserProfile() {
     const request = new RequestInquiryProfile();
-    request.userCode = data.userCode;
+    let data: any;
+    this.dataUser = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    request.userCode = this.dataUser.userCode;
     console.log(request)
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
@@ -105,41 +94,6 @@ export class UserProfileComponent implements OnInit {
     console.log(this.createProfile)
   }
 
-  // onSubmit() {
-  //   this.submitted = true;
-  //   console.log(this.createProfile)
-  //   if (this.createProfile.invalid) {
-  //     return;
-  //   } else {
-  //     this.saveSwal.title = Message.MESSAGE_SAVE;
-  //     this.saveSwal.fire();
-  //   }
-  // }
-
-  // onSave() {
-  //   this.loading.show();
-  //   let request = new ReqInsertUserProfile;
-  //   request.userCode = this.createProfile.controls['userCode'].value;
-  //   request.firstName = this.createProfile.controls['firstName'].value;
-  //   request.lastName = this.createProfile.controls['lastName'].value;
-  //   request.birthday = this.createProfile.controls['birthday'].value;
-  //   request.age = this.createProfile.controls['age'].value;
-  //   request.address = this.createProfile.controls['address'].value;
-  //   request.position = this.createProfile.controls['position'].value;
-
-  //   this.userProfileService.insertProfile(request).subscribe((res) => {
-  //     console.log("Insert UserProfile Success");
-  //     console.log(res);
-  //     this.loading.hide();
-  //     this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
-  //     this.saveSucessSwal.fire();
-  //   },
-  //     (error) => {
-  //       this.loading.hide();
-  //       console.log(error);
-  //     });
-  // }
-
   openDialogEdit(dataProfile) {
     console.log('The dialog was open add');
     const dialogRef = this.dialog.open(EditUserProfileDialogComponent, {
@@ -151,7 +105,7 @@ export class UserProfileComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getUser();
+        this.inquiryUserProfile();
         console.log("Edit Success!")
       }
     });

@@ -1,7 +1,7 @@
 import { RequestAttendanceService } from './../../../service/request-attendance.service';
 import { ReqInsertAttendance, RequestInquiryAttendace } from './../../../shared/model/requestAttendance';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Message } from 'src/app/shared/model/message';
 import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator';
@@ -28,19 +28,19 @@ export class AddAttendanceDialogComponent implements OnInit {
   project: any;
   dataSite: any;
 
+ 
+
   constructor(
     public dialogRef: MatDialogRef<AddAttendanceDialogComponent>,
     private _FormBuild: FormBuilder,
     private requestAttendance: RequestAttendanceService,
-    private userService: UserService,    
-    private noWhitespaceValidator: noWhitespaceValidator,
-    private reqUserProject: RequestUserProjectService
+    public dialog: MatDialog,   
+    @Inject(MAT_DIALOG_DATA) public data: any,   
+    private noWhitespaceValidator: noWhitespaceValidator,   
   ) { }
 
   ngOnInit() {
-
-    this.inquiryUserProject();
-    this.getUser();
+   
     this.createAttendance = new FormGroup({
       userCode: new FormControl(),
       date: new FormControl(new Date()),
@@ -50,56 +50,17 @@ export class AddAttendanceDialogComponent implements OnInit {
       timeOut: new FormControl(),
       siteCode: new FormControl(),
     });
-    this.getAllSite();
+    this.setFormAttendance();    
   }
-
 
   get f() { return this.createAttendance.controls; }
 
-  getUser() {
-    const request = new RequestInquiryAttendace();
-    let data: any;
+  setFormAttendance() {        
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    this.userService.inquiryUser(request).subscribe((res) => {
-      console.log(res);
-      data = res.data[0];
-      this.setFormAttendance(data);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-
-  getAllSite() {
-    this.requestAttendance.getAllSite().subscribe((res) => {
-      console.log(res);
-      this.dataSite = res.data;
-    },
-      (error) => {
-        console.log(error + 'get Fail!!');
-      });
-  }
-
-
-  inquiryUserProject() {
-    const request = new RequestInquiryUser();
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    console.log(request);
-    this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
-      console.log(res);
-      this.project = res.data;
-      // console.log(this.project)
-    },
-      (error) => {
-        console.log(error + 'get Fail!!');
-      });
-  }
-
-  setFormAttendance(dataUser) {
-    console.log(dataUser);
+    this.dataSite = JSON.parse(localStorage.getItem('dataSite'));
+    this.project = JSON.parse(localStorage.getItem('project'));
     this.createAttendance = this._FormBuild.group({
-      userCode: [dataUser.userCode, Validators.required],
+      userCode: [this.dataProfile.userCode, Validators.required],
       date: [new Date(), Validators.required],
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       task: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
@@ -130,6 +91,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     requestInsert.timeIn = this.createAttendance.controls.timeIn.value;
     requestInsert.timeOut = this.createAttendance.controls.timeOut.value;
     requestInsert.siteCode = this.createAttendance.controls.siteCode.value;
+    console.log(requestInsert)
     this.requestAttendance.insetAttendance(requestInsert).subscribe((res) => {      
       this.saveSucessSwal.title = Message.MESSAGE_SAVE_SUCCESS;
       this.saveSucessSwal.fire();
