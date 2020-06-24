@@ -1,4 +1,3 @@
-import { RequestInquiryUser } from './../../../shared/model/request-user-project';
 import { ReqInsertProject } from './../../../shared/model/req-project';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,7 +7,7 @@ import { noWhitespaceValidator } from './../../../shared/noWhitespaceValidator';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
 import { RequestProjectService } from 'src/app/service/request-project.service';
-import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-dialog-assign',
@@ -34,10 +33,9 @@ export class DialogAssignComponent implements OnInit {
     private loading: NgxSpinnerService,
     private noWhitespaceValidator: noWhitespaceValidator,
     private reqInsertProject: RequestProjectService,
-    private userService: UserService) { }
+   ) { }
 
-  ngOnInit() {
-    this.getUser();
+  ngOnInit() {    
     this.createAssignProject = new FormGroup({
       userCodeSupervisor: new FormControl(),
       date: new FormControl(),
@@ -45,29 +43,17 @@ export class DialogAssignComponent implements OnInit {
       projectCode: new FormControl(),
       description: new FormControl()
     });
-  }
-
-  getUser() {
-    let request = new RequestInquiryUser();
-    let data: any;
-    this.dataSup = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataSup.userCode;
-    this.userService.inquiryUser(request).subscribe((res) => {
-      console.log(res);
-      data = res.data[0];
-      this.setFormProject(data);
-    }, (error) => {
-      console.log(error);
-    });
+    this.setFormProject();
   }
 
   get f() { return this.createAssignProject.controls; }
 
 
-  setFormProject(dataSup) {
+  setFormProject() {        
+    this.dataSup = JSON.parse(sessionStorage.getItem('userProfileIam'));    
     this.createAssignProject = this._FormBuild.group({
       projectCode: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
-      userCodeSupervisor: [dataSup.userCode, Validators.required],
+      userCodeSupervisor: [this.dataSup.userCode, Validators.required],
       date: [new Date(), Validators.required],
       projectName: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],
       description: ['', Validators.required, this.noWhitespaceValidator.noWhitespace],

@@ -54,6 +54,7 @@ export class AppNevBarComponent implements OnInit {
 
   clearCache() {
     sessionStorage.clear();
+    localStorage.clear();
     this.router.navigateByUrl('/login');
   }
 

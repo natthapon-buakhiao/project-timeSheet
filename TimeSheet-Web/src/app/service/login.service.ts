@@ -10,14 +10,11 @@ const endpoint = environment.service.auth.endPoint;
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-
-  // public API: string = "http://localhost:8091/time-sheet";
+export class LoginService {  
   private loggedUser: string;
   allowed: any;
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient,    
   ) {}
 
    login(userCode: string, password: string ): Observable<any> {

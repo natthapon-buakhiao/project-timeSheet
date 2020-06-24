@@ -17,6 +17,7 @@ import { EditAttendanceDialogComponent } from './edit-attendance-dialog/edit-att
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Message } from 'src/app/shared/model/message';
+import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -43,15 +44,17 @@ export class AttendanceComponent implements OnInit {
   private excel: Excel = new Excel(); 
   dateTest = new FormControl(moment());
   idAttendance: any;
+  dataSite: any;
+  project: any;
 
 
   constructor(
     public dialog: MatDialog,
-    private reqAttendance: RequestAttendanceService,
-    private userService: UserService,
+    private reqAttendance: RequestAttendanceService,    
     private exportService: ExportService,
     private loading: NgxSpinnerService,
-    private removeAttendances: RequestAttendanceService
+    private removeAttendances: RequestAttendanceService,
+    private reqUserProject: RequestUserProjectService
   ) { 
     this.groupData = this.organise(this.dataExcel);
   }
@@ -69,8 +72,11 @@ export class AttendanceComponent implements OnInit {
       this.inquiryListStaff();
     } else {
       this.isSup = false;
-      this.getUser();
+      this.inquiryAttendance();
     }
+
+    this.getAllSite();
+    this.inquiryUserProject();
   }
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -113,9 +119,11 @@ export class AttendanceComponent implements OnInit {
     return objs;
   }
 
-  inquiryAttendance(data) {
+  inquiryAttendance() {
     let request = new RequestInquiryAttendace();
-    request.userCode = data.userCode;
+    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
+    request.userCode = this.dataProfile.userCode;
+    request.date = this.dataProfile.date;    
     request.date = this.dateTest.value._d;
     console.log(request)
     this.reqAttendance.inquiryAttendance(request).subscribe((res) => {
@@ -171,23 +179,38 @@ export class AttendanceComponent implements OnInit {
       })
   }
 
-  getUser() {
-    this.loading.show();
-      setTimeout(() => {      
-        this.loading.hide();
-      }, 500);
-    let request = new RequestInquiryUser();
-    let data: any;
+  
+  inquiryUserProject() {
+    const request = new RequestInquiryUser();
     this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
     request.userCode = this.dataProfile.userCode;
-    this.userService.inquiryUser(request).subscribe((res) => {
+    console.log(request);
+    this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
       console.log(res);
-      data = res.data[0];
-      this.inquiryAttendance(data);
-    }, (error) => {
-      console.log(error);
-    });
+      this.project = res.data;
+      localStorage.setItem('project', JSON.stringify(this.project));   
+      // console.log(this.project)
+    },
+      (error) => {
+        console.log(error + 'get Fail!!');
+      });
   }
+
+  getAllSite() {
+    this.reqAttendance.getAllSite().subscribe((res) => {
+      console.log(res);
+      this.dataSite = res.data;
+      localStorage.setItem('dataSite', JSON.stringify(this.dataSite));    
+    },
+      (error) => {
+        console.log(error + 'get Fail!!');
+      });
+  }
+  
+
+
+
+
 
   onDeleteSwal(idAttendance) {    
     this.idAttendance = idAttendance;
@@ -213,21 +236,21 @@ export class AttendanceComponent implements OnInit {
     setTimeout(() => {
       this.loading.hide();
     }, 500);
-    this.getUser();
+    this.inquiryAttendance();
   }
 
 
   openDialogAdd(): void {
     console.log('The dialog was open add');
     const dialogRef = this.dialog.open(AddAttendanceDialogComponent, {
-      width: '750px',
+      width: '750px',     
       position: {
         top: '10%',
       },
-    });
+    });    
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getUser();
+        this.inquiryAttendance();
         console.log("Add Success!")
       }
     });
@@ -245,7 +268,7 @@ export class AttendanceComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getUser();
+        this.inquiryAttendance();
         console.log("Edit Success!")
       }
     });

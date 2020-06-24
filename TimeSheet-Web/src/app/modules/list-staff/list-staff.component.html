@@ -8,8 +8,10 @@
 </ngx-spinner>
 
   <div class="row">
-    <div class="col-12">
-      <div> <a style="font-size: 1.75rem;">List Staff</a></div>
+    <div class="col-6" style="color: #737373;">
+      <mat-icon style="vertical-align: middle;">home</mat-icon>
+      <mat-icon style="vertical-align: middle;">chevron_right</mat-icon>
+      <span style="font-size: 1.2rem;"> List Staff </span>
     </div>
   </div>
 
@@ -35,7 +37,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="goAttendance(element.id.user.userCode)">
+            <button mat-button class="card-button" (click)="goAttendance(element.id.user.userCode)">
               <mat-icon>account_box</mat-icon>
             </button>
           </td>
