@@ -9,6 +9,7 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { UserService } from 'src/app/service/user.service';
 import { RequestInquiryUser } from 'src/app/shared/model/request-user-project';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class AddAttendanceDialogComponent implements OnInit {
     public dialog: MatDialog,   
     @Inject(MAT_DIALOG_DATA) public data: any,   
     private noWhitespaceValidator: noWhitespaceValidator,   
+    private loading: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -103,6 +105,10 @@ export class AddAttendanceDialogComponent implements OnInit {
 
 
   canCle(status) {
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
     this.dialogRef.close(status);
   }
 

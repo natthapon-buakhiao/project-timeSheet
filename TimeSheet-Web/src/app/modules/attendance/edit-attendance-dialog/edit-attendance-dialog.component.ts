@@ -7,6 +7,7 @@ import { RequestAttendanceService } from 'src/app/service/request-attendance.ser
 import { ReqEditAttendance } from 'src/app/shared/model/requestAttendance';
 import { RequestInquiryUser } from 'src/app/shared/model/request-user-project';
 import { RequestUserProjectService } from 'src/app/service/request-user-project.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-attendance-dialog',
@@ -29,7 +30,7 @@ export class EditAttendanceDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _FormBuild: FormBuilder,
     private  requestAttendance: RequestAttendanceService,
-    private reqUserProject: RequestUserProjectService
+    private loading: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -97,6 +98,10 @@ export class EditAttendanceDialogComponent implements OnInit {
 
 
   canCle(status) {
+    this.loading.show();
+    setTimeout(() => {      
+      this.loading.hide();
+    }, 500);
     this.dialogRef.close(status);
   }
 
