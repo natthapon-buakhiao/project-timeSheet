@@ -33,11 +33,9 @@ export class EditAttendanceDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.data)
+   
     this.dataAttendance = this.data;
-    // console.log(this.dataAttendance)
-    this.inquiryUserProject();
-    this.getAllSite();    
+ 
     this.createEditAttendance = new FormGroup({
       id: new FormControl(),
       date: new FormControl(new Date()),
@@ -50,32 +48,9 @@ export class EditAttendanceDialogComponent implements OnInit {
     this.setFromEditAttendance(this.dataAttendance);
   }
 
-  inquiryUserProject() {
-    let request = new RequestInquiryUser();
-    this.dataProfile = JSON.parse(sessionStorage.getItem('userProfileIam'));
-    request.userCode = this.dataProfile.userCode;
-    console.log(request)
-    this.reqUserProject.inquiryUserProject(request).subscribe((res) => {
-      console.log(res)
-      this.project = res.data;
-      // console.log(this.project)
-    },
-      (error) => {
-        console.log(error + "get Fail!!")
-      })
-  }
-
-  getAllSite(){
-    this.requestAttendance.getAllSite().subscribe((res) => {
-      console.log(res)
-      this.dataSite = res.data;     
-    },
-      (error) => {
-        console.log(error + "get Fail!!")
-      });
-  }
-
   setFromEditAttendance(dataAttendance) {
+    this.dataSite = JSON.parse(localStorage.getItem('dataSite'));
+    this.project = JSON.parse(localStorage.getItem('project'));
     console.log(dataAttendance)
     this.createEditAttendance = this._FormBuild.group({
       id: [dataAttendance.id, Validators.required],
