@@ -69,7 +69,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-
   setFromProfile(dataUser) {
     console.log(dataUser)
     this.createProfile = this._FormBuild.group({
