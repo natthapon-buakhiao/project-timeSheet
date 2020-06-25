@@ -1,20 +1,11 @@
-import { RequestInquiryUser } from './../../shared/model/request-user-project';
-import { ReqInsertUserProfile } from './../../shared/model/req-user-profile';
-import { Router } from '@angular/router';
 import { EditUserProfileDialogComponent } from './edit-user-profile-dialog/edit-user-profile-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RequestInquiryProfile,  } from 'src/app/shared/model/req-user-profile';
 import { UserProfileService } from 'src/app/service/user-profile.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { noWhitespaceValidator } from 'src/app/shared/noWhitespaceValidator'
-import { Message } from 'src/app/shared/model/message';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserService } from 'src/app/service/user.service';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/common/date.adapter';
-
 
 
 @Component({
@@ -30,11 +21,11 @@ export class UserProfileComponent implements OnInit {
   submitted = false;
   setToken: any;
   dataUser: any;
+  dataProfile: any;
 
   constructor(
     public dialog: MatDialog,
-    private _FormBuild: FormBuilder,
-    private userService: UserService,
+    private _FormBuild: FormBuilder,    
     private loading: NgxSpinnerService,
     private userProfileService: UserProfileService,
 
@@ -60,8 +51,6 @@ export class UserProfileComponent implements OnInit {
     this.inquiryUserProfile();
   }
 
-
-
   get f() { return this.createProfile.controls; }
 
   inquiryUserProfile() {
@@ -73,6 +62,7 @@ export class UserProfileComponent implements OnInit {
     this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
       console.log(res);
       data = res.data;
+      this.dataProfile = res.data[0];
       this.setFromProfile(data);
     }, (error) => {
       console.log(error);

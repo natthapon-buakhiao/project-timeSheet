@@ -32,8 +32,7 @@ export class EditUserProfileDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data.userCode);
-    this.getUserProfile(this.data.userCode);
+    console.log(this.data);    
     this.editProfile = new FormGroup({
       userCode: new FormControl(),
       firstName: new FormControl(),
@@ -43,21 +42,9 @@ export class EditUserProfileDialogComponent implements OnInit {
       age: new FormControl(),
       address: new FormControl(),
     });
+    this.setFromProfile(this.data);
   }
-
-  getUserProfile(userCode) {
-    const request = new RequestInquiryProfile();
-    let data: any;
-    this.userCode = userCode;
-    request.userCode = this.userCode;
-    this.userProfileService.inquiryUserProfile(request).subscribe((res) => {
-      console.log(res);
-      data = res.data[0];
-      this.setFromProfile(data);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+  
 
   get f() { return this.editProfile.controls; }
 
