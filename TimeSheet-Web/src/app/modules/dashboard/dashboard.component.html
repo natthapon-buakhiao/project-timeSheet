@@ -21,7 +21,7 @@
 
   <div class="row" *ngIf="isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
-      <mat-card style="cursor: pointer;">
+      <mat-card style="cursor: pointer;" appMaterialElevation>
         <mat-card-title class="example-card2">Code: {{project.projectCode}}</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
@@ -43,7 +43,7 @@
 
   <div class="row" *ngIf="!isSup">
     <div class="col-3 mt-3" *ngFor="let project of projectList">
-      <mat-card style="cursor: pointer;">
+      <mat-card style="cursor: pointer;" appMaterialElevation>
         <mat-card-title class="example-card2">Code: {{project.id.project.projectCode}}</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-header style="place-content: center;" (click)="goUserProject(project)">
